@@ -3,43 +3,65 @@
     <head>
         <title>Laravel</title>
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="{{ asset("components/css/reset.css") }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset("components/font-awesome/css/font-awesome.min.css") }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset("components/bootstrap/dist/css/bootstrap.min.css") }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset("components/css/default.css") }}">
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+        <script src="{{ asset("components/jquery/dist/jquery.min.js") }}"></script>
+        <script src="{{ asset("components/bootstrap/dist/js/bootstrap.min.js") }}"></script>
+        <script src="{{ asset("components/js/script.js") }}"></script>
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
     </head>
     <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
+
+        <header>
+
+            <div class="site-branding">
+                <a href="http://www.workwithsmart.com/" rel="home"><img src="http://www.workwithsmart.com/wp-content/themes/smartcreative-theme/images/smartcreative.png" alt="SmartCreative"></a>
             </div>
+
+            <div class='nav'>
+                <ul>
+                    <li>
+                        <a href='#facebook'>
+                            <div class='fa fa-facebook'></div>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href='#contact'>
+                            <div class='fa fa-envelope'></div>
+
+                        </a>
+                    </li>
+                    {{--<li>--}}
+                        {{--<a href='#blog'>Contact us</a>--}}
+                    {{--</li>--}}
+                    <li>
+                        <a href='#contact'>
+                            {{--<div class='fa fa-envelope'></div>--}}
+                            Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li><a href="#">recommend</a></li>
+                    <li><a href="#">top hit</a></li>
+                    <li><a href="#">Subscriptions</a></li>
+                    <li><a href="#">My List</a></li>
+                </ul>
+            </div>
+
+        </header>
+        <div class="container">
+
         </div>
     </body>
 </html>
+
+
+
