@@ -48,6 +48,77 @@ $(function () {
                 suggestions.length = 10; // prune suggestions list to only 5 items
                 response(suggestions);
             };
-        },
+        }
     });
+
+
+
+
+    // -------------------------------------------------------------
+    //   Basic Navigation
+    // -------------------------------------------------------------
+    var $frame  = $('.sub-menu-list-item');
+    var $wrap   = $frame.parent();
+
+    // Call Sly on frame
+    $frame.sly({
+        horizontal: 1,
+        itemNav: 'basic',
+        smart: 1,
+        activateOn: 'click',
+        mouseDragging: 1,
+        touchDragging: 1,
+        releaseSwing: 1,
+        //startAt: 3,
+        //scrollBar: $wrap.find('.scrollbar'),
+        scrollBy: 1,
+        //pagesBar: $wrap.find('.pages'),
+        activatePageOn: 'click',
+        speed: 300,
+        elasticBounds: 1,
+        easing: 'easeOutExpo',
+        dragHandle: 1,
+        dynamicHandle: 1,
+        clickBar: 1
+
+    });
+    sly_reload($frame);
+
+
+    $(window).resize(function (e) {
+
+        sly_reload($frame);
+
+    });
+
+
+
 });
+
+
+
+
+function sly_reload($frame){
+
+    var $width = $(window).width(),
+        windowInnerWidth = $(window).innerWidth(),
+        pageMargin = 10,
+        //liMargin = 30,
+        //liPadding = 20;
+        liMargin = 0,
+        liPadding = 0;
+
+    var newsListPagespanWidth = windowInnerWidth - pageMargin * 2;
+
+    $frame.css({
+        'width': newsListPagespanWidth.toString() + 'px'
+    });
+
+    $frame.find('li').css({
+        //'width': liWidth.toString() + 'px'
+        'width': '213.81px'
+    });
+
+    $frame.sly('reload');
+
+}
