@@ -93,6 +93,10 @@ $(function () {
 
 
 
+
+
+
+
 });
 
 
@@ -122,3 +126,114 @@ function sly_reload($frame){
     $frame.sly('reload');
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"use strict";
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _React = React;
+var Component = _React.Component;
+var Children = _React.Children;
+var PropTypes = _React.PropTypes;
+var _ReactMotion = ReactMotion;
+var Motion = _ReactMotion.Motion;
+var spring = _ReactMotion.spring;
+
+var PlayPause = function (_Component) {
+    _inherits(PlayPause, _Component);
+
+    function PlayPause() {
+        _classCallCheck(this, PlayPause);
+
+        return _possibleConstructorReturn(this, _Component.apply(this, arguments));
+    }
+
+    PlayPause.prototype.render = function render() {
+        var _props = this.props;
+        var toggle = _props.toggle;
+        var onClick = _props.onClick;
+
+        return React.createElement(
+            Motion,
+            {
+                style: { scale: spring(toggle ? 1 : 0, [300, 30]) }
+            },
+            function (_ref) {
+                var scale = _ref.scale;
+                return React.createElement(
+                    "button",
+                    {
+                        type: "button",
+                        className: "play-pause",
+                        onClick: onClick
+                    },
+                    React.createElement("span", {
+                        className: "play-pause__playhead",
+                        style: {
+                            transform: "scaleX(" + (1 - scale) + ")",
+                            WebkitTransform: "scaleX(" + (1 - scale) + ")"
+                        }
+                    }),
+                    React.createElement("span", {
+                        className: "play-pause__pausehead",
+                        style: {
+                            transform: "scaleX(" + scale + ")",
+                            WebkitTransform: "scaleX(" + scale + ")"
+                        }
+                    })
+                );
+            }
+        );
+    };
+
+    return PlayPause;
+}(Component);
+
+var App = function (_Component2) {
+    _inherits(App, _Component2);
+
+    function App(props) {
+        _classCallCheck(this, App);
+
+        var _this2 = _possibleConstructorReturn(this, _Component2.call(this, props));
+
+        _this2.state = {
+            isPlaying: false
+        };
+        return _this2;
+    }
+
+    App.prototype.render = function render() {
+        var _this3 = this;
+
+        var isPlaying = this.state.isPlaying;
+
+        return React.createElement(PlayPause, {
+            toggle: isPlaying,
+            onClick: function onClick() {
+                return _this3.setState({ isPlaying: !isPlaying });
+            }
+        });
+    };
+
+    return App;
+}(Component);
+
+React.render(React.createElement(App, null), document.getElementById('app'));

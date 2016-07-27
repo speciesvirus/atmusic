@@ -1,80 +1,80 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Laravel</title>
+<head>
+    <title>Laravel</title>
 
-        <link rel="stylesheet" type="text/css" href="{{ asset("components/jquery-ui/themes/base/jquery-ui.css") }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset("components/css/reset.css") }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset("components/bootstrap/dist/css/bootstrap.min.css") }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset("components/font-awesome/css/font-awesome.min.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("components/jquery-ui/themes/base/jquery-ui.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("components/css/reset.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("components/bootstrap/dist/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("components/font-awesome/css/font-awesome.min.css") }}">
 
-        <link rel="stylesheet" type="text/css" href="{{ asset("components/css/default.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("components/css/default.css") }}">
 
-        <script src="{{ asset("components/jquery/dist/jquery.min.js") }}"></script>
-        <script src="{{ asset("components/jquery-ui/jquery-ui.min.js") }}"></script>
-        <script src="{{ asset("components/bootstrap/dist/js/bootstrap.min.js") }}"></script>
-        <script src="{{ asset("components/sly/dist/sly.min.js") }}"></script>
-        <script src="{{ asset("components/js/script.js") }}"></script>
+    <script src="{{ asset("components/jquery/dist/jquery.min.js") }}"></script>
+    <script src="{{ asset("components/jquery-ui/jquery-ui.min.js") }}"></script>
+    <script src="{{ asset("components/bootstrap/dist/js/bootstrap.min.js") }}"></script>
+    <script src="{{ asset("components/sly/dist/sly.min.js") }}"></script>
+    <script src="{{ asset("components/js/script.js") }}"></script>
 
-    </head>
-    <body>
+</head>
+<body>
 
-        <header>
+<header>
 
-            <div class="site-branding">
-                <a href="http://www.workwithsmart.com/" rel="home"><img src="http://www.workwithsmart.com/wp-content/themes/smartcreative-theme/images/smartcreative.png" alt="SmartCreative"></a>
-            </div>
+    <div class="site-branding">
+        <a href="http://www.workwithsmart.com/" rel="home"><img src="http://www.workwithsmart.com/wp-content/themes/smartcreative-theme/images/smartcreative.png" alt="SmartCreative"></a>
+    </div>
 
-            <div class="search">
-                <form id="search">
-                    <ul>
-                        <li>
-                            <a href='#contact'>
-                                <input type="search" placeholder="Search">
-                            </a>
-                        </li>
-                        <li>
-                            <a href='#search'>
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </form>
-            </div>
+    <div class="search">
+        <form id="search">
+            <ul>
+                <li>
+                    <a href='#contact'>
+                        <input type="search" placeholder="Search">
+                    </a>
+                </li>
+                <li>
+                    <a href='#search'>
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
+        </form>
+    </div>
 
-            <div class='nav'>
-                <ul>
-                    <li>
-                        <a href='#facebook'>
-                            <div class='fa fa-facebook'></div>
+    <div class='nav'>
+        <ul>
+            <li>
+                <a href='#facebook'>
+                    <div class='fa fa-facebook'></div>
 
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#contact'>
-                            <div class='fa fa-envelope'></div>
+                </a>
+            </li>
+            <li>
+                <a href='#contact'>
+                    <div class='fa fa-envelope'></div>
 
-                        </a>
-                    </li>
-                    {{--<li>--}}
-                        {{--<a href='#blog'>Contact us</a>--}}
-                    {{--</li>--}}
-                    <li>
-                        <a href='#contact'>
-                            {{--<div class='fa fa-envelope'></div>--}}
-                            Login
-                        </a>
-                    </li>
-                </ul>
-            </div>
+                </a>
+            </li>
+            {{--<li>--}}
+            {{--<a href='#blog'>Contact us</a>--}}
+            {{--</li>--}}
+            <li>
+                <a href='#contact'>
+                    {{--<div class='fa fa-envelope'></div>--}}
+                    Login
+                </a>
+            </li>
+        </ul>
+    </div>
 
 
-            <div class="menu">
-                <ul>
-                    <li><a href="#">recommend</a></li>
-                    <li><a href="#">top hit</a></li>
-                    <li><a href="#">Subscriptions</a></li>
-                    <li><a href="#">My List</a>
+    <div class="menu">
+        <ul>
+            <li><a href="#">recommend</a></li>
+            <li><a href="#">top hit</a></li>
+            <li><a href="#">Subscriptions</a></li>
+            <li><a href="#">My List</a>
                     <span class="menu-dropdown">
 
                         			<div class="frame crazy sub-menu-list-item" id="basic">
@@ -165,164 +165,176 @@
 
 
 </span>
-                    </li>
-                </ul>
-            </div>
+            </li>
+        </ul>
+    </div>
 
-        </header>
+</header>
 
-        <div class="wrapper">
-            <ul id="navmenu" class="side-menu -left -active shadow-z-2">
+<div class="wrapper">
+    <ul id="navmenu" class="side-menu -left -active shadow-z-2">
 
-                <li class="section"><span>Hosts</span></li>
-                <li class="option">
-                    <a href="#null" class="-active">
-                        <i class="icon mdi-action-view-quilt"></i>Overview
-                    </a>
-                    <a href="#null" class="helptoggle">
-                        <i class="icon mdi-action-help"></i>
-                    </a>
-                </li>
-                <li class="option">
-                    <a href="#null">
-                        <i class="icon mdi-hardware-memory"></i>CPU/Memory
-                    </a>
-                    <a href="#null" class="helptoggle">
-                        <i class="icon mdi-action-help"></i>
-                    </a>
-                </li>
-                <li class="option">
-                    <a href="#null">
-                        <i class="icon mdi-action-query-builder"></i>Requests Time Breakdown
-                    </a>
-                    <a href="#null" class="helptoggle">
-                        <i class="icon mdi-action-help"></i>
-                    </a>
-                </li>
-                <li class="option">
-                    <a href="#null">
-                        <i class="icon mdi-action-language"></i>Network
-                    </a>
-                    <a href="#null" class="helptoggle">
-                        <i class="icon mdi-action-help"></i>
-                    </a>
-                </li>
-                <li class="option">
-                    <a href="#null">
-                        <i class="icon mdi-action-swap-vert-circle"></i>File I/O
-                    </a>
-                    <a href="#null" class="helptoggle">
-                        <i class="icon mdi-action-help"></i>
-                    </a>
-                </li>
-                <li class="option">
-                    <a href="#null">
-                        <i class="icon mdi-action-get-app"></i>Requests
-                    </a>
-                    <a href="#null" class="helptoggle">
-                        <i class="icon mdi-action-help"></i>
-                    </a>
-                </li>
-                <li class="option">
-                    <a href="#null">
-                        <i class="icon mdi-device-brightness-high"></i>Forecast
-                    </a>
-                    <a href="#null" class="helptoggle">
-                        <i class="icon mdi-action-help"></i>
-                    </a>
-                </li>
-                <li class="section"><span>AWS Services</span></li>
-                <li class="option">
-                    <a href="#null"><img src="http://emisferosud.it/share/aws-ec2.svg" class="icon">EC2 Instances</a>
-                    <a href="#null" class="helptoggle">
-                        <i class="icon mdi-action-help"></i>
-                    </a>
-                </li>
-                <li class="option">
-                    <a href="#null"><img src="http://emisferosud.it/share/aws-rds.svg" class="icon">RDS Instances</a>
-                    <a href="#null" class="helptoggle">
-                        <i class="icon mdi-action-help"></i>
-                    </a>
-                </li>
-                <li class="option">
-                    <a href="#null"><img src="http://emisferosud.it/share/aws-elb.svg" class="icon">ELB Instances</a>
-                    <a href="#null" class="helptoggle">
-                        <i class="icon mdi-action-help"></i>
-                    </a>
+        <li class="section"><span>Hosts</span></li>
+        <li class="option">
+            <a href="#null" class="-active">
+                <i class="icon mdi-action-view-quilt"></i>Overview
+            </a>
+            <a href="#null" class="helptoggle">
+                <i class="icon mdi-action-help"></i>
+            </a>
+        </li>
+        <li class="option">
+            <a href="#null">
+                <i class="icon mdi-hardware-memory"></i>CPU/Memory
+            </a>
+            <a href="#null" class="helptoggle">
+                <i class="icon mdi-action-help"></i>
+            </a>
+        </li>
+        <li class="option">
+            <a href="#null">
+                <i class="icon mdi-action-query-builder"></i>Requests Time Breakdown
+            </a>
+            <a href="#null" class="helptoggle">
+                <i class="icon mdi-action-help"></i>
+            </a>
+        </li>
+        <li class="option">
+            <a href="#null">
+                <i class="icon mdi-action-language"></i>Network
+            </a>
+            <a href="#null" class="helptoggle">
+                <i class="icon mdi-action-help"></i>
+            </a>
+        </li>
+        <li class="option">
+            <a href="#null">
+                <i class="icon mdi-action-swap-vert-circle"></i>File I/O
+            </a>
+            <a href="#null" class="helptoggle">
+                <i class="icon mdi-action-help"></i>
+            </a>
+        </li>
+        <li class="option">
+            <a href="#null">
+                <i class="icon mdi-action-get-app"></i>Requests
+            </a>
+            <a href="#null" class="helptoggle">
+                <i class="icon mdi-action-help"></i>
+            </a>
+        </li>
+        <li class="option">
+            <a href="#null">
+                <i class="icon mdi-device-brightness-high"></i>Forecast
+            </a>
+            <a href="#null" class="helptoggle">
+                <i class="icon mdi-action-help"></i>
+            </a>
+        </li>
+        <li class="section"><span>AWS Services</span></li>
+        <li class="option">
+            <a href="#null"><img src="http://emisferosud.it/share/aws-ec2.svg" class="icon">EC2 Instances</a>
+            <a href="#null" class="helptoggle">
+                <i class="icon mdi-action-help"></i>
+            </a>
+        </li>
+        <li class="option">
+            <a href="#null"><img src="http://emisferosud.it/share/aws-rds.svg" class="icon">RDS Instances</a>
+            <a href="#null" class="helptoggle">
+                <i class="icon mdi-action-help"></i>
+            </a>
+        </li>
+        <li class="option">
+            <a href="#null"><img src="http://emisferosud.it/share/aws-elb.svg" class="icon">ELB Instances</a>
+            <a href="#null" class="helptoggle">
+                <i class="icon mdi-action-help"></i>
+            </a>
+        </li>
+    </ul>
+
+    <div class="content">
+
+        <div class="page-content">
+            <ul>
+                <li>
+                    <div class="clash-card archer">
+                        <div class="clash-card__image clash-card__image--archer">
+                            <img src="https://i.ytimg.com/vi/qvuFpgE6Imk/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=QQ72m2SJYqixStuImWIdmFxBe2I" alt="archer" style="display: block;">
+                        </div>
+                        <div class="c_info">
+                            <span id="c_stars" data-star="3.5"><span style="width: 42px;"></span></span>
+                            <div class="c_num">3.5</div>
+                        </div>
+
+                        <div class="clash-card__unit-description">
+                            <div class="clash-card__level">ปริศนาฟ้าแลบ วันที่ 22 กรกฎาคม 2559 ตอนที่ 4</div>
+                            <p class="c_industry">Digital Media</p>
+                            <p class="c_industry">91,843 views 3 days ago</p>
+                        </div>
+
+                        <div class="clash-card__unit-stats clearfix">
+                            <a href="https://www.facebook.com/designcouch" target="_blank">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                            <a href="https://www.twitter.com/designcouch" target="_blank">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                            <a href="https://www.dribbble.com/designcouch" target="_blank">
+                                <i class="fa fa-plus-circle"></i>
+                            </a>
+                            <a href="https://www.codepen.io/designcouch/public">
+                                <i class="fa fa-clock-o"></i>
+                            </a>
+
+                            <a href="javascript://" class="more-info">
+                                <i class="fa fa-user"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
                 </li>
             </ul>
+        </div>
 
-            <div class="content">
+    </div>
 
-                <div class="page-content">
-                    <ul>
-                        <li>
-                            <div class="clash-card archer">
-                                <div class="clash-card__image clash-card__image--archer">
-                                    <img src="https://i.ytimg.com/vi/qvuFpgE6Imk/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=QQ72m2SJYqixStuImWIdmFxBe2I" alt="archer" style="display: block;">
-                                </div>
-                                <div class="c_info">
-                                    <span id="c_stars" data-star="3.5"><span style="width: 42px;"></span></span>
-                                    <div class="c_num">3.5</div>
-                                </div>
 
-                                <div class="clash-card__unit-description">
-                                    <div class="clash-card__level">ปริศนาฟ้าแลบ วันที่ 22 กรกฎาคม 2559 ตอนที่ 4</div>
-                                    <p class="c_industry">Digital Media</p>
-                                    <p class="c_industry">91,843 views 3 days ago</p>
-                                </div>
-
-                                <div class="clash-card__unit-stats clearfix">
-                                    <a href="https://www.facebook.com/designcouch" target="_blank">
-                                        <i class="fa fa-facebook"></i>
-                                    </a>
-                                    <a href="https://www.twitter.com/designcouch" target="_blank">
-                                        <i class="fa fa-youtube"></i>
-                                    </a>
-                                    <a href="https://www.dribbble.com/designcouch" target="_blank">
-                                        <i class="fa fa-plus-circle"></i>
-                                    </a>
-                                    <a href="https://www.codepen.io/designcouch/public">
-                                        <i class="fa fa-clock-o"></i>
-                                    </a>
-
-                                    <a href="javascript://" class="more-info">
-                                        <i class="fa fa-user"></i>
-                                    </a>
-
-                                </div>
-
-                            </div>
-                        </li>
-                    </ul>
+    <div id="audioplayer">
+        <div class="blur-container">
+            <div class="blur artist-image" style="-webkit-filter: blur(50px); background-image: url(&quot;http://static1.q-music.vmmacdn.be/cover/w600/8/ca/86/63/1327189/1400x1400bb.jpg&quot;);">&nbsp;</div>
+        </div>
+        <div class="cover" data-role="maximize">
+            <img src="https://i.ytimg.com/vi/WvsDpFFC2Js/hqdefault.jpg?custom=true&w=320&h=180&stc=true&jpg444=true&jpgq=90&sp=68&sigh=m7iqIgc6LqvyU7ZQ-dX1798m8Aw" data-cover-placeholder="http://qmusic.be/assets/cover-placeholder-41a46459e9a76d48e9a780de6a8c6b54614c2a52564a63fe33667a5e44e3198c.png">
+        </div>
+        <div class="content-wrap">
+            <div class="container">
+                <div id="audioplayer-content" class="content" data-content-replace="">
                 </div>
-
             </div>
-
-
-            <div id="audioplayer">
-                <div class="cover" data-role="maximize">
-                    <img src="https://i.ytimg.com/vi/WvsDpFFC2Js/hqdefault.jpg?custom=true&w=320&h=180&stc=true&jpg444=true&jpgq=90&sp=68&sigh=m7iqIgc6LqvyU7ZQ-dX1798m8Aw" data-cover-placeholder="http://qmusic.be/assets/cover-placeholder-41a46459e9a76d48e9a780de6a8c6b54614c2a52564a63fe33667a5e44e3198c.png">
-                </div>
-                <div class="player-bar">
-                    <div class="player-bar-background" style="background-image:url(http://qmusic.be/assets/player-bar-beach-a6ca0cf24da263404a81dbc5413da07b0d42a662f41a0d4ab3426b807995986e.png)"></div>
-                    <div id="app"></div>
-                    <div class="current-track">
-                        <h3 class="title-wrap">
-                            <span class="title">This Girl</span>
-                            <a href="#" data-role="rate" data-rating="1" data-user-required="" data-cookie-required="" class="like-track qi-thumbs-up"></a>
-                            <a href="#" data-role="rate" data-rating="-1" data-user-required="" data-cookie-required="" class="like-track qi-thumbs-down"></a>
-                        </h3>
-                        <h4 class="artist">KUNGS &amp; COOKIN' ON 3 BURNERS</h4>
-                        <h5 class="current-program"></h5>
-                    </div>
-                    <div class="view-controls">
-                        <a href="#" data-role="toggle-playing" class="icon-button mobile play">
-                            <span class="icon qi-arrow-right"></span>
-                        </a>
-                        <a href="/live/kijk" data-role="visualradio" class="icon-button mobile">
-                            <span class="icon qi-tv"></span>
-                        </a>
+        </div>
+        <div class="player-bar">
+            <div class="player-bar-background" style="background-image:url(http://qmusic.be/assets/player-bar-beach-a6ca0cf24da263404a81dbc5413da07b0d42a662f41a0d4ab3426b807995986e.png)"></div>
+            <a href="#" data-role="toggle-playing" data-tracking-name="Knop in player" class="icon-button big toggle-playing">
+                <span class="icon qi-play"></span>
+                <span class="icon qi-stop"></span>
+            </a>
+            <div class="current-track">
+                <h3 class="title-wrap">
+                    <span class="title">This Girl</span>
+                    <a href="#" data-role="rate" data-rating="1" data-user-required="" data-cookie-required="" class="like-track qi-thumbs-up"></a>
+                    <a href="#" data-role="rate" data-rating="-1" data-user-required="" data-cookie-required="" class="like-track qi-thumbs-down"></a>
+                </h3>
+                <h4 class="artist">KUNGS &amp; COOKIN' ON 3 BURNERS</h4>
+                <h5 class="current-program"></h5>
+            </div>
+            <div class="view-controls">
+                <a href="#" data-role="toggle-playing" class="icon-button mobile play">
+                    <span class="icon qi-arrow-right"></span>
+                </a>
+                <a href="/live/kijk" data-role="visualradio" class="icon-button mobile">
+                    <span class="icon qi-tv"></span>
+                </a>
             <span href="#" class="icon-button station-select">
             <span class="icon qi-gear"></span>
             <span class="icon-text under">Station</span>
@@ -338,40 +350,40 @@
             </span>
             </span>
             </span>
-                        <a href="/playlist/qmusic" data-role="playlist" class="icon-button desktop">
-                            <span class="icon qi-list-button"></span>
-                            <span class="icon-text under">Playlist</span>
-                        </a>
-                        <a href="/berichten" data-role="messages" class="icon-button desktop">
-                            <span class="icon qi-mail-button"></span>
-                            <span class="icon-text under">Berichten</span>
-                        </a>
-                        <a href="/live/kijk" data-role="visualradio" class="icon-button desktop">
-                            <span class="icon qi-tv-button"></span>
-                            <span class="icon-text under">Kijk</span>
-                        </a>
+                <a href="/playlist/qmusic" data-role="playlist" class="icon-button desktop">
+                    <span class="icon qi-list-button"></span>
+                    <span class="icon-text under">Playlist</span>
+                </a>
+                <a href="/berichten" data-role="messages" class="icon-button desktop">
+                    <span class="icon qi-mail-button"></span>
+                    <span class="icon-text under">Berichten</span>
+                </a>
+                <a href="/live/kijk" data-role="visualradio" class="icon-button desktop">
+                    <span class="icon qi-tv-button"></span>
+                    <span class="icon-text under">Kijk</span>
+                </a>
 <span href="#" data-role="volume" class="icon-button desktop volume-control">
 <span class="icon qi-settings-sliders"></span>
 <span class="icon-text under">Volume</span>
 <div class="volume-wrap"><div id="player-volume-control" data-min="0" data-max="1" class="noUi-target noUi-rtl noUi-vertical noUi-background"><div class="noUi-base"><div class="noUi-origin" style="top: 10%;"><div class="noUi-handle noUi-handle-upper"></div></div></div></div></div>
 </span>
-                        <a href="#" data-role="maximize" class="icon-button desktop maximize">
-                            <span class="icon qi-maximize"></span>
-                            <span class="icon-text under">Maximize</span>
-                        </a>
-                        <a href="#" data-role="minimize" class="icon-button minimize">
-                            <span class="icon qi-minimize"></span>
-                            <span class="icon-text under">Minimize</span>
-                        </a>
-                    </div>
-                </div>
+                <a href="#" data-role="maximize" class="icon-button desktop maximize">
+                    <span class="icon qi-maximize"></span>
+                    <span class="icon-text under">Maximize</span>
+                </a>
+                <a href="#" data-role="minimize" class="icon-button minimize">
+                    <span class="icon qi-minimize"></span>
+                    <span class="icon-text under">Minimize</span>
+                </a>
             </div>
-
         </div>
-        {{--<div class="container">--}}
+    </div>
 
-        {{--</div>--}}
-    </body>
+</div>
+{{--<div class="container">--}}
+
+{{--</div>--}}
+</body>
 </html>
 
 
