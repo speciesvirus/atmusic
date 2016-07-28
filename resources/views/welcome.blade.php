@@ -357,9 +357,8 @@
                                         Drag me
                                     </span>
                                 </div>
-                                <section id="slider_bars" class="middle-center-container slider-bars">
-                                    <div id="slider_drag" class="slider-drag" data-min-range="0"> </div>
-
+                                <section id="play-progress-container" class="middle-center-container slider-bars">
+                                    <div id="video-progress" class="slider-drag" data-min-range="0"> </div>
                                 </section>
                             </div>
                         </div>
@@ -372,19 +371,15 @@
                     <div class="view-controls">
 
                         <div class="options">
-                            <div class="tray-button mdl-js-button tray-button--active" data-upgraded=",MaterialButton">
+                            <div class="tray-button mdl-js-button tray-button--active">
                                 <i class="fa fa-volume-up" id="op-volume" aria-hidden="true">
 
                                     <div class="mdl-card op-volume flex vertical mdl-shadow--2dp">
 
-                                        <div class="row">
-                                            <i class="material-icons">volume_up</i>
-                                              <span class="grow">
-                                                <div class="mdl-slider__container"><input class="mdl-slider mdl-js-slider is-upgraded" type="range" min="0" max="100" value="80" tabindex="0" data-upgraded=",MaterialSlider"><div class="mdl-slider__background-flex"><div class="mdl-slider__background-lower" style="flex: 0.8 1 0%;"></div><div class="mdl-slider__background-upper" style="flex: 0.2 1 0%;"></div></div></div>
-                                              </span>
-                                            <button class="mdl-button mdl-js-button mdl-button--icon" data-upgraded=",MaterialButton">
-                                                <i class="material-icons">chevron_right</i>
-                                            </button>
+                                        <div id="video-volume" class="middle-center-container slider-container">
+                                            <section id="vl-container" class="middle-center-container slider-bars">
+                                                <div id="vl-progress" class="slider-drag" data-min-range="0"> </div>
+                                            </section>
                                         </div>
                                     </div>
 
