@@ -370,52 +370,74 @@
 
 
                     <div class="view-controls">
-                        <a href="#" data-role="toggle-playing" class="icon-button mobile play">
-                            <span class="icon qi-arrow-right"></span>
-                        </a>
-                        <a href="/live/kijk" data-role="visualradio" class="icon-button mobile">
-                            <span class="icon qi-tv"></span>
-                        </a>
-            <span href="#" class="icon-button station-select">
-            <span class="icon qi-gear"></span>
-            <span class="icon-text under">Station</span>
-            <span class="station-list">
-            <span class="option" data-role="change-station" data-station-id="qmusic">
-            Qmusic
-            </span>
-            <span class="option" data-role="change-station" data-station-id="foute_radio_be">
-            De Foute Radio
-            </span>
-            <span class="option" data-role="change-station" data-station-id="qsummer">
-            Q Summer
-            </span>
-            </span>
-            </span>
-                        <a href="/playlist/qmusic" data-role="playlist" class="icon-button desktop">
-                            <span class="icon qi-list-button"></span>
-                            <span class="icon-text under">Playlist</span>
-                        </a>
-                        <a href="/berichten" data-role="messages" class="icon-button desktop">
-                            <span class="icon qi-mail-button"></span>
-                            <span class="icon-text under">Berichten</span>
-                        </a>
-                        <a href="/live/kijk" data-role="visualradio" class="icon-button desktop">
-                            <span class="icon qi-tv-button"></span>
-                            <span class="icon-text under">Kijk</span>
-                        </a>
-<span href="#" data-role="volume" class="icon-button desktop volume-control">
-<span class="icon qi-settings-sliders"></span>
-<span class="icon-text under">Volume</span>
-<div class="volume-wrap"><div id="player-volume-control" data-min="0" data-max="1" class="noUi-target noUi-rtl noUi-vertical noUi-background"><div class="noUi-base"><div class="noUi-origin" style="top: 10%;"><div class="noUi-handle noUi-handle-upper"></div></div></div></div></div>
-</span>
-                        <a href="#" data-role="maximize" class="icon-button desktop maximize">
-                            <span class="icon qi-maximize"></span>
-                            <span class="icon-text under">Maximize</span>
-                        </a>
-                        <a href="#" data-role="minimize" class="icon-button minimize">
-                            <span class="icon qi-minimize"></span>
-                            <span class="icon-text under">Minimize</span>
-                        </a>
+
+                        <div class="options">
+                            <div class="tray-button mdl-js-button tray-button--active" data-upgraded=",MaterialButton">
+                                <i class="fa fa-volume-up" id="op-volume" aria-hidden="true">
+
+                                    <div class="mdl-card op-volume flex vertical mdl-shadow--2dp">
+
+                                        <div class="row">
+                                            <i class="material-icons">volume_up</i>
+                                              <span class="grow">
+                                                <div class="mdl-slider__container"><input class="mdl-slider mdl-js-slider is-upgraded" type="range" min="0" max="100" value="80" tabindex="0" data-upgraded=",MaterialSlider"><div class="mdl-slider__background-flex"><div class="mdl-slider__background-lower" style="flex: 0.8 1 0%;"></div><div class="mdl-slider__background-upper" style="flex: 0.2 1 0%;"></div></div></div>
+                                              </span>
+                                            <button class="mdl-button mdl-js-button mdl-button--icon" data-upgraded=",MaterialButton">
+                                                <i class="material-icons">chevron_right</i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </i>
+                                <i class="fa fa-random" aria-hidden="true"></i>
+                                {{--<i class="material-icons">battery_full</i>--}}
+                                <i class="fa fa-cc" aria-hidden="true"></i>
+                                <i class="fa fa-television" aria-hidden="true"></i>
+                                <i class="fa fa-cog" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <div class="mdl-card tray-menu flex vertical mdl-shadow--2dp">
+
+                            <div class="row clickable">
+                                <i class="fa fa-volume-up">wifi</i>
+                                <span class="grow">SuperSlam_WiFi</span>
+                                <i class="material-icons">chevron_right</i>
+                            </div>
+                            <div class="row clickable">
+                                <i class="material-icons mrgn">bluetooth</i>
+                                <span class="grow">Bluetooth disabled</span>
+                                <i class="material-icons">chevron_right</i>
+                            </div>
+                            <div class="row">
+                                <i class="material-icons">volume_up</i>
+      <span class="grow">
+        <div class="mdl-slider__container"><input class="mdl-slider mdl-js-slider is-upgraded" type="range" min="0" max="100" value="80" tabindex="0" data-upgraded=",MaterialSlider"><div class="mdl-slider__background-flex"><div class="mdl-slider__background-lower" style="flex: 0.8 1 0%;"></div><div class="mdl-slider__background-upper" style="flex: 0.2 1 0%;"></div></div></div>
+      </span>
+                                <button class="mdl-button mdl-js-button mdl-button--icon" data-upgraded=",MaterialButton">
+                                    <i class="material-icons">chevron_right</i>
+                                </button>
+                            </div>
+                            <div class="row clickable">
+                                <i class="material-icons mrgn">settings</i>
+                                <span class="grow">Settings</span>
+                                <span class="small"><span class="secondary">100% - </span>7:00 left</span>
+                                <i class="material-icons">battery_std</i>
+                            </div>
+                            <div class="row final">
+                                <span class="grow secondary" id="date">Thurs, July 28, 2016</span>
+                                <button class="mdl-button mdl-js-button mdl-button--icon" data-upgraded=",MaterialButton">
+                                    <i class="material-icons">help_outline</i>
+                                </button>
+                                <button class="mdl-button mdl-js-button mdl-button--icon" data-upgraded=",MaterialButton">
+                                    <i class="material-icons">power_settings_new</i>
+                                </button>
+                                <button class="mdl-button mdl-js-button mdl-button--icon" data-upgraded=",MaterialButton">
+                                    <i class="material-icons">lock_outline</i>
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
