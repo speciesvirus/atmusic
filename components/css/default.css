@@ -1197,7 +1197,6 @@ i.-icontext {
     margin-right: 16px;
 }
 .material-icons {
-    font-family: 'Material Icons';
     font-weight: normal;
     font-style: normal;
     font-size: 24px;
@@ -1227,7 +1226,6 @@ i.-icontext {
     flex-direction: column;
     font-size: 16px;
     font-weight: 400;
-    min-height: 200px;
     overflow: hidden;
     width: 330px;
     z-index: 1;
@@ -1240,20 +1238,19 @@ i.-icontext {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
 }
 .tray-menu {
-    width: 300px;
+    width: 35px;
     margin: 0 auto;
-    margin-top: 40px;
+
     color: rgba(0,0,0,0.87);
-}
-.flex {
-    flex-grow: 1;
 }
 .tray-menu {
     position: absolute;
-    right: 8px;
-    bottom: 64px;
+    font-size: 14px;
+    text-align: center;
+
+    width: 40px;
     transform: scale(0);
-    /*transform-origin: 268px bottom;*/
+    transform-origin: bottom;
     transition: transform 0.2s ease;
 }
 .tray-menu.open {
@@ -1266,7 +1263,7 @@ i.-icontext {
 }
 .op-volume {
     position: absolute;
-    width: 50px;
+    width: 40px;
     transform: scale(0);
     transform-origin: bottom;
     transition: transform 0.2s ease;
@@ -1286,7 +1283,7 @@ i.-icontext {
 }
 
 #video-volume.slider-container .slider-bars .slider-drag {
-    margin-top: 13px;
+    /*margin-top: 13px;*/
     height: 100%;
     width: 3px;
     border: solid 1px rgba(207,65,60,0.1);
@@ -1301,13 +1298,15 @@ i.-icontext {
 
 
 .tray-menu .row {
-    width: 100%;
-    display: flex;
+    /* width: 100%; */
+    /* display: flex; */
     flex-direction: row;
     align-items: center;
-    height: 56px;
+    height: 30px;
+    /* width: 14px; */
+    margin: 0;
     border-bottom: 1px solid #eee;
-    padding: 0 16px;
+    padding: 8px 0;
     box-sizing: border-box;
 }
 .tray-menu .row.lg {
@@ -1317,10 +1316,13 @@ i.-icontext {
 .tray-menu .clickable {
     cursor: pointer;
 }
+.tray-menu .clickable .grow {
+    font-size: 13px;
+    margin-left: 5px;
+}
 
 
 .tray-menu .final {
-    background-color: #f5f5f5;
     border-bottom: none;
 }
 

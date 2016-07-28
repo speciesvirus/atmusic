@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Laravel</title>
+    <title>@yield('title')</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    {{--<meta name="google-site-verification" content="VISjwlrj-JBTlfdSHyJQu2bqklIV618wZO1_75BPC0w" />--}}
+    {{--<meta name="author" content="Awecent Co. Ltd., Thailand" />--}}
+    {{--<meta name="keywords" content="เกมส์ , เกมส์ออนไลน์ , Game Online , เกมส์มือถือ , ข่าวเกมส์ออนไลน์" />--}}
+    {{--<meta name="description" content="playing the game." />--}}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {{--<meta property="fb:app_id" content="500822303376396">--}}
+    <meta property="og:url"    content="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>" />
+    @yield('meta')
 
     <link rel="stylesheet" type="text/css" href="{{ asset("components/jquery-ui/themes/base/jquery-ui.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("components/css/reset.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("components/bootstrap/dist/css/bootstrap.min.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("components/font-awesome/css/font-awesome.min.css") }}">
-
     <link rel="stylesheet" type="text/css" href="{{ asset("components/css/default.css") }}">
 
     <script src="{{ asset("components/jquery/dist/jquery.min.js") }}"></script>
     <script src="{{ asset("components/jquery-ui/jquery-ui.min.js") }}"></script>
     <script src="{{ asset("components/bootstrap/dist/js/bootstrap.min.js") }}"></script>
+    <script src="{{ asset("components/js/snap.svg-min.js") }}"></script>
     <script src="{{ asset("components/sly/dist/sly.min.js") }}"></script>
     <script src="{{ asset("components/js/script.js") }}"></script>
+
+    @yield('source')
 
 </head>
 <body>
@@ -85,72 +96,72 @@
                                                     <div class="title">Q-Beach Live: Josie blaast de wolken hier weg!</div>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a class="dropdown-item" href="/nieuws/q-beach-live-rune-kaapte-vandaag-onze-boot">
-                                                    <img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/5/c0/3a/5b/1336993/Hoofdfoto.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/5/c0/3a/5b/1336993/Hoofdfoto.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/5/c0/3a/5b/1336993/Hoofdfoto.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/5/c0/3a/5b/1336993/Hoofdfoto.jpg 2400w" src="http://static1.q-music.vmmacdn.be/5/c0/3a/5b/1336993/Hoofdfoto.jpg" alt="Hoofdfoto">
-                                                    <div class="title">Q-Beach Live: Rune kaapte vandaag onze boot!</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="/nieuws/is-het-celine-dion-of-rihanna">
-                                                    <img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg 2400w" src="http://static1.q-music.vmmacdn.be/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg" alt="La la et mg celine dion brother dies 20160116  1  pagina">
-                                                    <div class="title">Is het Céline Dion of Rihanna?</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="/nieuws/troye-sivan-organiseert-heuse-wildhunt-voor-videoclip-wild">
-                                                    <img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/d/36/66/da/1336974/hoofdfotoTroye.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/d/36/66/da/1336974/hoofdfotoTroye.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/d/36/66/da/1336974/hoofdfotoTroye.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/d/36/66/da/1336974/hoofdfotoTroye.jpg 2400w" src="http://static1.q-music.vmmacdn.be/d/36/66/da/1336974/hoofdfotoTroye.jpg" alt="Hoofdfototroye">
-                                                    <div class="title">Troye Sivan organiseert heuse Wildhunt voor videoclip Wild</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="/nieuws/uitgelekt-24-nieuwe-singles-van-justin-bieber-en-major-lazer">
-                                                    <img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/0/e1/a4/57/1336981/cold_cold_water.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/0/e1/a4/57/1336981/cold_cold_water.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/0/e1/a4/57/1336981/cold_cold_water.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/0/e1/a4/57/1336981/cold_cold_water.jpg 2400w" src="http://static1.q-music.vmmacdn.be/0/e1/a4/57/1336981/cold_cold_water.jpg" alt="Cold cold water">
-                                                    <div class="title">UITGELEKT: 24 nieuwe singles van Justin Bieber en Major Lazer</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="/nieuws/major-lazer-x-justin-bieber-x-mo-pure-chemie">
-                                                    <img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/8/2d/0b/55/1336909/justinbieberhome.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/8/2d/0b/55/1336909/justinbieberhome.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/8/2d/0b/55/1336909/justinbieberhome.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/8/2d/0b/55/1336909/justinbieberhome.jpg 2400w" src="http://static1.q-music.vmmacdn.be/8/2d/0b/55/1336909/justinbieberhome.jpg" alt="Justinbieberhome">
-                                                    <div class="title">Major Lazer x Justin Bieber x Mø, pure chemie! </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="/nieuws/q-beach-live-josie-blaast-de-wolken-aan-het-q-beach-house-weg-1">
-                                                    <img sizes="213px" srcset="https://i.ytimg.com/vi/R10mrTJpqPw/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg" alt="Hoofd">
-                                                    <div class="title">Q-Beach Live: Josie blaast de wolken hier weg!</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="/nieuws/q-beach-live-rune-kaapte-vandaag-onze-boot">
-                                                    <img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/5/c0/3a/5b/1336993/Hoofdfoto.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/5/c0/3a/5b/1336993/Hoofdfoto.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/5/c0/3a/5b/1336993/Hoofdfoto.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/5/c0/3a/5b/1336993/Hoofdfoto.jpg 2400w" src="http://static1.q-music.vmmacdn.be/5/c0/3a/5b/1336993/Hoofdfoto.jpg" alt="Hoofdfoto">
-                                                    <div class="title">Q-Beach Live: Rune kaapte vandaag onze boot!</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="/nieuws/is-het-celine-dion-of-rihanna">
-                                                    <img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg 2400w" src="http://static1.q-music.vmmacdn.be/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg" alt="La la et mg celine dion brother dies 20160116  1  pagina">
-                                                    <div class="title">Is het Céline Dion of Rihanna?</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="/nieuws/troye-sivan-organiseert-heuse-wildhunt-voor-videoclip-wild">
-                                                    <img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/d/36/66/da/1336974/hoofdfotoTroye.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/d/36/66/da/1336974/hoofdfotoTroye.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/d/36/66/da/1336974/hoofdfotoTroye.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/d/36/66/da/1336974/hoofdfotoTroye.jpg 2400w" src="http://static1.q-music.vmmacdn.be/d/36/66/da/1336974/hoofdfotoTroye.jpg" alt="Hoofdfototroye">
-                                                    <div class="title">Troye Sivan organiseert heuse Wildhunt voor videoclip Wild</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="/nieuws/uitgelekt-24-nieuwe-singles-van-justin-bieber-en-major-lazer">
-                                                    <img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/0/e1/a4/57/1336981/cold_cold_water.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/0/e1/a4/57/1336981/cold_cold_water.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/0/e1/a4/57/1336981/cold_cold_water.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/0/e1/a4/57/1336981/cold_cold_water.jpg 2400w" src="http://static1.q-music.vmmacdn.be/0/e1/a4/57/1336981/cold_cold_water.jpg" alt="Cold cold water">
-                                                    <div class="title">UITGELEKT: 24 nieuwe singles van Justin Bieber en Major Lazer</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="/nieuws/major-lazer-x-justin-bieber-x-mo-pure-chemie">
-                                                    <img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/8/2d/0b/55/1336909/justinbieberhome.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/8/2d/0b/55/1336909/justinbieberhome.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/8/2d/0b/55/1336909/justinbieberhome.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/8/2d/0b/55/1336909/justinbieberhome.jpg 2400w" src="http://static1.q-music.vmmacdn.be/8/2d/0b/55/1336909/justinbieberhome.jpg" alt="Justinbieberhome">
-                                                    <div class="title">Major Lazer x Justin Bieber x Mø, pure chemie! </div>
-                                                </a>
-                                            </li>
+                                            {{--<li>--}}
+                                            {{--<a class="dropdown-item" href="/nieuws/q-beach-live-rune-kaapte-vandaag-onze-boot">--}}
+                                            {{--<img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/5/c0/3a/5b/1336993/Hoofdfoto.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/5/c0/3a/5b/1336993/Hoofdfoto.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/5/c0/3a/5b/1336993/Hoofdfoto.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/5/c0/3a/5b/1336993/Hoofdfoto.jpg 2400w" src="http://static1.q-music.vmmacdn.be/5/c0/3a/5b/1336993/Hoofdfoto.jpg" alt="Hoofdfoto">--}}
+                                            {{--<div class="title">Q-Beach Live: Rune kaapte vandaag onze boot!</div>--}}
+                                            {{--</a>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                            {{--<a class="dropdown-item" href="/nieuws/is-het-celine-dion-of-rihanna">--}}
+                                            {{--<img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg 2400w" src="http://static1.q-music.vmmacdn.be/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg" alt="La la et mg celine dion brother dies 20160116  1  pagina">--}}
+                                            {{--<div class="title">Is het Céline Dion of Rihanna?</div>--}}
+                                            {{--</a>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                            {{--<a class="dropdown-item" href="/nieuws/troye-sivan-organiseert-heuse-wildhunt-voor-videoclip-wild">--}}
+                                            {{--<img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/d/36/66/da/1336974/hoofdfotoTroye.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/d/36/66/da/1336974/hoofdfotoTroye.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/d/36/66/da/1336974/hoofdfotoTroye.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/d/36/66/da/1336974/hoofdfotoTroye.jpg 2400w" src="http://static1.q-music.vmmacdn.be/d/36/66/da/1336974/hoofdfotoTroye.jpg" alt="Hoofdfototroye">--}}
+                                            {{--<div class="title">Troye Sivan organiseert heuse Wildhunt voor videoclip Wild</div>--}}
+                                            {{--</a>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                            {{--<a class="dropdown-item" href="/nieuws/uitgelekt-24-nieuwe-singles-van-justin-bieber-en-major-lazer">--}}
+                                            {{--<img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/0/e1/a4/57/1336981/cold_cold_water.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/0/e1/a4/57/1336981/cold_cold_water.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/0/e1/a4/57/1336981/cold_cold_water.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/0/e1/a4/57/1336981/cold_cold_water.jpg 2400w" src="http://static1.q-music.vmmacdn.be/0/e1/a4/57/1336981/cold_cold_water.jpg" alt="Cold cold water">--}}
+                                            {{--<div class="title">UITGELEKT: 24 nieuwe singles van Justin Bieber en Major Lazer</div>--}}
+                                            {{--</a>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                            {{--<a class="dropdown-item" href="/nieuws/major-lazer-x-justin-bieber-x-mo-pure-chemie">--}}
+                                            {{--<img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/8/2d/0b/55/1336909/justinbieberhome.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/8/2d/0b/55/1336909/justinbieberhome.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/8/2d/0b/55/1336909/justinbieberhome.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/8/2d/0b/55/1336909/justinbieberhome.jpg 2400w" src="http://static1.q-music.vmmacdn.be/8/2d/0b/55/1336909/justinbieberhome.jpg" alt="Justinbieberhome">--}}
+                                            {{--<div class="title">Major Lazer x Justin Bieber x Mø, pure chemie! </div>--}}
+                                            {{--</a>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                            {{--<a class="dropdown-item" href="/nieuws/q-beach-live-josie-blaast-de-wolken-aan-het-q-beach-house-weg-1">--}}
+                                            {{--<img sizes="213px" srcset="https://i.ytimg.com/vi/R10mrTJpqPw/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg" alt="Hoofd">--}}
+                                            {{--<div class="title">Q-Beach Live: Josie blaast de wolken hier weg!</div>--}}
+                                            {{--</a>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                            {{--<a class="dropdown-item" href="/nieuws/q-beach-live-rune-kaapte-vandaag-onze-boot">--}}
+                                            {{--<img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/5/c0/3a/5b/1336993/Hoofdfoto.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/5/c0/3a/5b/1336993/Hoofdfoto.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/5/c0/3a/5b/1336993/Hoofdfoto.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/5/c0/3a/5b/1336993/Hoofdfoto.jpg 2400w" src="http://static1.q-music.vmmacdn.be/5/c0/3a/5b/1336993/Hoofdfoto.jpg" alt="Hoofdfoto">--}}
+                                            {{--<div class="title">Q-Beach Live: Rune kaapte vandaag onze boot!</div>--}}
+                                            {{--</a>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                            {{--<a class="dropdown-item" href="/nieuws/is-het-celine-dion-of-rihanna">--}}
+                                            {{--<img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg 2400w" src="http://static1.q-music.vmmacdn.be/a/ce/48/63/1336998/la-la-et-mg-celine-dion-brother-dies-20160116-_1_-pagina.jpg" alt="La la et mg celine dion brother dies 20160116  1  pagina">--}}
+                                            {{--<div class="title">Is het Céline Dion of Rihanna?</div>--}}
+                                            {{--</a>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                            {{--<a class="dropdown-item" href="/nieuws/troye-sivan-organiseert-heuse-wildhunt-voor-videoclip-wild">--}}
+                                            {{--<img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/d/36/66/da/1336974/hoofdfotoTroye.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/d/36/66/da/1336974/hoofdfotoTroye.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/d/36/66/da/1336974/hoofdfotoTroye.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/d/36/66/da/1336974/hoofdfotoTroye.jpg 2400w" src="http://static1.q-music.vmmacdn.be/d/36/66/da/1336974/hoofdfotoTroye.jpg" alt="Hoofdfototroye">--}}
+                                            {{--<div class="title">Troye Sivan organiseert heuse Wildhunt voor videoclip Wild</div>--}}
+                                            {{--</a>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                            {{--<a class="dropdown-item" href="/nieuws/uitgelekt-24-nieuwe-singles-van-justin-bieber-en-major-lazer">--}}
+                                            {{--<img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/0/e1/a4/57/1336981/cold_cold_water.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/0/e1/a4/57/1336981/cold_cold_water.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/0/e1/a4/57/1336981/cold_cold_water.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/0/e1/a4/57/1336981/cold_cold_water.jpg 2400w" src="http://static1.q-music.vmmacdn.be/0/e1/a4/57/1336981/cold_cold_water.jpg" alt="Cold cold water">--}}
+                                            {{--<div class="title">UITGELEKT: 24 nieuwe singles van Justin Bieber en Major Lazer</div>--}}
+                                            {{--</a>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                            {{--<a class="dropdown-item" href="/nieuws/major-lazer-x-justin-bieber-x-mo-pure-chemie">--}}
+                                            {{--<img sizes="213px" srcset="http://static1.q-music.vmmacdn.be/site/w480/8/2d/0b/55/1336909/justinbieberhome.jpg 480w,http://static1.q-music.vmmacdn.be/site/w800/8/2d/0b/55/1336909/justinbieberhome.jpg 800w,http://static1.q-music.vmmacdn.be/site/w1200/8/2d/0b/55/1336909/justinbieberhome.jpg 1200w,http://static1.q-music.vmmacdn.be/site/w2400/8/2d/0b/55/1336909/justinbieberhome.jpg 2400w" src="http://static1.q-music.vmmacdn.be/8/2d/0b/55/1336909/justinbieberhome.jpg" alt="Justinbieberhome">--}}
+                                            {{--<div class="title">Major Lazer x Justin Bieber x Mø, pure chemie! </div>--}}
+                                            {{--</a>--}}
+                                            {{--</li>--}}
 
 
 
@@ -254,129 +265,8 @@
 
     <div class="content">
 
-        <div class="page-content">
-            <ul>
-                <li>
-                    <div class="clash-card archer">
-                        <div class="clash-card__image clash-card__image--archer">
-                            <img src="https://i.ytimg.com/vi/qvuFpgE6Imk/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=QQ72m2SJYqixStuImWIdmFxBe2I" alt="archer" style="display: block;">
-                        </div>
-                        <div class="c_info">
-                            <span id="c_stars" data-star="3.5"><span style="width: 42px;"></span></span>
-                            <div class="c_num">3.5</div>
-                        </div>
+        @yield('content')
 
-                        <div class="clash-card__unit-description">
-                            <div class="clash-card__level">ปริศนาฟ้าแลบ วันที่ 22 กรกฎาคม 2559 ตอนที่ 4</div>
-                            <p class="c_industry">Digital Media</p>
-                            <p class="c_industry">91,843 views 3 days ago</p>
-                        </div>
-
-                        <div class="clash-card__unit-stats clearfix">
-                            <a href="https://www.facebook.com/designcouch" target="_blank">
-                                <i class="fa fa-facebook"></i>
-                            </a>
-                            <a href="https://www.twitter.com/designcouch" target="_blank">
-                                <i class="fa fa-youtube"></i>
-                            </a>
-                            <a href="https://www.dribbble.com/designcouch" target="_blank">
-                                <i class="fa fa-plus-circle"></i>
-                            </a>
-                            <a href="https://www.codepen.io/designcouch/public">
-                                <i class="fa fa-clock-o"></i>
-                            </a>
-
-                            <a href="javascript://" class="more-info">
-                                <i class="fa fa-user"></i>
-                            </a>
-
-                        </div>
-
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-    </div>
-
-
-    <div id="audioplayer">
-        <div class="blur-container">
-            <div class="blur artist-image" style="-webkit-filter: blur(50px); background-image: url(&quot;http://static1.q-music.vmmacdn.be/cover/w600/8/ca/86/63/1327189/1400x1400bb.jpg&quot;);">&nbsp;</div>
-        </div>
-        <div class="cover" data-role="maximize">
-            <img src="https://i.ytimg.com/vi/WvsDpFFC2Js/hqdefault.jpg?custom=true&w=320&h=180&stc=true&jpg444=true&jpgq=90&sp=68&sigh=m7iqIgc6LqvyU7ZQ-dX1798m8Aw" data-cover-placeholder="http://qmusic.be/assets/cover-placeholder-41a46459e9a76d48e9a780de6a8c6b54614c2a52564a63fe33667a5e44e3198c.png">
-        </div>
-        <div class="content-wrap">
-            <div class="container">
-                <div id="audioplayer-content" class="content" data-content-replace="">
-                </div>
-            </div>
-        </div>
-        <div class="player-bar">
-            <div class="player-bar-background" style="background-image:url(http://qmusic.be/assets/player-bar-beach-a6ca0cf24da263404a81dbc5413da07b0d42a662f41a0d4ab3426b807995986e.png)"></div>
-            <a href="#" data-role="toggle-playing" data-tracking-name="Knop in player" class="icon-button big toggle-playing">
-                <span class="icon qi-play"></span>
-                <span class="icon qi-stop"></span>
-            </a>
-            <div class="current-track">
-                <h3 class="title-wrap">
-                    <span class="title">This Girl</span>
-                    <a href="#" data-role="rate" data-rating="1" data-user-required="" data-cookie-required="" class="like-track qi-thumbs-up"></a>
-                    <a href="#" data-role="rate" data-rating="-1" data-user-required="" data-cookie-required="" class="like-track qi-thumbs-down"></a>
-                </h3>
-                <h4 class="artist">KUNGS &amp; COOKIN' ON 3 BURNERS</h4>
-                <h5 class="current-program"></h5>
-            </div>
-            <div class="view-controls">
-                <a href="#" data-role="toggle-playing" class="icon-button mobile play">
-                    <span class="icon qi-arrow-right"></span>
-                </a>
-                <a href="/live/kijk" data-role="visualradio" class="icon-button mobile">
-                    <span class="icon qi-tv"></span>
-                </a>
-            <span href="#" class="icon-button station-select">
-            <span class="icon qi-gear"></span>
-            <span class="icon-text under">Station</span>
-            <span class="station-list">
-            <span class="option" data-role="change-station" data-station-id="qmusic">
-            Qmusic
-            </span>
-            <span class="option" data-role="change-station" data-station-id="foute_radio_be">
-            De Foute Radio
-            </span>
-            <span class="option" data-role="change-station" data-station-id="qsummer">
-            Q Summer
-            </span>
-            </span>
-            </span>
-                <a href="/playlist/qmusic" data-role="playlist" class="icon-button desktop">
-                    <span class="icon qi-list-button"></span>
-                    <span class="icon-text under">Playlist</span>
-                </a>
-                <a href="/berichten" data-role="messages" class="icon-button desktop">
-                    <span class="icon qi-mail-button"></span>
-                    <span class="icon-text under">Berichten</span>
-                </a>
-                <a href="/live/kijk" data-role="visualradio" class="icon-button desktop">
-                    <span class="icon qi-tv-button"></span>
-                    <span class="icon-text under">Kijk</span>
-                </a>
-<span href="#" data-role="volume" class="icon-button desktop volume-control">
-<span class="icon qi-settings-sliders"></span>
-<span class="icon-text under">Volume</span>
-<div class="volume-wrap"><div id="player-volume-control" data-min="0" data-max="1" class="noUi-target noUi-rtl noUi-vertical noUi-background"><div class="noUi-base"><div class="noUi-origin" style="top: 10%;"><div class="noUi-handle noUi-handle-upper"></div></div></div></div></div>
-</span>
-                <a href="#" data-role="maximize" class="icon-button desktop maximize">
-                    <span class="icon qi-maximize"></span>
-                    <span class="icon-text under">Maximize</span>
-                </a>
-                <a href="#" data-role="minimize" class="icon-button minimize">
-                    <span class="icon qi-minimize"></span>
-                    <span class="icon-text under">Minimize</span>
-                </a>
-            </div>
-        </div>
     </div>
 
 </div>
@@ -385,6 +275,5 @@
 {{--</div>--}}
 </body>
 </html>
-
 
 

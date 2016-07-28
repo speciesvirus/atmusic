@@ -12,11 +12,26 @@ $(function () {
         if( !$(this).hasClass('play') ) {
             $(this).addClass('play');
             Snap($path).animate({"path": $pause}, 400, mina.easeinout);
+            player.playVideo();
         } else {
             $(this).removeClass('play');
             Snap($path).animate({"path": $play}, 400, mina.easeinout);
+            player.pauseVideo();
         }
     });
+
+    function playOn(){
+        var $playOn = $('.play-button');
+        if( !$playOn.hasClass('play') ) {
+            $playOn.addClass('play');
+            Snap($path).animate({"path": $pause}, 400, mina.easeinout);
+            player.playVideo();
+        } else {
+            $(this).removeClass('play');
+            Snap($path).animate({"path": $play}, 400, mina.easeinout);
+            player.pauseVideo();
+        }
+    }
 
 
     // !Play progress
@@ -28,9 +43,12 @@ $(function () {
             min: 0,
             max: 1000,
             slide: function(event, ui) {
+
+                player.seekTo(ui.value);
                 var slideVal = ui.value/100,
                     slideMinVal = parseInt(slider_play.attr('data-min-range'));
-                if(slideVal<=slideMinVal) { return false; }
+
+                //if(slideVal<=slideMinVal) { return false; }
                 $('#slider_value').text(slideVal);
                 $('#slider_tooltip').css({'left':parseInt($('.ui-slider-handle').css('left'))-50+'px'});
             },
@@ -57,6 +75,7 @@ $(function () {
         var $vd_volume = $('#vl-progress');
         $vd_volume.slider({
             range: 'min',
+            //value: 50,
             value: $vd_volume.attr('data-min-range')*100,
             min: 0,
             max: 1000,
@@ -64,12 +83,12 @@ $(function () {
             slide: function(event, ui) {
                 var slideVal = ui.value/100,
                     slideMinVal = parseInt($vd_volume.attr('data-min-range'));
-                if(slideVal<=slideMinVal) { return false; }
-                $('#slider_value').text(slideVal);
+                //if(slideVal<=slideMinVal) { return false; }
+                //$('#slider_value').text(slideVal);
                 //reload volume
             }
         });
-        $('#slider_value').text($vd_volume.slider('value')/100);
+        //$('#slider_value').text($vd_volume.slider('value')/100);
     })();
 
 
@@ -77,23 +96,33 @@ $(function () {
 
 
     init();
-    // $('#op-volume').click(function() {
-    //     $('.tray-menu').toggleClass('open');
-    //     $(this).toggleClass('tray-button--active');
-    // });
+     $('#op-set').click(function() {
+         $('.tray-menu').toggleClass('open');
+         $(this).toggleClass('tray-button--active');
+     });
 
 
 
     function init() {
 
         var $volume = $('.op-volume'),
-            $con = $('#op-volume');
-        var position = $con.position();
+            $con = $('#op-volume'),
+            position = $con.position();
 
         $volume.css({
             "left": (position.left - (($volume.width() / 2) - ($con.width() / 2))) + "px",
             "top": (position.top - $volume.height()) - 10 + "px"
         });
+
+        var $volume = $('.tray-menu'),
+            $con = $('#op-set'),
+            position = $con.position();
+
+        $volume.css({
+            "left": (position.left - (($volume.width() / 2) - ($con.width() / 2))) + "px",
+            "top": (position.top - $volume.height()) - 10 + "px"
+        });
+
 
     }
 
