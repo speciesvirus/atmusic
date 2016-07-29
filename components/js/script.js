@@ -1,37 +1,6 @@
 $(function () {
 
-
-    // !Play button
-    var $path  = $("#ytp-2")[0],
-        $svg_play = $('#svg-play'),
-        $pause = $svg_play.data('pause'),
-        $play = $svg_play.data('play');
-
-    $(document).on("click", ".play-button", function() {
-
-        if( !$(this).hasClass('play') ) {
-            $(this).addClass('play');
-            Snap($path).animate({"path": $pause}, 400, mina.easeinout);
-            player.playVideo();
-        } else {
-            $(this).removeClass('play');
-            Snap($path).animate({"path": $play}, 400, mina.easeinout);
-            player.pauseVideo();
-        }
-    });
-
-    function playOn(){
-        var $playOn = $('.play-button');
-        if( !$playOn.hasClass('play') ) {
-            $playOn.addClass('play');
-            Snap($path).animate({"path": $pause}, 400, mina.easeinout);
-            player.playVideo();
-        } else {
-            $(this).removeClass('play');
-            Snap($path).animate({"path": $play}, 400, mina.easeinout);
-            player.pauseVideo();
-        }
-    }
+    
 
 
     // !Play progress

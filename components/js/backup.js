@@ -123,7 +123,7 @@ function onPlayerReady(event) {
 //    the player should play for six seconds and then stop.
 var done = false;
 function onPlayerStateChange(event) {
-    
+
     //play first time
     // if (event.data == YT.PlayerState.PLAYING && !done) {
     //     done = true;
@@ -133,23 +133,61 @@ function onPlayerStateChange(event) {
         done = true;
     }
 
-
-    if(!$playChange){
-
-        if(event.data == YT.PlayerState.PLAYING){
-            playOn();
-        }
-        
-        //check paused   *!pause then seek solution
-        if(event.data == YT.PlayerState.PAUSED){
-            playOn();
-        }
-
+    if(event.data == 3) {
+        $playSeek = true;
     }
 
+    //check paused   *!pause then seek solution
+    if(event.data == YT.PlayerState.PAUSED){
+        $playPaused = true;
+    }
+
+    if(event.data == 1 || event.data == 2){
+
+
+        //first time
+        if(done){
+            done = false;
+            $playSeek = false;
+            //check play with custom play button
+            if($playChange){
+                return;
+            }
+
+            playOn();
+            return;
+        }
+
+
+        if(!$playChange){
+            playOn();
+            //check play with custom play button
+            $playChange = false;
+            return;
+        }else{
+            alert('a');
+            //playOn();
+        }
+
+
+        //check seek video
+        if($playSeek){
+            alert('c');
+            $playSeek = false;
+
+            if($playPaused){
+                playOn();
+                $playPaused = false;
+            }
+
+            return;
+        }
+
+        //playOn();
 
 
 
+    }
 
 }
 
