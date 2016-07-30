@@ -1,0 +1,18 @@
+
+
+.page-watch{
+    height: calc(100vh - 82px);
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.player-container{
+    text-align: center;
+    width: 800px;
+    margin: 0 auto;
+}
+

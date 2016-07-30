@@ -18,3 +18,9 @@ Route::get('/', function () {
 Route::get('/watch', function () {
     return view('watch');
 });
+
+Route::get('/watch', function () {
+    return view('watch');
+});
+
+Route::resource('/search/{q}', 'SearchController@show');

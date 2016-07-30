@@ -37,15 +37,15 @@
     </div>
 
     <div class="search">
-        <form id="search">
+        <form id="search" method="get">
             <ul>
                 <li>
-                    <a href='#contact'>
+                    <a href='javascript://'>
                         <input type="search" placeholder="Search">
                     </a>
                 </li>
                 <li>
-                    <a href='#search'>
+                    <a href='javascript://' id="search-btn">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </a>
                 </li>

@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'memo')
+@section('title', 'unbok')
 
 @section('facebook-meta')
     <meta property="og:type"          content="article" />
@@ -17,16 +17,14 @@
 
 @section('content')
 
-    <div class="page-content">
-
-
+    <div class="page-watch" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_bg.jpg)">
         <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-        <div id="player"></div>
-
-
+        <div class="player-container">
+            <div id="player"></div>
+        </div>
     </div>
 
-    <div id="audioplayer">
+    <div id="audioplayer" class="">
         <div class="cover" data-role="maximize">
             <img src="https://i.ytimg.com/vi/WvsDpFFC2Js/hqdefault.jpg?custom=true&w=320&h=180&stc=true&jpg444=true&jpgq=90&sp=68&sigh=m7iqIgc6LqvyU7ZQ-dX1798m8Aw" data-cover-placeholder="http://qmusic.be/assets/cover-placeholder-41a46459e9a76d48e9a780de6a8c6b54614c2a52564a63fe33667a5e44e3198c.png">
         </div>
@@ -79,13 +77,19 @@
                     <div id="slider_container" class="middle-center-container slider-container">
                         <div id="slider_tooltip" class="slider-tooltip">
                                     <span id="slider_value">
-                                        Drag me
+                                        0:00
                                     </span>
                         </div>
                         <section id="play-progress-container" class="middle-center-container slider-bars">
                             <div id="video-progress" class="slider-drag" data-min-range="0"> </div>
                         </section>
                     </div>
+                </div>
+
+                <div class="time-display">
+                    <span class="time-current"> - </span>
+                    <span class="time-separator"> / </span>
+                    <span class="time-duration"> - </span>
                 </div>
 
 
@@ -132,6 +136,7 @@
                             </div>
 
                         </i>
+                        <i class="fa fa-lock" aria-hidden="true"></i>
                     </div>
                 </div>
 

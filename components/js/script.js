@@ -3,68 +3,6 @@ $(function () {
     
 
 
-    // !Play progress
-    (function(){
-        var slider_play = $('#video-progress');
-        slider_play.slider({
-            range: 'min',
-            value: slider_play.attr('data-min-range')*100,
-            min: 0,
-            max: 1000,
-            slide: function(event, ui) {
-
-                player.seekTo(ui.value);
-                var slideVal = ui.value/100,
-                    slideMinVal = parseInt(slider_play.attr('data-min-range'));
-
-                //if(slideVal<=slideMinVal) { return false; }
-                $('#slider_value').text(slideVal);
-                $('#slider_tooltip').css({'left':parseInt($('.ui-slider-handle').css('left'))-50+'px'});
-            },
-            change: function(event, ui) {
-                $('#slider_tooltip').css({'left':parseInt($('.ui-slider-handle').css('left'))-50+'px'});
-            }
-        });
-        $('#slider_value').text(slider_play.slider('value')/100);
-        $('#slider_tooltip').css({'left':parseInt($('.ui-slider-handle').css('left'))-50+'px'});
-
-        // $('#set_minvalue').on('change',function(){
-        //     var minValue = $(this).val();
-        //     if(minValue<0||minValue>10){
-        //         $(this).val(slider_play.slider('value')/100);
-        //         return false;
-        //     }
-        //     slider_play.attr('data-min-range',minValue).slider('value',minValue*100);
-        //     $('#slider_value').text(minValue);
-        // });
-    })();
-
-    // !video volume
-    (function(){
-        var $vd_volume = $('#vl-progress');
-        $vd_volume.slider({
-            range: 'min',
-            //value: 50,
-            value: $vd_volume.attr('data-min-range')*100,
-            min: 0,
-            max: 1000,
-            orientation: "vertical",
-            slide: function(event, ui) {
-                var slideVal = ui.value/100,
-                    slideMinVal = parseInt($vd_volume.attr('data-min-range'));
-                //if(slideVal<=slideMinVal) { return false; }
-                //$('#slider_value').text(slideVal);
-                //reload volume
-            }
-        });
-        //$('#slider_value').text($vd_volume.slider('value')/100);
-    })();
-
-
-
-
-
-    init();
      $('#op-set').click(function() {
          $('.tray-menu').toggleClass('open');
          $(this).toggleClass('tray-button--active');
@@ -72,28 +10,20 @@ $(function () {
 
 
 
-    function init() {
+    // !* search ------------
+    $('#search').submit(function(e){
+        e.preventDefault();
 
-        var $volume = $('.op-volume'),
-            $con = $('#op-volume'),
-            position = $con.position();
+        var $this = $(this),
+            $val = $this.find('input').val();
 
-        $volume.css({
-            "left": (position.left - (($volume.width() / 2) - ($con.width() / 2))) + "px",
-            "top": (position.top - $volume.height()) - 10 + "px"
-        });
+        //$server = window.location.hostname;
+        window.location.href = 'search/'+$val;
+    });
 
-        var $volume = $('.tray-menu'),
-            $con = $('#op-set'),
-            position = $con.position();
-
-        $volume.css({
-            "left": (position.left - (($volume.width() / 2) - ($con.width() / 2))) + "px",
-            "top": (position.top - $volume.height()) - 10 + "px"
-        });
-
-
-    }
+    $('#search-btn').click(function(){
+        $('#search').submit();
+    });
 
 
     //$('#search input')

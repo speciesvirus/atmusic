@@ -1,0 +1,42 @@
+
+
+section:after, section:before {
+    display: table;
+    content: " ";
+}
+section:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.feed > section{
+    /*border-bottom: 1px solid #EBEBEB;*/
+    border-bottom: 1px solid #e2e2e2;
+    margin-bottom: 10px;
+}
+.feed > section:last-child{
+    border-bottom: none;
+}
+
+.owl-carousel .owl-stage {
+    padding: 5px 0;
+}
+.owl-nav{
+    float: right;
+}
+.owl-nav > div{
+    float: left;
+    padding: 5px 20px;
+    background-color: rgba(255,255,255,0.7);
+    border: 1px solid #e3e3e3;
+    box-shadow: 1px 1px 3px rgba(0,0,0,.1);
+    margin: 10px 5px;
+}
+.owl-carousel.owl-loading {
+    min-height: 150px;
+    background: url(../owl.carousel/dist/assets/ajax-loader.gif) no-repeat center center;
+}

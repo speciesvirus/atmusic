@@ -7,45 +7,42 @@
     }
 }
 body{
-
+    background-color: #f1f1f1;
 }
-body:after{
-    content: "";
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: -1;
-    display: block;
+/*body:after{*/
+    /*content: "";*/
+    /*position: fixed;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*z-index: -1;*/
+    /*display: block;*/
 
-    width: 100%;
-    height: 100%;
+    /*width: 100%;*/
+    /*height: 100%;*/
 
-    background-color: rgba(38, 50, 56, 0.91);
-    /*background-color: rgba(48, 60, 66, 0.9);*/
-}
-body:before {
-    content: "";
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: -1;
-    display: block;
+    /*background-color: rgba(38, 50, 56, 0.91);*/
+/*}*/
+/*body:before {*/
+    /*content: "";*/
+    /*position: fixed;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*z-index: -1;*/
+    /*display: block;*/
 
-    width: 100%;
-    height: 100%;
-
-
-
-    background-color: #263645;
-    background-image: url('http://timteeling.com/dev/img/network.svg'), radial-gradient(200px 500px at center, #ff8300 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0));
-    background-size: 125%, 50% 100%;
-    background-position: 0 60%, 0 100%;
-    animation: move 5s linear infinite;
-}
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /**/
+    /*background-color: #263645;*/
+    /*background-image: url('http://timteeling.com/dev/img/network.svg'), radial-gradient(200px 500px at center, #ff8300 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0));*/
+    /*background-size: 125%, 50% 100%;*/
+    /*background-position: 0 60%, 0 100%;*/
+    /*animation: move 5s linear infinite;*/
+/*}*/
 
 
 /*! header ----------------------------------------*/
@@ -447,7 +444,7 @@ header > div > *{
     width: 1px;
 }
 .ui-autocomplete {
-    z-index: 1111;
+    z-index: 9999;
 }
 
 
@@ -659,11 +656,12 @@ i.-icontext {
     width: 196px;
     display: inline-block;
     margin: auto;
+    margin-right: 5px;
     border-radius: 3px;
     position: relative;
     text-align: center;
-    box-shadow: -1px 15px 30px -12px black;
-
+    /*box-shadow: -1px 15px 30px -12px black;*/
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .clash-card__image {
@@ -1055,7 +1053,7 @@ i.-icontext {
     margin: auto;
 }
 .middle-center-container {
-    position: absolute;
+    /* position: absolute; */
     left: 0;
     right: 0;
     top: 0;
@@ -1065,9 +1063,9 @@ i.-icontext {
 
 .slider-container {
     position: relative;
-    float: left;
+    /* float: left; */
     margin: 0 20px;
-    /* width: 630px; */
+    /* width: 100%; */
     height: 70px;
     /* background-color: #dbdbdb; */
     border-radius: 10px;
@@ -1077,34 +1075,40 @@ i.-icontext {
 .slider-container .slider-tooltip {
     display: block;
     position: absolute;
-    top: -30px;
-    height: 30px;
-    width: 100px;
-    background-color: #1e3958;
-    border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;
-    box-shadow: 0 5px 10px #333; -webkit-box-shadow: 0 5px 10px #333; -moz-box-shadow: 0 5px 10px #333;
+    top: -15px;
+    /*height: 30px;*/
+    /*width: 100px;*/
+    /*background-color: #1e3958;*/
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    /*box-shadow: 0 5px 10px #333; -webkit-box-shadow: 0 5px 10px #333; -moz-box-shadow: 0 5px 10px #333;*/
+
+    visibility: hidden;
+    opacity: 0;
+
 }
-.slider-container .slider-tooltip:after {
-    content: '';
-    position: absolute;
-    bottom: -9px;
-    left: 50%;
-    margin-left: -10px;
-    display: block;
-    border-left: solid 10px transparent;
-    border-right: solid 10px transparent;
-    border-top: solid 10px #1e3958;
-    z-index: 2;
+.slider-container .slider-tooltip.-active{
+    visibility: visible;
+    opacity: 1;
 }
+/*.slider-container .slider-tooltip:after {*/
+    /*content: '';*/
+    /*position: absolute;*/
+    /*bottom: -9px;*/
+    /*left: 50%;*/
+    /*margin-left: -10px;*/
+    /*display: block;*/
+    /*border-left: solid 10px transparent;*/
+    /*border-right: solid 10px transparent;*/
+    /*border-top: solid 10px #1e3958;*/
+    /*z-index: 2;*/
+/*}*/
 .slider-container .slider-tooltip span{
     display: block;
-    width: 100%;
-    font-size: 12px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    vertical-align: middle;
-    color: #FFFFFF;
+    background-color: rgba(28,28,28,0.9);
+    border-radius: 2px;
+    padding: 5px 9px;
 }
 /*.slider-container .slider-bars {*/
 
@@ -1142,16 +1146,40 @@ i.-icontext {
 .slider-container .slider-bars .ui-widget-content .ui-state-default,
 .slider-container .slider-bars .ui-widget-header .ui-state-default,
 .slider-container .slider-bars .ui-widget-header {
-    background: rgba(183,202,77,1);
+    /*background: rgba(183,202,77,1);*/
+    background: #f12b24;
+    border-color: transparent;
     cursor: pointer;
 }
 .slider-container .slider-bars .ui-widget-header {
     background: rgba(110,194,194,1);
 }
 
+/* -! time display */
+.time-display{
+    /* font-size: 109%; */
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 5px;
+    white-space: nowrap;
+    line-height: 70px;
+}
 
-
-
+/*.sad{*/
+    /*max-width: 200px;*/
+    /*top: 252px;*/
+    /*left: 82px;*/
+/*}*/
+/*.ytp-tooltip.ytp-preview {*/
+    /*padding: 2px;*/
+    /*background-color: rgba(28,28,28,0.9);*/
+    /*border-radius: 2px;*/
+/*}*/
+/*.asfsa{*/
+    /*width: 92.6667px;*/
+    /*height: 54px;*/
+    /*background: url("https://i9.ytimg.com/sb/VutUDmwClJU/storyboard3_L2/M0.jpg?sigh=xqnPE7G0QASP3w6VqvZh9t72_CI") -192px -108px / 480px 270px;*/
+/*}*/
 
 
 
@@ -1181,6 +1209,19 @@ i.-icontext {
     align-items: center;
 }
 
+#audioplayer.unlock{
+    bottom: -60px;
+
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+#audioplayer.unlock:hover{
+    bottom: -1px;
+}
+
 .tray-button {
     height: 70px;
     border-radius: 2px;
@@ -1196,6 +1237,10 @@ i.-icontext {
 .tray-button > *:not(:last-child) {
     margin-right: 16px;
 }
+.tray-button > i {
+    cursor: pointer;
+}
+
 .material-icons {
     font-weight: normal;
     font-style: normal;
