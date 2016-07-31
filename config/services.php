@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'domain' => [
+//        'default' => 'http://localhost/atmusic/search/2-1=0',
+        'default' => 'http://localhost/atmusic',
+    ],
+
+
 ];
