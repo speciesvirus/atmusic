@@ -73,7 +73,7 @@ class SearchController extends Controller
 //            ],
             'query' => [
                 'q' => $q,
-                'pageToken' => 'sdf'
+                'pageToken' => ''
             ],
 //            'multipart' => [
 //                [
@@ -83,10 +83,14 @@ class SearchController extends Controller
 //            ]
         ]);
         $res->getStatusCode();
-        $res->getHeader('content-type');
-        $resp = $res->getBody();
+        //$res->getHeader('content-type');
 
-        return view('search', ['user' => $resp]);
+
+        return view('search', ['results' => json_decode($res->getBody(), true)]);
+//        return view('search', ['results' => [
+//            'q' => $q,
+//            'pageToken' => $res->getBody()
+//        ]]);
         //return view('layouts.main', ['user' => $id]);
     }
 
@@ -134,12 +138,11 @@ class SearchController extends Controller
      */
     public function search(Request $request)
     {
-//        $pageToken = "CAEQAA";
-        $pageToken = "CAEQAA";
-        if ($request->has('pageToken')) {
-            $pageToken =  "CAEQAB";
-        }
+        $pageToken = '';
 
+        if ($request->has('pageToken')) {
+            $pageToken =  $request->pageToken;
+        }
 
         // Call set_include_path() as needed to point to your client library.
 
@@ -156,8 +159,6 @@ class SearchController extends Controller
 
         // Define an object that will be used to make all API requests.
         $youtube = new \Google_Service_YouTube($client);
-        $htmlBody = "";
-
 
         try {
             // Call the search.list method to retrieve results matching the specified
@@ -178,7 +179,8 @@ class SearchController extends Controller
                 switch ($searchResult['id']['kind']) {
                     case 'youtube#video':
                         $videos .= sprintf('<li>%s (%s)</li>',
-                            $searchResult['snippet']['title'], $searchResult['id']['videoId']);
+                            $searchResult['snippet']['title'], $this->timeAgo($searchResult['snippet']['publishedAt']));
+//                            $searchResult['snippet']['title'], $searchResult['id']['videoId']);
                         break;
                     case 'youtube#channel':
                         $channels .= sprintf('<li>%s (%s)</li>',
@@ -191,26 +193,101 @@ class SearchController extends Controller
                 }
             }
 
-            $htmlBody .= <<<END
-    <h3>Videos</h3>
-    <ul>$videos</ul>
-    <h3>Channels</h3>
-    <ul>$channels</ul>
-    <h3>Playlists</h3>
-    <ul>$playlists</ul>
-END;
         } catch (Google_Service_Exception $e) {
-            $htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',
-                htmlspecialchars($e->getMessage()));
+            return response()->json(['page' => $e], 200);
+            //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
         } catch (Google_Exception $e) {
-            $htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',
-                htmlspecialchars($e->getMessage()));
+            return response()->json(['page' => $e], 200);
+            //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
         }
 
-
+        $arr = [$searchResponse];
 
         // all good so return the token
-        return response()->json(['page' => $pageToken], 200);
+//        return response()->json(['page' => $searchResponse->toSimpleObject()], 200);
+        return response()->json($videos, 200);
+    }
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Display time date ago
+     *
+     * @param  string  $time_ago
+     * @return \Illuminate\Http\Response
+     */
+    function timeAgo($time_ago)
+    {
+        $time_ago = strtotime($time_ago);
+        $cur_time   = time();
+        $time_elapsed   = $cur_time - $time_ago;
+        $seconds    = $time_elapsed ;
+        $minutes    = round($time_elapsed / 60 );
+        $hours      = round($time_elapsed / 3600);
+        $days       = round($time_elapsed / 86400 );
+        $weeks      = round($time_elapsed / 604800);
+        $months     = round($time_elapsed / 2600640 );
+        $years      = round($time_elapsed / 31207680 );
+        // Seconds
+        if($seconds <= 60){
+            return "just now";
+        }
+        //Minutes
+        else if($minutes <=60){
+            if($minutes==1){
+                return "one minute ago";
+            }
+            else{
+                return "$minutes minutes ago";
+            }
+        }
+        //Hours
+        else if($hours <=24){
+            if($hours==1){
+                return "an hour ago";
+            }else{
+                return "$hours hrs ago";
+            }
+        }
+        //Days
+        else if($days <= 7){
+            if($days==1){
+                return "yesterday";
+            }else{
+                return "$days days ago";
+            }
+        }
+        //Weeks
+        else if($weeks <= 4.3){
+            if($weeks==1){
+                return "a week ago";
+            }else{
+                return "$weeks weeks ago";
+            }
+        }
+        //Months
+        else if($months <=12){
+            if($months==1){
+                return "a month ago";
+            }else{
+                return "$months months ago";
+            }
+        }
+        //Years
+        else{
+            if($years==1){
+                return "one year ago";
+            }else{
+                return "$years years ago";
+            }
+        }
     }
 
 }
