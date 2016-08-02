@@ -65,28 +65,18 @@ class SearchController extends Controller
 //        }
 
         $client = new \GuzzleHttp\Client(['verify' => false ,'http_errors' => false]);
-
         $res = $client->request('GET', config('services.domain.default').'/service/youtube/search', [
-//            'json' => [
-//                'q' => $q,
-//                'pageToken' => ''
-//            ],
             'query' => [
                 'q' => $q,
                 'pageToken' => ''
             ],
-//            'multipart' => [
-//                [
-//                    'q' => $q,
-//                    'pageToken' => 'dsdasd'
-//                ]
-//            ]
         ]);
         $res->getStatusCode();
-        //$res->getHeader('content-type');
 
 
-        return view('search', ['results' => json_decode($res->getBody(), true)]);
+        //$result = $this->search($q,$pageToken);
+
+        return view('search', ['result' => json_decode($res->getBody(), true)]);
 //        return view('search', ['results' => [
 //            'q' => $q,
 //            'pageToken' => $res->getBody()
@@ -129,6 +119,51 @@ class SearchController extends Controller
     }
 
 
+    /**
+     * Youtube video api
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function video(Request $request)
+    {
+
+        // Call set_include_path() as needed to point to your client library.
+
+        /*
+         * Set $DEVELOPER_KEY to the "API key" value from the "Access" tab of the
+         * Google Developers Console <https://console.developers.google.com/>
+         * Please ensure that you have enabled the YouTube Data API for your project.
+         */
+        $DEVELOPER_KEY = 'AIzaSyDGFbK0CvMXKVzCJA_2Fj5B7pItfK0a1QA';
+
+        $client = new \Google_Client();
+        $client->setDeveloperKey($DEVELOPER_KEY);
+
+        // Define an object that will be used to make all API requests.
+        $youtube = new \Google_Service_YouTube($client);
+
+        try {
+            // Call the search.list method to retrieve results matching the specified
+            // query term.
+            $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
+                'id' => $request->id,
+            ));
+
+        } catch (Google_Service_Exception $e) {
+            return response()->json(['page' => $e], 200);
+            //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
+        } catch (Google_Exception $e) {
+            return response()->json(['page' => $e], 200);
+            //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
+        }
+
+        // all good so return the token
+//        return response()->json(['page' => $searchResponse->toSimpleObject()], 200);
+
+        return response()->json($videosResponse->toSimpleObject(), 200);
+    }
+
 
     /**
      * Youtube search api
@@ -169,29 +204,60 @@ class SearchController extends Controller
                 'pageToken' => $pageToken,
             ));
 
-            $videos = '';
-            $channels = '';
-            $playlists = '';
 
+//            $videos = '';
+//            $channels = '';
+//            $playlists = '';
+
+            $arr = [];
             // Add each result to the appropriate list, and then display the lists of
             // matching videos, channels, and playlists.
+
             foreach ($searchResponse['items'] as $searchResult) {
                 switch ($searchResult['id']['kind']) {
                     case 'youtube#video':
-                        $videos .= sprintf('<li>%s (%s)</li>',
-                            $searchResult['snippet']['title'], $this->timeAgo($searchResult['snippet']['publishedAt']));
-//                            $searchResult['snippet']['title'], $searchResult['id']['videoId']);
+
+                        $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
+                            'id' => $searchResult['id']['videoId'],
+                        ));
+
+                        $snippet = [
+                            "id"            => $searchResult['id']['videoId'],
+                            "title"         => $searchResult['snippet']['title'],
+                            "channelTitle"         => $searchResult['snippet']['channelTitle'],
+                            "description"   => $searchResult['snippet']['description'],
+                            "publishedAt"   => $this->timeAgo($searchResult['snippet']['publishedAt']),
+                            "viewCount"     => $videosResponse['items'][0]['statistics']['viewCount'],
+                        ];
+                        array_push($arr,$snippet);
+
+                        //$arr = $arr[$searchResult['id']['videoId']];
+//                        $des['title'] = $searchResult['snippet']['title'];
+//                        $des['description'] = $searchResult['snippet']['description'];
+//                        $des['publishedAt'] = $searchResult['snippet']['publishedAt'];
+//                        $des['title'] = $videosResponse['snippet']['title'];
+
+
+//                        $videos .= sprintf('<li>%s (%s)</li>',
+//                            $searchResult['snippet']['title'], $this->timeAgo($searchResult['snippet']['publishedAt']));
                         break;
                     case 'youtube#channel':
-                        $channels .= sprintf('<li>%s (%s)</li>',
-                            $searchResult['snippet']['title'], $searchResult['id']['channelId']);
+//                        $channels .= sprintf('<li>%s (%s)</li>',
+//                            $searchResult['snippet']['title'], $searchResult['id']['channelId']);
                         break;
                     case 'youtube#playlist':
-                        $playlists .= sprintf('<li>%s (%s)</li>',
-                            $searchResult['snippet']['title'], $searchResult['id']['playlistId']);
+//                        $playlists .= sprintf('<li>%s (%s)</li>',
+//                            $searchResult['snippet']['title'], $searchResult['id']['playlistId']);
                         break;
                 }
             }
+
+            $snippet = [
+                "nextPageToken" => $searchResponse['nextPageToken'],
+                "item"          => $arr
+            ];
+            $arr = [];
+            array_push($arr,$snippet);
 
         } catch (Google_Service_Exception $e) {
             return response()->json(['page' => $e], 200);
@@ -201,11 +267,9 @@ class SearchController extends Controller
             //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
         }
 
-        $arr = [$searchResponse];
-
         // all good so return the token
 //        return response()->json(['page' => $searchResponse->toSimpleObject()], 200);
-        return response()->json($videos, 200);
+        return response()->json(['data' => $arr], 200);
     }
 
 

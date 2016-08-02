@@ -27,46 +27,46 @@
             <section>
                 <div class="feed-container">
                     <h4>Recommend</h4>
+{{ dd($result) }}
+                    {{--@foreach($result as $key => $value)--}}
 
-                    @foreach($results["items"] as $key => $value)
+                        {{--<p>sda = {{ $value['id']['videoId'] }}</p>--}}
+                        {{--<div class="clash-card archer">--}}
+                            {{--<div class="clash-card__image clash-card__image--archer">--}}
+                                {{--<img src="https://i.ytimg.com/vi/{{ $value['id']['videoId'] }}/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg" alt="archer" style="display: block;">--}}
+                            {{--</div>--}}
+                            {{--<div class="c_info">--}}
+                                {{--<span id="c_stars" data-star="3.5"><span style="width: 42px;"></span></span>--}}
+                                {{--<div class="c_num">3.5</div>--}}
+                            {{--</div>--}}
 
-                        <p>sda = {{ $value['id']['videoId'] }}</p>
-                        <div class="clash-card archer">
-                            <div class="clash-card__image clash-card__image--archer">
-                                <img src="https://i.ytimg.com/vi/{{ $value['id']['videoId'] }}/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg" alt="archer" style="display: block;">
-                            </div>
-                            <div class="c_info">
-                                <span id="c_stars" data-star="3.5"><span style="width: 42px;"></span></span>
-                                <div class="c_num">3.5</div>
-                            </div>
+                            {{--<div class="clash-card__unit-description">--}}
+                                {{--<div class="clash-card__level">{{ $value['snippet']['title'] }}</div>--}}
+                                {{--<p class="c_industry">{{ $value['snippet']['channelTitle'] }}</p>--}}
+                                {{--<p class="c_industry">{{ $value['snippet']['publishedAt'] }}91,843 views 3 days ago</p>--}}
+                            {{--</div>--}}
 
-                            <div class="clash-card__unit-description">
-                                <div class="clash-card__level">{{ $value['snippet']['title'] }}</div>
-                                <p class="c_industry">{{ $value['snippet']['channelTitle'] }}</p>
-                                <p class="c_industry">{{ $value['snippet']['publishedAt'] }}91,843 views 3 days ago</p>
-                            </div>
+                            {{--<div class="clash-card__unit-stats clearfix">--}}
+                                {{--<a href="https://www.facebook.com/designcouch" target="_blank">--}}
+                                    {{--<i class="fa fa-facebook"></i>--}}
+                                {{--</a>--}}
+                                {{--<a href="https://www.twitter.com/designcouch" target="_blank">--}}
+                                    {{--<i class="fa fa-youtube"></i>--}}
+                                {{--</a>--}}
+                                {{--<a href="https://www.dribbble.com/designcouch" target="_blank">--}}
+                                    {{--<i class="fa fa-plus-circle"></i>--}}
+                                {{--</a>--}}
+                                {{--<a href="https://www.codepen.io/designcouch/public">--}}
+                                    {{--<i class="fa fa-clock-o"></i>--}}
+                                {{--</a>--}}
 
-                            <div class="clash-card__unit-stats clearfix">
-                                <a href="https://www.facebook.com/designcouch" target="_blank">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                                <a href="https://www.twitter.com/designcouch" target="_blank">
-                                    <i class="fa fa-youtube"></i>
-                                </a>
-                                <a href="https://www.dribbble.com/designcouch" target="_blank">
-                                    <i class="fa fa-plus-circle"></i>
-                                </a>
-                                <a href="https://www.codepen.io/designcouch/public">
-                                    <i class="fa fa-clock-o"></i>
-                                </a>
+                                {{--<a href="javascript://" class="more-info">--}}
+                                    {{--<i class="fa fa-user"></i>--}}
+                                {{--</a>--}}
 
-                                <a href="javascript://" class="more-info">
-                                    <i class="fa fa-user"></i>
-                                </a>
+                            {{--</div>--}}
 
-                            </div>
-
-                    @endforeach
+                    {{--@endforeach--}}
 
                     {{--@foreach($results["pageInfo"] as $key => $value)--}}
                     {{--<p>sda = {{ $results["pageInfo"]['totalResults'] }}</p>--}}

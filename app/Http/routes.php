@@ -22,6 +22,7 @@ Route::get('/watch', function () {
 Route::get('/watch', function () {
     return view('watch');
 });
+Route::resource('/service/youtube/video', 'SearchController@video');
 Route::resource('/service/youtube/search', 'SearchController@search');
 Route::resource('/search/{q}', 'SearchController@show');
 
