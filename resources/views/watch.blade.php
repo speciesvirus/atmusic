@@ -17,6 +17,8 @@
 
 @section('content')
 
+    {{ dd($result) }}
+
     <div class="page-watch" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_bg.jpg)">
         <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
         <div class="player-container">

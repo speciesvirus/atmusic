@@ -47,41 +47,47 @@ class SearchController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  string  $q
+     * @param  string  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($q)
+    public function show($id)
     {
-//        try{
-//            $res = $client->request('POST', 'https://api.github.com/user', [
-//                'auth' => ['user', 'pass']
-//            ]);
-//            $res->getStatusCode();
-//            $res->getHeader('content-type');
-//            $resp = $res->getBody();
-//
-//        }catch(\Exception $e){
-//            return view('search', ['user' => $e]);
-//        }
 
-        $client = new \GuzzleHttp\Client(['verify' => false ,'http_errors' => false]);
-        $res = $client->request('GET', config('services.domain.default').'/service/youtube/search', [
-            'query' => [
-                'q' => $q,
-                'pageToken' => ''
-            ],
-        ]);
-        $res->getStatusCode();
+        // Call set_include_path() as needed to point to your client library.
+
+        /*
+         * Set $DEVELOPER_KEY to the "API key" value from the "Access" tab of the
+         * Google Developers Console <https://console.developers.google.com/>
+         * Please ensure that you have enabled the YouTube Data API for your project.
+         */
+
+        $client = new \Google_Client();
+        $client->setDeveloperKey(config('services.google.key'));
+
+        // Define an object that will be used to make all API requests.
+        $youtube = new \Google_Service_YouTube($client);
+
+        $videosResponse = null;
+        try {
+            // Call the search.list method to retrieve results matching the specified
+            // query term.
+            $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
+                'id' => $id,
+            ));
+
+        } catch (Google_Service_Exception $e) {
+            return response()->json(['page' => $e], 200);
+            //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
+        } catch (Google_Exception $e) {
+            return response()->json(['page' => $e], 200);
+            //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
+        }
 
 
-        //$result = $this->search($q,$pageToken);
+        // all good so return the token
+//        return response()->json(['page' => $searchResponse->toSimpleObject()], 200);
+        return view('watch', ['result' => $videosResponse->toSimpleObject()]);
 
-        return view('search', ['result' => json_decode($res->getBody(), true)]);
-//        return view('search', ['results' => [
-//            'q' => $q,
-//            'pageToken' => $res->getBody()
-//        ]]);
-        //return view('layouts.main', ['user' => $id]);
     }
 
     /**
@@ -135,10 +141,8 @@ class SearchController extends Controller
          * Google Developers Console <https://console.developers.google.com/>
          * Please ensure that you have enabled the YouTube Data API for your project.
          */
-        $DEVELOPER_KEY = 'AIzaSyDGFbK0CvMXKVzCJA_2Fj5B7pItfK0a1QA';
-
         $client = new \Google_Client();
-        $client->setDeveloperKey($DEVELOPER_KEY);
+        $client->setDeveloperKey(config('services.google.key'));
 
         // Define an object that will be used to make all API requests.
         $youtube = new \Google_Service_YouTube($client);
@@ -168,10 +172,55 @@ class SearchController extends Controller
     /**
      * Youtube search api
      *
+     * @param  string  $q
+     * @return \Illuminate\Http\Response
+     */
+    public function search($q)
+    {
+//        try{
+//            $res = $client->request('POST', 'https://api.github.com/user', [
+//                'auth' => ['user', 'pass']
+//            ]);
+//            $res->getStatusCode();
+//            $res->getHeader('content-type');
+//            $resp = $res->getBody();
+//
+//        }catch(\Exception $e){
+//            return view('search', ['user' => $e]);
+//        }
+
+        $client = new \GuzzleHttp\Client(['verify' => false ,'http_errors' => false]);
+        $res = $client->request('GET', config('services.domain.default').'/service/youtube/search', [
+            'query' => [
+                'q' => $q,
+                'pageToken' => ''
+            ],
+        ]);
+        $res->getStatusCode();
+
+
+        //$result = $this->search($q,$pageToken);
+
+        return view('search', ['result' => json_decode($res->getBody(), true)]);
+//        return view('search', ['results' => [
+//            'q' => $q,
+//            'pageToken' => $res->getBody()
+//        ]]);
+        //return view('layouts.main', ['user' => $id]);
+
+
+    }
+
+
+
+
+    /**
+     * Youtube search api
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request)
+    public function searchList(Request $request)
     {
         $pageToken = '';
 
@@ -187,10 +236,9 @@ class SearchController extends Controller
          * Google Developers Console <https://console.developers.google.com/>
          * Please ensure that you have enabled the YouTube Data API for your project.
          */
-        $DEVELOPER_KEY = 'AIzaSyDGFbK0CvMXKVzCJA_2Fj5B7pItfK0a1QA';
 
         $client = new \Google_Client();
-        $client->setDeveloperKey($DEVELOPER_KEY);
+        $client->setDeveloperKey(config('services.google.key'));
 
         // Define an object that will be used to make all API requests.
         $youtube = new \Google_Service_YouTube($client);
@@ -200,7 +248,7 @@ class SearchController extends Controller
             // query term.
             $searchResponse = $youtube->search->listSearch('id,snippet', array(
                 'q' => $request->q,
-                'maxResults' => 2,
+                'maxResults' => 20,
                 'pageToken' => $pageToken,
             ));
 
@@ -224,10 +272,10 @@ class SearchController extends Controller
                         $snippet = [
                             "id"            => $searchResult['id']['videoId'],
                             "title"         => $searchResult['snippet']['title'],
-                            "channelTitle"         => $searchResult['snippet']['channelTitle'],
+                            "channelTitle"  => $searchResult['snippet']['channelTitle'],
                             "description"   => $searchResult['snippet']['description'],
                             "publishedAt"   => $this->timeAgo($searchResult['snippet']['publishedAt']),
-                            "viewCount"     => $videosResponse['items'][0]['statistics']['viewCount'],
+                            "viewCount"     => number_format($videosResponse['items'][0]['statistics']['viewCount']),
                         ];
                         array_push($arr,$snippet);
 
@@ -267,11 +315,11 @@ class SearchController extends Controller
             //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
         }
 
+
         // all good so return the token
 //        return response()->json(['page' => $searchResponse->toSimpleObject()], 200);
         return response()->json(['data' => $arr], 200);
     }
-
 
 
 

@@ -19,10 +19,13 @@ Route::get('/watch', function () {
     return view('watch');
 });
 
-Route::get('/watch', function () {
-    return view('watch');
-});
+//Route::get('/watch', function () {
+//    return view('watch');
+//});
+
 Route::resource('/service/youtube/video', 'SearchController@video');
-Route::resource('/service/youtube/search', 'SearchController@search');
-Route::resource('/search/{q}', 'SearchController@show');
+Route::resource('/service/youtube/search', 'SearchController@searchList');
+Route::resource('/search/{q?}', 'SearchController@search');
+Route::resource('/{id?}', 'SearchController@show');
+
 

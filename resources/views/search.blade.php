@@ -10,11 +10,10 @@
 @stop
 
 @section('source')
-    <link rel="stylesheet" type="text/css" href="{{ asset("components/owl.carousel/dist/assets/owl.carousel.min.css") }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset("components/owl.carousel/dist/assets/owl.theme.default.min.css") }}">
+
     <link rel="stylesheet" type="text/css" href="{{ asset("components/css/home.css") }}">
-    <script src="{{ asset("components/owl.carousel/dist/owl.carousel.min.js") }}"></script>
-    <script src="{{ asset("components/js/home.js") }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset("components/css/search.css") }}">
+
 @stop
 
 
@@ -25,15 +24,13 @@
         <div class="feed">
 
             <section>
-                <div class="feed-container">
-                    <h4>Recommend</h4>
-{{ dd($result) }}
-                    {{--@foreach($result as $key => $value)--}}
+                <div class="feed-container cards">
 
-                        {{--<p>sda = {{ $value['id']['videoId'] }}</p>--}}
+                    @foreach($result['data'][0]['item'] as $key => $value)
+
                         {{--<div class="clash-card archer">--}}
                             {{--<div class="clash-card__image clash-card__image--archer">--}}
-                                {{--<img src="https://i.ytimg.com/vi/{{ $value['id']['videoId'] }}/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg" alt="archer" style="display: block;">--}}
+                                {{--<img src="https://i.ytimg.com/vi/{{ $value['id'] }}/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg" alt="archer" style="display: block;">--}}
                             {{--</div>--}}
                             {{--<div class="c_info">--}}
                                 {{--<span id="c_stars" data-star="3.5"><span style="width: 42px;"></span></span>--}}
@@ -41,9 +38,9 @@
                             {{--</div>--}}
 
                             {{--<div class="clash-card__unit-description">--}}
-                                {{--<div class="clash-card__level">{{ $value['snippet']['title'] }}</div>--}}
-                                {{--<p class="c_industry">{{ $value['snippet']['channelTitle'] }}</p>--}}
-                                {{--<p class="c_industry">{{ $value['snippet']['publishedAt'] }}91,843 views 3 days ago</p>--}}
+                                {{--<div class="clash-card__level"><a href="{{ asset("/".$value['id']) }}">{{ $value['title'] }}</a></div>--}}
+                                {{--<p class="c_industry">{{ $value['channelTitle'] }}</p>--}}
+                                {{--<p class="c_industry">{{ $value['viewCount'] }} views {{ $value['publishedAt'] }}</p>--}}
                             {{--</div>--}}
 
                             {{--<div class="clash-card__unit-stats clearfix">--}}
@@ -66,7 +63,27 @@
 
                             {{--</div>--}}
 
-                    {{--@endforeach--}}
+                            {{--<div>--}}
+                                {{--{{ $value['description'] }}--}}
+                            {{--</div>--}}
+
+                        <div class="card">
+                            <a href="{{ asset("/".$value['id']) }}">
+                                <span class="card-header" style="background-image: url(https://i.ytimg.com/vi/{{ $value['id'] }}/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg);"></span>
+                            </a>
+
+                            <div class="card-summary">
+                                <a href="{{ asset("/".$value['id']) }}">{{ $value['title'] }}</a>
+                                <p class="c_industry">{{ $value['channelTitle'] }}</p>
+
+                                <p>A summary will also be present. Usually two to three brief sentences about the content on the detail page.</p>
+                            </div>
+                            <div class="card-meta">
+                                <p class="c_industry">{{ $value['viewCount'] }} views {{ $value['publishedAt'] }}</p>
+                            </div>
+                        </div>
+
+                    @endforeach
 
                     {{--@foreach($results["pageInfo"] as $key => $value)--}}
                     {{--<p>sda = {{ $results["pageInfo"]['totalResults'] }}</p>--}}
@@ -81,6 +98,10 @@
 
 
                 </div>
+
+
+
+
             </section>
 
 

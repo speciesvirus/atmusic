@@ -40,5 +40,10 @@ return [
         'default' => 'http://localhost/atmusic',
     ],
 
+    'google' => [
+//        'default' => 'http://localhost/atmusic/search/2-1=0',
+        'key' => 'AIzaSyDGFbK0CvMXKVzCJA_2Fj5B7pItfK0a1QA',
+    ],
+
 
 ];
