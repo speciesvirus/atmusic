@@ -68,12 +68,33 @@ class SearchController extends Controller
         $youtube = new \Google_Service_YouTube($client);
 
         $videosResponse = null;
+        $result = null;
+        $thumbnails = null;
         try {
             // Call the search.list method to retrieve results matching the specified
             // query term.
             $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
                 'id' => $id,
             ));
+
+
+            foreach ($videosResponse['items'] as $videoResult) {
+
+                $result = [
+                    "id"            => $videoResult['id'],
+                    "title"         => $videoResult['snippet']['title'],
+                    "channelTitle"  => $videoResult['snippet']['channelTitle'],
+                    "description"   => $videoResult['snippet']['description'],
+                    "publishedAt"   => $this->timeAgo($videoResult['snippet']['publishedAt']),
+                    "viewCount"     => number_format($videoResult['items'][0]['statistics']['viewCount']),
+                    "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
+                ];
+
+            }
+
+
+
+
 
         } catch (Google_Service_Exception $e) {
             return response()->json(['page' => $e], 200);
@@ -85,8 +106,9 @@ class SearchController extends Controller
 
 
         // all good so return the token
-//        return response()->json(['page' => $searchResponse->toSimpleObject()], 200);
-        return view('watch', ['result' => $videosResponse->toSimpleObject()]);
+        //return response()->json(['result' => $videosResponse->toSimpleObject()], 200);
+        //return view('watch', ['result' => $videosResponse->toSimpleObject()]);
+        return view('watch', ['result' => $result]);
 
     }
 
@@ -134,6 +156,7 @@ class SearchController extends Controller
     public function video(Request $request)
     {
 
+
         // Call set_include_path() as needed to point to your client library.
 
         /*
@@ -177,6 +200,9 @@ class SearchController extends Controller
      */
     public function search($q)
     {
+        // Store a piece of data in the session...
+        session(['search' => $q]);
+
 //        try{
 //            $res = $client->request('POST', 'https://api.github.com/user', [
 //                'auth' => ['user', 'pass']

@@ -15,17 +15,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/watch', function () {
-    return view('watch');
-});
+//Route::get('/watch', function () {
+//    return view('watch');
+//});
 
 //Route::get('/watch', function () {
 //    return view('watch');
 //});
 
+Route::get('/search/{q?}', 'SearchController@search');
+Route::get('/{id?}', 'SearchController@show');
+
+
 Route::resource('/service/youtube/video', 'SearchController@video');
 Route::resource('/service/youtube/search', 'SearchController@searchList');
-Route::resource('/search/{q?}', 'SearchController@search');
-Route::resource('/{id?}', 'SearchController@show');
+
 
 

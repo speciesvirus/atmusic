@@ -41,7 +41,7 @@
             <ul>
                 <li>
                     <a href='javascript://'>
-                        <input type="search" placeholder="Search">
+                        <input type="search" placeholder="Search" value="{{ session('search') }}">
                     </a>
                 </li>
                 <li>

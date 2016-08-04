@@ -252,7 +252,7 @@ function onCurrentTime(){
 //    the player should play for six seconds and then stop.
 var done = false;
 function onPlayerStateChange(event) {
-    
+
     //play first time
     // if (event.data == YT.PlayerState.PLAYING && !done) {
     //     done = true;
@@ -268,7 +268,7 @@ function onPlayerStateChange(event) {
         if(event.data == YT.PlayerState.PLAYING){
             playOn();
         }
-        
+
         //check paused   *!pause then seek solution
         if(event.data == YT.PlayerState.PAUSED){
             playOff();
