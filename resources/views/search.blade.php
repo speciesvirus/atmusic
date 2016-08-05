@@ -76,7 +76,7 @@
                                 <a href="{{ asset("/".$value['id']) }}">{{ $value['title'] }}</a>
                                 <p class="c_industry">{{ $value['channelTitle'] }}</p>
 
-                                <p>A summary will also be present. Usually two to three brief sentences about the content on the detail page.</p>
+                                <p>{{ $value['description'] }}</p>
                             </div>
                             <div class="card-meta">
                                 <p class="c_industry">{{ $value['viewCount'] }} views {{ $value['publishedAt'] }}</p>

@@ -75,6 +75,10 @@ $(function () {
                 suggestions.length = 10; // prune suggestions list to only 5 items
                 response(suggestions);
             };
+        },
+        select: function (event, ui) {
+            $('#search input').val(ui.item.value);
+            $('#search').submit();
         }
     });
 

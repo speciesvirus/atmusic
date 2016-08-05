@@ -40,9 +40,9 @@
         <form id="search" method="get">
             <ul>
                 <li>
-                    <a href='javascript://'>
+                    <div class="input-search">
                         <input type="search" placeholder="Search" value="{{ session('search') }}">
-                    </a>
+                    </div>
                 </li>
                 <li>
                     <a href='javascript://' id="search-btn">

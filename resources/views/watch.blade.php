@@ -33,8 +33,8 @@
             {{--<div class="player-bar-background" style="background-image:url(http://qmusic.be/assets/player-bar-beach-a6ca0cf24da263404a81dbc5413da07b0d42a662f41a0d4ab3426b807995986e.png)"></div>--}}
 
             <div class="current-track">
-                        <span class="title">ปริศนาฟ้าแลบ วันที่ 22 กรกฎาคม 2559 ตอนที่ 4<br>
-                            <span class="artist">Digital Media</span>
+                        <span class="title">{{ $result['title'] }}<br>
+                            <span class="artist">{{ $result['channelTitle'] }}</span>
                         </span>
 
             </div>
@@ -302,12 +302,34 @@
                 $(this).removeClass('fa-unlock-alt').addClass('fa-lock');
             });
 
-        });
+
+
+
+            $('.fa-television').click(function () {
+                launchIntoFullscreen(document.getElementById("player")); // any individual element
+            });
+
+
+        });// ! end readt
+
+
+        // Find the right method, call on correct element
+        function launchIntoFullscreen(element) {
+            if(element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if(element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+            } else if(element.webkitRequestFullscreen) {
+                element.webkitRequestFullscreen();
+            } else if(element.msRequestFullscreen) {
+                element.msRequestFullscreen();
+            }
+        }
+
+
+
 
         // !Play button
-
-
-
         function playOn() {
 
             var $path = $("#ytp-2")[0],
