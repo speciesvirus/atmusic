@@ -69,10 +69,11 @@ $(function () {
             );
             suggestCallBack = function (data) {
                 var suggestions = [];
+
                 $.each(data[1], function (key, val) {
                     suggestions.push({"label": val[0], "value": val[0]});
                 });
-                suggestions.length = 10; // prune suggestions list to only 5 items
+                suggestions.length = 9; // prune suggestions list to only 5 items
                 response(suggestions);
             };
         },
