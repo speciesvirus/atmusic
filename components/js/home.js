@@ -1,12 +1,14 @@
 $(function(){
 
     $('.owl-carousel').owlCarousel({
-        items:6,
-        lazyLoad:true,
-        margin:10,
+
+        items: 1,
+        //lazyLoad: true,
+        margin: 0,
         nav: true,
         dots: false,
-        autoWidth:true
+        autoWidth: true
     });
+
 
 });

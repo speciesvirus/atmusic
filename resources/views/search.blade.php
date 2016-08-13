@@ -11,9 +11,8 @@
 
 @section('source')
 
-    <link rel="stylesheet" type="text/css" href="{{ asset("components/css/home.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("components/css/search.css") }}">
-
+    <script src="{{ asset("components/js/search.js") }}"></script>
 @stop
 
 
@@ -24,48 +23,10 @@
         <div class="feed">
 
             <section>
+
                 <div class="feed-container cards">
 
                     @foreach($result['data'][0]['item'] as $key => $value)
-
-                        {{--<div class="clash-card archer">--}}
-                            {{--<div class="clash-card__image clash-card__image--archer">--}}
-                                {{--<img src="https://i.ytimg.com/vi/{{ $value['id'] }}/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg" alt="archer" style="display: block;">--}}
-                            {{--</div>--}}
-                            {{--<div class="c_info">--}}
-                                {{--<span id="c_stars" data-star="3.5"><span style="width: 42px;"></span></span>--}}
-                                {{--<div class="c_num">3.5</div>--}}
-                            {{--</div>--}}
-
-                            {{--<div class="clash-card__unit-description">--}}
-                                {{--<div class="clash-card__level"><a href="{{ asset("/".$value['id']) }}">{{ $value['title'] }}</a></div>--}}
-                                {{--<p class="c_industry">{{ $value['channelTitle'] }}</p>--}}
-                                {{--<p class="c_industry">{{ $value['viewCount'] }} views {{ $value['publishedAt'] }}</p>--}}
-                            {{--</div>--}}
-
-                            {{--<div class="clash-card__unit-stats clearfix">--}}
-                                {{--<a href="https://www.facebook.com/designcouch" target="_blank">--}}
-                                    {{--<i class="fa fa-facebook"></i>--}}
-                                {{--</a>--}}
-                                {{--<a href="https://www.twitter.com/designcouch" target="_blank">--}}
-                                    {{--<i class="fa fa-youtube"></i>--}}
-                                {{--</a>--}}
-                                {{--<a href="https://www.dribbble.com/designcouch" target="_blank">--}}
-                                    {{--<i class="fa fa-plus-circle"></i>--}}
-                                {{--</a>--}}
-                                {{--<a href="https://www.codepen.io/designcouch/public">--}}
-                                    {{--<i class="fa fa-clock-o"></i>--}}
-                                {{--</a>--}}
-
-                                {{--<a href="javascript://" class="more-info">--}}
-                                    {{--<i class="fa fa-user"></i>--}}
-                                {{--</a>--}}
-
-                            {{--</div>--}}
-
-                            {{--<div>--}}
-                                {{--{{ $value['description'] }}--}}
-                            {{--</div>--}}
 
                         <div class="card">
                             <a href="{{ asset("/".$value['id']) }}">
@@ -84,30 +45,53 @@
                         </div>
 
                     @endforeach
-
-                    {{--@foreach($results["pageInfo"] as $key => $value)--}}
-                    {{--<p>sda = {{ $results["pageInfo"]['totalResults'] }}</p>--}}
-                    {{--@endforeach--}}
-                    {{----}}
-
-
-
-
-
-                    </div>
-
+                        <div class="absolute-center">
+                            <a href="javascript://" class="button nextPage" data-next="{{ $result['data'][0]['nextPageToken'] }}">Load More</a>
+                        </div>
 
                 </div>
 
 
 
-
             </section>
-
-
 
         </div>
 
     </div>
 
+
+    <script type="text/javascript">
+
+        $(function(){
+
+            $(document).on("click",".nextPage",function(e) {
+                e.preventDefault();
+
+                var $this = $(this),
+                        $data = $this.data('next');
+
+                $this.toggleClass('loading');
+                //$('a.button').removeClass("loading")
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ asset('service/youtube/search/more') }}',
+                    data: {
+                        q: '{{ session('search') }}',
+                        pageToken: $data
+                    },
+                    success: function(data) {
+
+                        $('.absolute-center').remove();
+                        $('.cards').append(data);
+                        $('a.button').removeClass("loading")
+                    }
+                });
+            });
+
+
+
+        });
+
+    </script>
 @stop

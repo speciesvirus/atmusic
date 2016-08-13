@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Log;
 
 
 //require_once '/Google/Client.php';
@@ -192,6 +193,8 @@ class SearchController extends Controller
     }
 
 
+
+
     /**
      * Youtube search api
      *
@@ -216,7 +219,7 @@ class SearchController extends Controller
 //        }
 
         $client = new \GuzzleHttp\Client(['verify' => false ,'http_errors' => false]);
-        $res = $client->request('GET', config('services.domain.default').'/service/youtube/search', [
+        $res = $client->request('POST', config('services.domain.default').'/service/youtube/search', [
             'query' => [
                 'q' => $q,
                 'pageToken' => ''
@@ -238,6 +241,39 @@ class SearchController extends Controller
     }
 
 
+
+
+    /**
+     * Youtube search api
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function searchMore(Request $request)
+    {
+
+        $client = new \GuzzleHttp\Client(['verify' => false ,'http_errors' => false]);
+        $res = $client->request('POST', config('services.domain.default').'/service/youtube/search', [
+            'query' => [
+                'q' => $request->q,
+                'pageToken' => $request->pageToken
+            ],
+        ]);
+        $res->getStatusCode();
+
+
+
+        //$result = $this->search($q,$pageToken);
+
+        return view('searchMore', ['result' => json_decode($res->getBody(), true)]);
+//        return view('search', ['results' => [
+//            'q' => $q,
+//            'pageToken' => $res->getBody()
+//        ]]);
+        //return view('layouts.main', ['user' => $id]);
+
+
+    }
 
 
     /**

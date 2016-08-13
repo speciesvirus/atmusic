@@ -17,31 +17,123 @@
 
 @section('content')
 
-    <div class="page-watch" style="background-image: url('{{ $result['thumbnails'] }}')">
-        <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-        {{--<div class="player-container">--}}
-            {{----}}
-        {{--</div>--}}
-        <div id="player"></div>
+
+
+    <div id="navmenu" class="side-menu -left -active shadow-z-2">
     </div>
 
-    <div id="audioplayer" class="">
-        <div class="cover" data-role="maximize">
-            <img src="https://i.ytimg.com/vi/{{ $result['id'] }}/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg" data-cover-placeholder="https://i.ytimg.com/vi/{{ $result['id'] }}/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg">
-        </div>
-        <div class="player-bar">
-            {{--<div class="player-bar-background" style="background-image:url(http://qmusic.be/assets/player-bar-beach-a6ca0cf24da263404a81dbc5413da07b0d42a662f41a0d4ab3426b807995986e.png)"></div>--}}
 
-            <div class="current-track">
+    {{--<ul id="navmenu" class="side-menu -left -active shadow-z-2">--}}
+
+        {{--<li class="section"><span>Hosts</span></li>--}}
+        {{--<li class="option">--}}
+            {{--<a href="#null" class="-active">--}}
+                {{--<i class="icon mdi-action-view-quilt"></i>Overview--}}
+            {{--</a>--}}
+            {{--<a href="#null" class="helptoggle">--}}
+                {{--<i class="icon mdi-action-help"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li class="option">--}}
+            {{--<a href="#null">--}}
+                {{--<i class="icon mdi-hardware-memory"></i>CPU/Memory--}}
+            {{--</a>--}}
+            {{--<a href="#null" class="helptoggle">--}}
+                {{--<i class="icon mdi-action-help"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li class="option">--}}
+            {{--<a href="#null">--}}
+                {{--<i class="icon mdi-action-query-builder"></i>Requests Time Breakdown--}}
+            {{--</a>--}}
+            {{--<a href="#null" class="helptoggle">--}}
+                {{--<i class="icon mdi-action-help"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li class="option">--}}
+            {{--<a href="#null">--}}
+                {{--<i class="icon mdi-action-language"></i>Network--}}
+            {{--</a>--}}
+            {{--<a href="#null" class="helptoggle">--}}
+                {{--<i class="icon mdi-action-help"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li class="option">--}}
+            {{--<a href="#null">--}}
+                {{--<i class="icon mdi-action-swap-vert-circle"></i>File I/O--}}
+            {{--</a>--}}
+            {{--<a href="#null" class="helptoggle">--}}
+                {{--<i class="icon mdi-action-help"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li class="option">--}}
+            {{--<a href="#null">--}}
+                {{--<i class="icon mdi-action-get-app"></i>Requests--}}
+            {{--</a>--}}
+            {{--<a href="#null" class="helptoggle">--}}
+                {{--<i class="icon mdi-action-help"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li class="option">--}}
+            {{--<a href="#null">--}}
+                {{--<i class="icon mdi-device-brightness-high"></i>Forecast--}}
+            {{--</a>--}}
+            {{--<a href="#null" class="helptoggle">--}}
+                {{--<i class="icon mdi-action-help"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li class="section"><span>AWS Services</span></li>--}}
+        {{--<li class="option">--}}
+            {{--<a href="#null"><img src="http://emisferosud.it/share/aws-ec2.svg" class="icon">EC2 Instances</a>--}}
+            {{--<a href="#null" class="helptoggle">--}}
+                {{--<i class="icon mdi-action-help"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li class="option">--}}
+            {{--<a href="#null"><img src="http://emisferosud.it/share/aws-rds.svg" class="icon">RDS Instances</a>--}}
+            {{--<a href="#null" class="helptoggle">--}}
+                {{--<i class="icon mdi-action-help"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+        {{--<li class="option">--}}
+            {{--<a href="#null"><img src="http://emisferosud.it/share/aws-elb.svg" class="icon">ELB Instances</a>--}}
+            {{--<a href="#null" class="helptoggle">--}}
+                {{--<i class="icon mdi-action-help"></i>--}}
+            {{--</a>--}}
+        {{--</li>--}}
+    {{--</ul>--}}
+
+    <div class="content">
+
+
+        <div class="watch-bg" style="background-image: url('{{ $result['thumbnails'] }}')"></div>
+        <div class="page-watch">
+            <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+            {{--<div class="player-container">--}}
+            {{----}}
+            {{--</div>--}}
+            <div class="watch-container">
+                <div id="player"></div>
+            </div>
+        </div>
+
+        <div id="audioplayer" class="">
+            <div class="cover" data-role="maximize">
+                <img src="https://i.ytimg.com/vi/{{ $result['id'] }}/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg" data-cover-placeholder="https://i.ytimg.com/vi/{{ $result['id'] }}/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg">
+            </div>
+            <div class="player-bar">
+                {{--<div class="player-bar-background" style="background-image:url(http://qmusic.be/assets/player-bar-beach-a6ca0cf24da263404a81dbc5413da07b0d42a662f41a0d4ab3426b807995986e.png)"></div>--}}
+
+                <div class="current-track">
                         <span class="title">{{ $result['title'] }}<br>
                             <span class="artist">{{ $result['channelTitle'] }}</span>
                         </span>
 
-            </div>
+                </div>
 
-            <div class="play-console">
-                <div class="back">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 306 306" xml:space="preserve">
+                <div class="play-console">
+                    <div class="back">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 306 306" xml:space="preserve">
                                 <g>
                                     <g id="skip-previous">
                                         <rect width="51" height="306" ></rect>
@@ -49,103 +141,108 @@
                                     </g>
                                 </g>
                             </svg>
-                </div>
+                    </div>
 
 
-                <div class="play-button">
-                    <svg id="svg-play" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-pause="M11,10 L17,10 17,26 11,26 M20,10 L26,10 26,26 20,26" data-play="M 11 10 L 18 13.74 L 18 22.28 L 11 26 M 18 13.74 L 26 18 L 26 18 L 18 22.28">
-                        <path id="ytp-2" d="M 11 10 L 18 13.74 L 18 22.28 L 11 26 M 18 13.74 L 26 18 L 26 18 L 18 22.28">
-                        </path>
-                    </svg>
-                </div>
+                    <div class="play-button">
+                        <svg id="svg-play" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-pause="M11,10 L17,10 17,26 11,26 M20,10 L26,10 26,26 20,26" data-play="M 11 10 L 18 13.74 L 18 22.28 L 11 26 M 18 13.74 L 26 18 L 26 18 L 18 22.28">
+                            <path id="ytp-2" d="M 11 10 L 18 13.74 L 18 22.28 L 11 26 M 18 13.74 L 26 18 L 26 18 L 18 22.28">
+                            </path>
+                        </svg>
+                    </div>
 
 
-                <div class="forward">
-                    <!--?xml version="1.0" encoding="iso-8859-1"?-->
-                    <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                    <div class="forward">
+                        <!--?xml version="1.0" encoding="iso-8859-1"?-->
+                        <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 306 306" style="enable-background:new 0 0 306 306;" xml:space="preserve">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 306 306" style="enable-background:new 0 0 306 306;" xml:space="preserve">
                                 <g>
                                     <g id="skip-next">
                                         <path d="M0,306l216.75-153L0,0V306z M255,0v306h51V0H255z"></path>
                                     </g>
                                 </g>
                             </svg>
-                </div>
+                    </div>
 
 
-                <div class="play-progress-bar">
-                    <div id="slider_container" class="middle-center-container slider-container">
-                        <div id="slider_tooltip" class="slider-tooltip">
+                    <div class="play-progress-bar">
+                        <div id="slider_container" class="middle-center-container slider-container">
+                            <div id="slider_tooltip" class="slider-tooltip">
                                     <span id="slider_value">
                                         0:00
                                     </span>
+                            </div>
+                            <section id="play-progress-container" class="middle-center-container slider-bars">
+                                <div id="video-progress" class="slider-drag" data-min-range="0"> </div>
+                            </section>
                         </div>
-                        <section id="play-progress-container" class="middle-center-container slider-bars">
-                            <div id="video-progress" class="slider-drag" data-min-range="0"> </div>
-                        </section>
                     </div>
-                </div>
 
-                <div class="time-display">
-                    <span class="time-current"> - </span>
-                    <span class="time-separator"> / </span>
-                    <span class="time-duration"> - </span>
-                </div>
-
-
-            </div>
-
-
-
-            <div class="view-controls">
-
-                <div class="options">
-                    <div class="tray-button mdl-js-button tray-button--active">
-                        <i class="fa fa-volume-up" id="op-volume" aria-hidden="true">
-
-                            <div class="mdl-card op-volume flex vertical mdl-shadow--2dp">
-
-                                <div id="video-volume" class="middle-center-container slider-container">
-                                    <section id="vl-container" class="middle-center-container slider-bars">
-                                        <div id="vl-progress" class="slider-drag" data-min-range="5"> </div>
-                                    </section>
-                                </div>
-                            </div>
-
-                        </i>
-                        <i class="fa fa-random" aria-hidden="true"></i>
-                        {{--<i class="material-icons">battery_full</i>--}}
-                        <i class="fa fa-cc" aria-hidden="true"></i>
-                        <i class="fa fa-television" aria-hidden="true"></i>
-                        <i id="op-set" class="fa fa-cog" aria-hidden="true">
-
-                            <div class="mdl-card tray-menu flex vertical mdl-shadow--2dp">
-
-                                <div class="row clickable">
-                                    <i class="fa fa-television" aria-hidden="true"></i>
-                                </div>
-                                <div class="row">
-                                    <i class="fa fa-cc" aria-hidden="true"></i>
-                                </div>
-                                <div class="row clickable">
-                                    <i class="fa fa-random" aria-hidden="true"></i>
-                                </div>
-                                <div class="row final">
-                                    <i class="fa fa-volume-up"></i>
-                                </div>
-                            </div>
-
-                        </i>
-                        <i class="fa fa-lock" aria-hidden="true"></i>
+                    <div class="time-display">
+                        <span class="time-current"> - </span>
+                        <span class="time-separator"> / </span>
+                        <span class="time-duration"> - </span>
                     </div>
+
+
                 </div>
 
 
 
+                <div class="view-controls">
+
+                    <div class="options">
+                        <div class="tray-button mdl-js-button tray-button--active">
+                            <i class="fa fa-volume-up" id="op-volume" aria-hidden="true">
+
+                                <div class="mdl-card op-volume flex vertical mdl-shadow--2dp">
+
+                                    <div id="video-volume" class="middle-center-container slider-container">
+                                        <section id="vl-container" class="middle-center-container slider-bars">
+                                            <div id="vl-progress" class="slider-drag" data-min-range="5"> </div>
+                                        </section>
+                                    </div>
+                                </div>
+
+                            </i>
+                            <i class="fa fa-random" aria-hidden="true"></i>
+                            {{--<i class="material-icons">battery_full</i>--}}
+                            <i class="fa fa-cc" aria-hidden="true"></i>
+                            <i class="fa fa-television" aria-hidden="true"></i>
+                            <i id="op-set" class="fa fa-cog" aria-hidden="true">
+
+                                <div class="mdl-card tray-menu flex vertical mdl-shadow--2dp">
+
+                                    <div class="row clickable">
+                                        <i class="fa fa-television" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="row">
+                                        <i class="fa fa-cc" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="row clickable">
+                                        <i class="fa fa-random" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="row final">
+                                        <i class="fa fa-volume-up"></i>
+                                    </div>
+                                </div>
+
+                            </i>
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+
+
+                </div>
             </div>
         </div>
+
     </div>
+
+
+
 
 
 
@@ -154,8 +251,8 @@
 
 
         var $playChange = false,
-                $playSeek = false,
-                $playPaused = false;
+            $playSeek = false,
+            $playPaused = false;
 
         $(function () {
 
@@ -291,6 +388,8 @@
                 }
             }, '.ui-slider-handle');
 
+
+            //*! lock controller
             $(document).on("click", ".tray-button .fa-lock", function() {
                 $('#player').addClass('unlock');
                 $("#audioplayer").addClass('unlock');
@@ -302,18 +401,44 @@
                 $(this).removeClass('fa-unlock-alt').addClass('fa-lock');
             });
 
+            //*! switch player
+            $(document).on("click", ".tray-button .fa-random", function() {
+                playLoop(true);
+                $(this).removeClass('fa-random').addClass('fa-undo');
+            });
+            $(document).on("click", ".tray-button .fa-undo", function() {
+                playLoop(false);
+                $(this).removeClass('fa-undo').addClass('fa-random');
+            });
+
 
 
 
             $('.fa-television').click(function () {
                 launchIntoFullscreen(document.getElementById("player")); // any individual element
+
             });
 
 
-        });// ! end readt
+
+
+        });// ! end read
 
 
         // Find the right method, call on correct element
+        function launchIntoExitFullscreen(element) {
+            if(element.exitFullscreen) {
+                element.exitFullscreen();
+            } else if(element.mozCancelFullScreen) {
+                element.mozCancelFullScreen();
+            } else if(element.webkitExitFullscreen) {
+                element.webkitExitFullscreen();
+            } else if(element.msExitFullscreen) {
+                element.msExitFullscreen();
+            }
+        }
+
+
         function launchIntoFullscreen(element) {
             if(element.requestFullscreen) {
                 element.requestFullscreen();
@@ -442,7 +567,8 @@
         // 5. The API calls this function when the player's state changes.
         //    The function indicates that when playing a video (state=1),
         //    the player should play for six seconds and then stop.
-        var done = false;
+        var done = false,
+            loop = false;
         function onPlayerStateChange(event) {
 
             //play first time
@@ -473,6 +599,13 @@
             }
 
 
+            // end video
+            if(event.data === YT.PlayerState.ENDED){
+                if(loop){
+                    player.loadVideoById("{{ $result['id'] }}");
+                }
+            }
+
 
         }
 
@@ -491,6 +624,9 @@
             return parseInt(($width*9)/16);
         }
 
+        function playLoop($status){
+            loop = $status;
+        }
 
 
 

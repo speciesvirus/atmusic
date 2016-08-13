@@ -27,8 +27,9 @@ Route::get('/search/{q?}', 'SearchController@search');
 Route::get('/{id?}', 'SearchController@show');
 
 
-Route::resource('/service/youtube/video', 'SearchController@video');
-Route::resource('/service/youtube/search', 'SearchController@searchList');
+Route::post('service/youtube/video', 'SearchController@video');
+Route::post('service/youtube/search', 'SearchController@searchList');
+Route::post('service/youtube/search/more', 'SearchController@searchMore');
 
 
 

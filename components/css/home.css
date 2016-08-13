@@ -13,10 +13,14 @@ section:after {
     height: 0;
 }
 
+.feed{
+    background: #151515;
+}
+
 .feed > section{
     /*border-bottom: 1px solid #EBEBEB;*/
-    border-bottom: 1px solid #e2e2e2;
-    margin-bottom: 10px;
+    border-bottom: 1px solid #1f1f1f;
+    padding-bottom: 10px;
 }
 .feed > section:last-child{
     border-bottom: none;
@@ -31,8 +35,9 @@ section:after {
 .owl-nav > div{
     float: left;
     padding: 5px 20px;
-    background-color: rgba(255,255,255,0.7);
-    border: 1px solid #e3e3e3;
+    color: #ffffff;
+    background-color: rgba(255,255,255,0.2);
+    border: 1px solid #1f1f1f;
     box-shadow: 1px 1px 3px rgba(0,0,0,.1);
     margin: 10px 5px;
 }

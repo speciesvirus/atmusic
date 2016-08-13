@@ -24,6 +24,10 @@
     height: 100% !important;
 }
 
+
+
+
+
 /* styling the backdrop*/
 ::backdrop {
     /* properties */
@@ -42,6 +46,8 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+
+
 }
 .player-container{
     text-align: center;
@@ -51,7 +57,32 @@
 
 }
 
+.watch-bg {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-size: 100%;
+
+    -ms-transform: scale(1.02); /* IE 9 */
+    -webkit-transform: scale(1.02); /* Safari */
+    transform: scale(1.02);
+
+    -webkit-filter: blur(6px);
+    filter: blur(6px);
+}
+
 #player{
+
+
+}
+
+#player.unlock{
+    top: 50%;
+}
+
+.watch-container{
+
+
     position: absolute;
     top: calc(50% - 35px);
     left: 50%;
@@ -61,16 +92,24 @@
     -webkit-transform: translate(-50%, -50%);
 
 
-    transition: all 1s ease-in-out;
-    -webkit-transition: all 1s ease-in-out;
-}
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
 
-#player.unlock{
-    top: 50%;
 }
 
 
 
+
+.watch-container.full-screen{
+
+    top: inherit;
+    left: inherit;
+    /* bring your own prefixes */
+    transform: translate(0);
+    -ms-transform: translate(0);
+    -webkit-transform: translate(0);
+
+}
 
 
 
