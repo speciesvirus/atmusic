@@ -10,9 +10,9 @@
     /* properties */
 }
 
-:full-screen { /*pre-spec */
-    /* properties */
-}
+/*:full-screen { !*pre-spec *!*/
+    /*!* properties *!*/
+/*}*/
 
 :fullscreen { /* spec */
     /* properties */
@@ -111,5 +111,94 @@
 
 }
 
+
+
+ul.watch-content{
+    display: block;
+    list-style-type: disc;
+    padding-left: 15px;
+}
+
+.icon-button {
+    margin: 5px;
+    line-height: 30px;
+    position: relative;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.icon-button img{
+    max-width: 50px;
+}
+
+
+
+
+.socialIcon {
+    height: 15px;
+    width: 30px;
+}
+
+.socialLinks {
+    /*overflow: hidden;*/
+    /**zoom: 1;*/
+    /*display: inline-block;*/
+    /*margin: 80px 0 0 0;*/
+}
+.socialLinks a {
+    display: block;
+    background: transparent;
+    border: 1px solid black;
+    color: #000;
+    float: left;
+    height: 30px;
+    margin: 5px;
+    position: relative;
+    -moz-transition: background 0.1s linear, border 0.1s linear;
+    -o-transition: background 0.1s linear, border 0.1s linear;
+    -webkit-transition: background 0.1s linear, border 0.1s linear;
+    transition: background 0.1s linear, border 0.1s linear;
+    width: 30px;
+}
+.socialLinks a .socialIcon {
+    left: 50%;
+    margin: -7px 0 0 -15px;
+    position: absolute;
+    top: 50%;
+}
+
+.socialLinks .facebook:hover {
+    background: #3b5998;
+    border-color: #3b5998;
+    fill: #fff;
+}
+.socialLinks .googleplus:hover {
+    background: #dd4b39;
+    border-color: #dd4b39;
+    fill: #fff;
+}
+.socialLinks .linkedin:hover {
+    background: #1d87be;
+    border-color: #1d87be;
+    fill: #fff;
+}
+.socialLinks .pinterest:hover {
+    background: #cc2229;
+    border-color: #cc2229;
+    fill: #fff;
+}
+.socialLinks .twitter:hover {
+    background: #55acee;
+    border-color: #55acee;
+    fill: #fff;
+}
+.socialLinks .youtube:hover {
+    background: #e52c28;
+    border-color: #e52c28;
+    fill: #fff;
+}
 
 

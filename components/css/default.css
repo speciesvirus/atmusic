@@ -558,6 +558,8 @@ a.ui-button:active,
     width: 300px;
     left: -300px;
     top: 82px;
+    padding: 15px;
+
     padding-bottom: 70px;
 }
 .side-menu.-right {

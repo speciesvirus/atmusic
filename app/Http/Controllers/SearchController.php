@@ -87,12 +87,12 @@ class SearchController extends Controller
                     "channelTitle"  => $videoResult['snippet']['channelTitle'],
                     "description"   => $videoResult['snippet']['description'],
                     "publishedAt"   => $this->timeAgo($videoResult['snippet']['publishedAt']),
-                    "viewCount"     => number_format($videoResult['items'][0]['statistics']['viewCount']),
+                    "viewCount"     => number_format($videoResult['statistics']['viewCount']),
                     "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
+                    "thumbnailsSD"    => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/mqdefault.jpg',
                 ];
 
             }
-
 
 
 
