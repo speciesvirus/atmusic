@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class AccountController extends Controller
@@ -113,6 +114,7 @@ class AccountController extends Controller
         $user->email = $email;
         $user->name = $name;
         $user->password = $password;
+        $user->newsletter = $request['newsletter'] ? 1 : 0;
 
         $user->save();
 
@@ -125,12 +127,14 @@ class AccountController extends Controller
     public function postSignIn(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required',
-            'password' => 'required'
+            'email' => 'required|email',
+            'password' => 'required|min:6'
         ]);
 
-        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
-            return redirect()->route('dashboard');
+
+        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']], $request->remember)) {
+//            return redirect()->route('dashboard');
+            return redirect('/');
         }
         return redirect()->back();
     }
@@ -138,12 +142,12 @@ class AccountController extends Controller
     public function getLogout()
     {
         Auth::logout();
-        return redirect()->route('home');
+        return redirect('/');
     }
 
     public function getAccount()
     {
-        return view('account', ['user' => Auth::user()]);
+        return view('account.account', ['user' => Auth::user()]);
     }
 
     public function postSaveAccount(Request $request)

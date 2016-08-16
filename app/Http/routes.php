@@ -28,6 +28,15 @@ Route::get('/signup', [
     'as' => 'signup'
 ]);
 
+Route::get('/logout', [
+    'uses' => 'AccountController@getLogout',
+    'as' => 'logout'
+]);
+Route::get('/account', [
+    'uses' => 'AccountController@getAccount',
+    'as' => 'account'
+]);
+
 Route::get('/search/{q?}', 'SearchController@search');
 Route::get('/{id?}', 'SearchController@show');
 
@@ -38,10 +47,14 @@ Route::post('service/youtube/search/more', 'SearchController@searchMore');
 
 
 //Route::get('/signup', 'AccountController@getSignUp');
-
 Route::post('/service/account/signup', [
     'uses' => 'AccountController@postSignUp',
     'as' => 'account.signup'
+]);
+
+Route::post('/service/account/signin', [
+    'uses' => 'AccountController@postSignIn',
+    'as' => 'account.signin'
 ]);
 
 
