@@ -95,7 +95,7 @@ header > div > *{
     padding: 0;
     float: right;
 }
-.nav ul li {
+.nav > ul > li {
     position: relative;
     display: inline-block;
     /*border-left: 1px solid rgba(0, 0, 0, 0.05);*/
@@ -141,15 +141,15 @@ header > div > *{
     border-left: 15px solid #FFFFFF;
     border-bottom: 30px solid transparent;
 }
-.nav ul li:last-child a {
+.nav ul li:last-child > a {
     background: #ffce54;
     padding: 0 25px 0 30px;
     color: #FFFFFF;
 }
-.nav ul li:last-child a:hover {
+.nav ul li:last-child > a:hover {
     background: #ffce54;
 }
-.nav ul li a {
+.nav ul li > a {
     position: relative;
     display: block;
     padding: 0 15px;
@@ -165,16 +165,16 @@ header > div > *{
     -o-transition: all 0.3s linear 0s;
     transition: all 0.3s linear 0s;
 }
-.nav ul li a:hover {
+.nav ul li > a:hover {
     background: #f2f2f2;
 }
-.nav ul li a:hover:before {
+.nav ul li > a:hover:before {
     border-right: 15px solid #f2f2f2;
 }
-.nav ul li a:hover:after {
+.nav ul li > a:hover:after {
     border-left: 15px solid #f2f2f2;
 }
-.nav ul li a.logo {
+.nav ul li > a.logo {
     background: #ffce54;
     /* width: 30px; */
     /* height: 30px; */
@@ -182,10 +182,10 @@ header > div > *{
     /* line-height: 1; */
     vertical-align: middle;
 }
-.nav ul li a.logo:hover {
+.nav ul li > a.logo:hover {
     background: #ffce54;
 }
-.nav ul li a.logo img {
+.nav ul li > a.logo img {
     width: 100%;
 }
 .nav ul li a i {
@@ -534,6 +534,69 @@ a.ui-button:active,
 
 
 
+
+
+
+
+
+
+
+/*! nav login ----------------------------------------*/
+
+
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+
+    right: 0;
+    left: auto;
+}
+#login-dp .help-block{
+    font-size:12px
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .social-buttons{
+    margin:12px 0
+}
+#login-dp .social-buttons a{
+    width: 49%;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
+}
 
 
 
