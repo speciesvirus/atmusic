@@ -74,261 +74,32 @@
                     <h4 class="feed-topic">Recommend</h4>
                     <div class="owl-carousel">
 
-                        <div class="clash-card archer">
-                            <div class="clash-card__image clash-card__image--archer">
-                                <a href="{{ asset('xwxjnBNuuPc') }}">
-                                    <img src="https://i.ytimg.com/vi/xwxjnBNuuPc/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg" alt="archer" style="display: block;">
-                                </a>
+                        <div class="card">
+                            <div class="card-thumbnail">
+                                <img src="https://i.ytimg.com/vi/xwxjnBNuuPc/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg" class="left"/>
                             </div>
-                            <div class="c_info">
-                                <span id="c_stars" data-star="3.5"><span style="width: 42px;"></span></span>
-                                <div class="c_num">3.5</div>
-                            </div>
-
-                            <div class="clash-card__unit-description">
-                                <div class="clash-card__level">
-                                    <a href="{{ asset('xwxjnBNuuPc') }}">
-                                        ปริศนาฟ้าแลบ วันที่ 22 กรกฎาคม 2559 ตอนที่ 4
-                                    </a>
+                            <div class="right">
+                                <h1>Why you Need More Magnesium in Your Daily Diet</h1>
+                                <div class="author"><img src="https://www.neokami.io/img/demo_samples/faces/9.jpg"/>
+                                    <h2>Igor MARTY</h2>
                                 </div>
-                                <p class="c_industry">Digital Media</p>
-                                <p class="c_industry">91,843 views 3 days ago</p>
+                                <div class="separator"></div>
+                                <p>Magnesium is one of the six essential macro-minerals that is required by the body for energy production and synthesis of protein and enzymes. It contributes to the development of bones and most importantly it is responsible for synthesis of your DNA and RNA. A new report that has appeared in theBritish Journal of Cancer, gives you another reason to add more magnesium to your diet...</p>
                             </div>
-
-                            <div class="clash-card__unit-stats clearfix">
-                                <a href="https://www.facebook.com/designcouch" target="_blank">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                                <a href="https://www.twitter.com/designcouch" target="_blank">
-                                    <i class="fa fa-youtube"></i>
-                                </a>
-                                <a href="https://www.dribbble.com/designcouch" target="_blank">
-                                    <i class="fa fa-plus-circle"></i>
-                                </a>
-                                <a href="https://www.codepen.io/designcouch/public">
-                                    <i class="fa fa-clock-o"></i>
-                                </a>
-
-                                <a href="javascript://" class="more-info">
-                                    <i class="fa fa-user"></i>
-                                </a>
-
-                            </div>
+                            <h5>12</h5>
+                            <h6>JANUARY</h6>
+                            <ul>
+                                <li><i class="fa fa-eye fa-2x"></i></li>
+                                <li><i class="fa fa-heart-o fa-2x"></i></li>
+                                <li><i class="fa fa-envelope-o fa-2x"></i></li>
+                                <li><i class="fa fa-share-alt fa-2x"></i></li>
+                            </ul>
 
                         </div>
-                        <div class="clash-card archer">
-                            <div class="clash-card__image clash-card__image--archer">
-                                <a href="{{ asset('xwxjnBNuuPc') }}">
-                                    <img src="https://i.ytimg.com/vi/WvsDpFFC2Js/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg" alt="archer" style="display: block;">
-                                </a>
-                            </div>
-                            <div class="c_info">
-                                <span id="c_stars" data-star="3.5"><span style="width: 42px;"></span></span>
-                                <div class="c_num">3.5</div>
-                            </div>
 
-                            <div class="clash-card__unit-description">
-                                <div class="clash-card__level">
-                                    <a href="{{ asset('xwxjnBNuuPc') }}">
-                                        ปริศนาฟ้าแลบ วันที่ 22 กรกฎาคม 2559 ตอนที่ 4
-                                    </a>
 
-                                </div>
-                                <p class="c_industry">Digital Media</p>
-                                <p class="c_industry">91,843 views 3 days ago</p>
-                            </div>
 
-                            <div class="clash-card__unit-stats clearfix">
-                                <a href="https://www.facebook.com/designcouch" target="_blank">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                                <a href="https://www.twitter.com/designcouch" target="_blank">
-                                    <i class="fa fa-youtube"></i>
-                                </a>
-                                <a href="https://www.dribbble.com/designcouch" target="_blank">
-                                    <i class="fa fa-plus-circle"></i>
-                                </a>
-                                <a href="https://www.codepen.io/designcouch/public">
-                                    <i class="fa fa-clock-o"></i>
-                                </a>
 
-                                <a href="javascript://" class="more-info">
-                                    <i class="fa fa-user"></i>
-                                </a>
-
-                            </div>
-
-                        </div>
-                        <div class="clash-card archer">
-                            <div class="clash-card__image clash-card__image--archer">
-                                <a href="{{ asset('xwxjnBNuuPc') }}">
-                                    <img src="https://i.ytimg.com/vi/xwxjnBNuuPc/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg" alt="archer" style="display: block;">
-                                </a>
-                            </div>
-                            <div class="c_info">
-                                <span id="c_stars" data-star="3.5"><span style="width: 42px;"></span></span>
-                                <div class="c_num">3.5</div>
-                            </div>
-
-                            <div class="clash-card__unit-description">
-                                <div class="clash-card__level">
-                                    <a href="{{ asset('xwxjnBNuuPc') }}">
-                                        ปริศนาฟ้าแลบ วันที่ 22 กรกฎาคม 2559 ตอนที่ 4
-                                    </a>
-                                </div>
-                                <p class="c_industry">Digital Media</p>
-                                <p class="c_industry">91,843 views 3 days ago</p>
-                            </div>
-
-                            <div class="clash-card__unit-stats clearfix">
-                                <a href="https://www.facebook.com/designcouch" target="_blank">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                                <a href="https://www.twitter.com/designcouch" target="_blank">
-                                    <i class="fa fa-youtube"></i>
-                                </a>
-                                <a href="https://www.dribbble.com/designcouch" target="_blank">
-                                    <i class="fa fa-plus-circle"></i>
-                                </a>
-                                <a href="https://www.codepen.io/designcouch/public">
-                                    <i class="fa fa-clock-o"></i>
-                                </a>
-
-                                <a href="javascript://" class="more-info">
-                                    <i class="fa fa-user"></i>
-                                </a>
-
-                            </div>
-
-                        </div>
-                        <div class="clash-card archer">
-                            <div class="clash-card__image clash-card__image--archer">
-                                <a href="{{ asset('xwxjnBNuuPc') }}">
-                                    <img src="https://i.ytimg.com/vi/WvsDpFFC2Js/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg" alt="archer" style="display: block;">
-                                </a>
-                            </div>
-                            <div class="c_info">
-                                <span id="c_stars" data-star="3.5"><span style="width: 42px;"></span></span>
-                                <div class="c_num">3.5</div>
-                            </div>
-
-                            <div class="clash-card__unit-description">
-                                <div class="clash-card__level">
-                                    <a href="{{ asset('xwxjnBNuuPc') }}">
-                                        ปริศนาฟ้าแลบ วันที่ 22 กรกฎาคม 2559 ตอนที่ 4
-                                    </a>
-
-                                </div>
-                                <p class="c_industry">Digital Media</p>
-                                <p class="c_industry">91,843 views 3 days ago</p>
-                            </div>
-
-                            <div class="clash-card__unit-stats clearfix">
-                                <a href="https://www.facebook.com/designcouch" target="_blank">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                                <a href="https://www.twitter.com/designcouch" target="_blank">
-                                    <i class="fa fa-youtube"></i>
-                                </a>
-                                <a href="https://www.dribbble.com/designcouch" target="_blank">
-                                    <i class="fa fa-plus-circle"></i>
-                                </a>
-                                <a href="https://www.codepen.io/designcouch/public">
-                                    <i class="fa fa-clock-o"></i>
-                                </a>
-
-                                <a href="javascript://" class="more-info">
-                                    <i class="fa fa-user"></i>
-                                </a>
-
-                            </div>
-
-                        </div>
-                        <div class="clash-card archer">
-                            <div class="clash-card__image clash-card__image--archer">
-                                <a href="{{ asset('xwxjnBNuuPc') }}">
-                                    <img src="https://i.ytimg.com/vi/xwxjnBNuuPc/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg" alt="archer" style="display: block;">
-                                </a>
-                            </div>
-                            <div class="c_info">
-                                <span id="c_stars" data-star="3.5"><span style="width: 42px;"></span></span>
-                                <div class="c_num">3.5</div>
-                            </div>
-
-                            <div class="clash-card__unit-description">
-                                <div class="clash-card__level">
-                                    <a href="{{ asset('xwxjnBNuuPc') }}">
-                                        ปริศนาฟ้าแลบ วันที่ 22 กรกฎาคม 2559 ตอนที่ 4
-                                    </a>
-                                </div>
-                                <p class="c_industry">Digital Media</p>
-                                <p class="c_industry">91,843 views 3 days ago</p>
-                            </div>
-
-                            <div class="clash-card__unit-stats clearfix">
-                                <a href="https://www.facebook.com/designcouch" target="_blank">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                                <a href="https://www.twitter.com/designcouch" target="_blank">
-                                    <i class="fa fa-youtube"></i>
-                                </a>
-                                <a href="https://www.dribbble.com/designcouch" target="_blank">
-                                    <i class="fa fa-plus-circle"></i>
-                                </a>
-                                <a href="https://www.codepen.io/designcouch/public">
-                                    <i class="fa fa-clock-o"></i>
-                                </a>
-
-                                <a href="javascript://" class="more-info">
-                                    <i class="fa fa-user"></i>
-                                </a>
-
-                            </div>
-
-                        </div>
-                        <div class="clash-card archer">
-                            <div class="clash-card__image clash-card__image--archer">
-                                <a href="{{ asset('xwxjnBNuuPc') }}">
-                                    <img src="https://i.ytimg.com/vi/WvsDpFFC2Js/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg" alt="archer" style="display: block;">
-                                </a>
-                            </div>
-                            <div class="c_info">
-                                <span id="c_stars" data-star="3.5"><span style="width: 42px;"></span></span>
-                                <div class="c_num">3.5</div>
-                            </div>
-
-                            <div class="clash-card__unit-description">
-                                <div class="clash-card__level">
-                                    <a href="{{ asset('xwxjnBNuuPc') }}">
-                                        ปริศนาฟ้าแลบ วันที่ 22 กรกฎาคม 2559 ตอนที่ 4
-                                    </a>
-
-                                </div>
-                                <p class="c_industry">Digital Media</p>
-                                <p class="c_industry">91,843 views 3 days ago</p>
-                            </div>
-
-                            <div class="clash-card__unit-stats clearfix">
-                                <a href="https://www.facebook.com/designcouch" target="_blank">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                                <a href="https://www.twitter.com/designcouch" target="_blank">
-                                    <i class="fa fa-youtube"></i>
-                                </a>
-                                <a href="https://www.dribbble.com/designcouch" target="_blank">
-                                    <i class="fa fa-plus-circle"></i>
-                                </a>
-                                <a href="https://www.codepen.io/designcouch/public">
-                                    <i class="fa fa-clock-o"></i>
-                                </a>
-
-                                <a href="javascript://" class="more-info">
-                                    <i class="fa fa-user"></i>
-                                </a>
-
-                            </div>
-
-                        </div>
                         <div class="clash-card archer">
                             <div class="clash-card__image clash-card__image--archer">
                                 <a href="{{ asset('xwxjnBNuuPc') }}">
