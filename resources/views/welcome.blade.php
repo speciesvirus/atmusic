@@ -14,9 +14,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset("components/owl.carousel/dist/assets/owl.theme.default.min.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("components/css/home.css") }}">
     <script src="{{ asset("components/owl.carousel/dist/owl.carousel.min.js") }}"></script>
+@stop
+@section('script')
     <script src="{{ asset("components/js/home.js") }}"></script>
 @stop
-
 
 @section('content')
 
@@ -74,28 +75,38 @@
                     <h4 class="feed-topic">Recommend</h4>
                     <div class="owl-carousel">
 
-                        <div class="card">
-                            <div class="card-thumbnail">
-                                <img src="https://i.ytimg.com/vi/xwxjnBNuuPc/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=I4T92Vc8kyuXwphhmHCgYMT-kmg" class="left"/>
-                            </div>
-                            <div class="right">
-                                <h1>Why you Need More Magnesium in Your Daily Diet</h1>
-                                <div class="author"><img src="https://www.neokami.io/img/demo_samples/faces/9.jpg"/>
-                                    <h2>Igor MARTY</h2>
-                                </div>
-                                <div class="separator"></div>
-                                <p>Magnesium is one of the six essential macro-minerals that is required by the body for energy production and synthesis of protein and enzymes. It contributes to the development of bones and most importantly it is responsible for synthesis of your DNA and RNA. A new report that has appeared in theBritish Journal of Cancer, gives you another reason to add more magnesium to your diet...</p>
-                            </div>
-                            <h5>12</h5>
-                            <h6>JANUARY</h6>
-                            <ul>
-                                <li><i class="fa fa-eye fa-2x"></i></li>
-                                <li><i class="fa fa-heart-o fa-2x"></i></li>
-                                <li><i class="fa fa-envelope-o fa-2x"></i></li>
-                                <li><i class="fa fa-share-alt fa-2x"></i></li>
-                            </ul>
 
-                        </div>
+
+                        @foreach($result['recommend'] as $key => $value)
+
+                            <div class="card">
+                                <div class="card-thumbnail">
+                                    <img src="https://i.ytimg.com/vi/{{ $value['id'] }}/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68" class="left"/>
+                                </div>
+                                <div class="right">
+                                    <h1><a href="#">{{ $value['title'] }}</a></h1>
+                                    <h2>{{ $value['channelTitle'] }}</h2>
+                                    <h2>{{ $value['viewCount'] }} views {{ $value['publishedAt'] }}</h2>
+
+                                    <p>{{ $value['description'] }}</p>
+                                    <div class="c_info">
+                                        <span id="c_stars" data-star="{{ $value['rate'] }}"></span>
+                                        <div class="c_num">{{ $value['rate'] }}</div >
+                                    </div>
+
+                                    <ul>
+                                        <li><i class="fa fa-eye"></i></li>
+                                        <li><i class="fa fa-heart-o"></i></li>
+                                        <li><i class="fa fa-envelope-o"></i></li>
+                                        <li><i class="fa fa-share-alt"></i></li>
+                                    </ul>
+
+                                </div>
+
+                            </div>
+
+                        @endforeach
+
 
 
 
@@ -706,4 +717,9 @@
 
     </div>
 
+
+
 @stop
+
+
+

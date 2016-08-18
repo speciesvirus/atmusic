@@ -14,6 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/', [
+    'uses' => 'HomeController@index',
+    'as' => 'home'
+]);
 
 //Route::get('/watch', function () {
 //    return view('watch');

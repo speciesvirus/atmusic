@@ -28,8 +28,8 @@ section:after {
 /*}*/
 
 .feed > section{
-    /*border-bottom: 1px solid #EBEBEB;*/
-    border-bottom: 1px solid #1f1f1f;
+    border-bottom: 1px solid #EBEBEB;
+    /*border-bottom: 1px solid #1f1f1f;*/
     padding-bottom: 10px;
 }
 .feed > section:last-child{
@@ -45,9 +45,10 @@ section:after {
 .owl-nav > div{
     float: left;
     padding: 5px 20px;
-    color: #ffffff;
+    color: #fd6b0d;
+
     background-color: rgba(255,255,255,0.2);
-    border: 1px solid #1f1f1f;
+    border: 1px solid #EBEBEB;
     box-shadow: 1px 1px 3px rgba(0,0,0,.1);
     margin: 10px 5px;
 }
@@ -66,10 +67,17 @@ section:after {
     height: 225px;
     width: 400px;
     margin: 20px;
-    background-color: #FFF;
-    -webkit-box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
+
+    color: #363636;
+
+    background: hsla(0,0%,100%,1);
+    -ms-transition: all 0.1s cubic-bezier(.7,.2,.17,1);
+    -webkit-transition: all 0.1s cubic-bezier(.7,.2,.17,1);
+    transition: all 0.1s cubic-bezier(.7,.2,.17,1);
+    -moz-box-shadow: 0 0 2px hsla(0,0%,0%,0.1);
+    -webkit-box-shadow: 0 0 2px hsla(0,0%,0%,0.1);
+    box-shadow: 0 0 2px hsla(0,0%,0%,0.1);
+
 }
 
 /* Image on the left side */
@@ -77,13 +85,14 @@ section:after {
     float: left;
     position: relative;
     left: 10px;
-    top: -20px;
-    height: 124px;
-    width: 220px;
-    -webkit-box-shadow: 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
+    top: -15px;
+    height: 110px;
+    width: 196px;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
     overflow: hidden;
+
 }
 
 /*object-fit: cover; */
@@ -101,14 +110,19 @@ section:after {
 
 /* Right side of the card */
 .feed .right {
-    margin: 20px;
+    padding: 20px;
+    position: absolute;
+    height: 100%;
 }
 
 .feed h1 {
-    margin-left: 230px;
-    padding-top: 15px;
-    font-size: 1.3rem;
+
+    margin: 0;
+    margin-left: 210px;
+    /* padding-top: 15px; */
+    font-size: 14px;
     color: #4B4B4B;
+
 }
 
 .feed .author {
@@ -129,8 +143,10 @@ section:after {
 
 .feed h2 {
     padding-top: 8px;
-    margin-right: 6px;
-    text-align: right;
+    /* margin-right: 6px; */
+    /* text-align: right; */
+    margin: 0;
+    margin-left: 210px;
     font-size: 0.8rem;
 }
 
@@ -139,11 +155,16 @@ section:after {
     border: 1px solid #C3C3C3;
 }
 
+.feed hr {
+    border-top: 1px solid #8c8b8b;
+    border-bottom: 1px solid #fff;
+}
+
 .feed p {
     text-align: justify;
-    padding-top: 10px;
-    font-size: 0.95rem;
-    line-height: 150%;
+    padding-top: 20px;
+    /*font-size: 0.95rem;*/
+    /*font-size: 1.1rem;*/
     color: #4B4B4B;
 }
 
@@ -160,20 +181,51 @@ section:after {
     position: absolute;
     left: 30px;
     bottom: -55px;
-    font-size: 2rem;
+    /*font-size: 2rem;*/
     color: #C3C3C3;
 }
 
 /* Those futur buttons */
 .feed ul {
-    margin-left: 250px;
+    margin-top: 10px;
+    bottom: 0;
+    position: absolute;
 }
 
 .feed li {
     display: inline;
     list-style: none;
-    padding-right: 40px;
+    padding-right: 15px;
     color: #7B7B7B;
 }
 
 
+
+
+
+.c_info {
+    /* display: table-cell; */
+    vertical-align: middle;
+    /* margin-top: 20px; */
+    /* padding-left: 10px; */
+    line-height: 0;
+}
+
+#c_stars, #c_stars span { /* white star bottom */
+    display: inline-block;
+    background: url('http://s15.postimg.org/igu2opvh3/stars.png') 0 -12px repeat-x;
+    width: 60px;
+    height: 12px;
+}
+
+#c_stars span { /* orange stars overlay  - set width by JS code */
+    background-position: 0 0;
+    vertical-align: super;
+}
+
+.c_num {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    vertical-align: super;
+}

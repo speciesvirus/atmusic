@@ -1,3 +1,12 @@
+$.fn.stars = function() {
+    return $(this).each(function() {
+        var num = $(this).data("star");
+        $(this).html($("<span />").width(Math.max(0, Math.min(5, num)) * 12));
+    })
+};
+
+
+
 $(function(){
 
     $('.owl-carousel').owlCarousel({
@@ -10,5 +19,7 @@ $(function(){
         autoWidth: true
     });
 
+    $("span#c_stars").stars();
 
 });
+
