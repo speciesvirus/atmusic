@@ -77,37 +77,42 @@
 
 
 
-                        @foreach($result['recommend'] as $key => $value)
+                        @if(isset($result['recommend']))
 
-                            <div class="card">
-                                <div class="card-thumbnail">
-                                    <a href="{{ asset('/'.$value['id']) }}">
-                                        <img src="https://i.ytimg.com/vi/{{ $value['id'] }}/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68" class="left"/>
-                                    </a>
-                                </div>
-                                <div class="right">
-                                    <h1><a href="{{ asset('/'.$value['id']) }}">{{ $value['title'] }}</a></h1>
-                                    <h2>{{ $value['channelTitle'] }}</h2>
-                                    <h2>{{ $value['viewCount'] }} views {{ $value['publishedAt'] }}</h2>
+                            @foreach($result['recommend'] as $key => $value)
 
-                                    <p>{{ $value['description'] }}</p>
-                                    <div class="c_info">
-                                        <span id="c_stars" data-star="{{ $value['rate'] }}"></span>
-                                        <div class="c_num">{{ $value['rate'] }}</div >
+                                <div class="card">
+                                    <div class="card-thumbnail">
+                                        <a href="{{ asset('/'.$value['id']) }}">
+                                            <img src="https://i.ytimg.com/vi/{{ $value['id'] }}/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68" class="left"/>
+                                        </a>
+                                    </div>
+                                    <div class="right">
+                                        <h1><a href="{{ asset('/'.$value['id']) }}">{{ $value['title'] }}</a></h1>
+                                        <h2>{{ $value['channelTitle'] }}</h2>
+                                        <h2>{{ $value['viewCount'] }} views {{ $value['publishedAt'] }}</h2>
+
+                                        <p>{{ $value['description'] }}</p>
+                                        <div class="c_info">
+                                            <span id="c_stars" data-star="{{ $value['rate'] }}"></span>
+                                            <div class="c_num">{{ $value['rate'] }}</div >
+                                        </div>
+
+                                        <ul>
+                                            <li><i class="fa fa-eye"></i></li>
+                                            <li><i class="fa fa-heart-o"></i></li>
+                                            <li><i class="fa fa-envelope-o"></i></li>
+                                            <li><i class="fa fa-share-alt"></i></li>
+                                        </ul>
+
                                     </div>
 
-                                    <ul>
-                                        <li><i class="fa fa-eye"></i></li>
-                                        <li><i class="fa fa-heart-o"></i></li>
-                                        <li><i class="fa fa-envelope-o"></i></li>
-                                        <li><i class="fa fa-share-alt"></i></li>
-                                    </ul>
-
                                 </div>
 
-                            </div>
+                            @endforeach
 
-                        @endforeach
+                        @endif
+
 
 
                     </div>
@@ -119,37 +124,43 @@
                     <h4 class="feed-topic">Top Hit</h4>
                     <div class="owl-carousel">
 
-                        @foreach($result['hit'] as $key => $value)
+                        @if(isset($result['recommend']))
 
-                            <div class="card">
-                                <div class="card-thumbnail">
-                                    <a href="{{ asset('/'.$value['id']) }}">
-                                        <img src="https://i.ytimg.com/vi/{{ $value['id'] }}/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68" class="left"/>
-                                    </a>
-                                </div>
-                                <div class="right">
-                                    <h1><a href="{{ asset('/'.$value['id']) }}">{{ $value['title'] }}</a></h1>
-                                    <h2>{{ $value['channelTitle'] }}</h2>
-                                    <h2>{{ $value['viewCount'] }} views {{ $value['publishedAt'] }}</h2>
+                            @foreach($result['hit'] as $key => $value)
 
-                                    <p>{{ $value['description'] }}</p>
-                                    <div class="c_info">
-                                        <span id="c_stars" data-star="{{ $value['rate'] }}"></span>
-                                        <div class="c_num">{{ $value['rate'] }}</div >
+                                <div class="card">
+                                    <div class="card-thumbnail">
+                                        <a href="{{ asset('/'.$value['id']) }}">
+                                            <img src="https://i.ytimg.com/vi/{{ $value['id'] }}/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68" class="left"/>
+                                        </a>
+                                    </div>
+                                    <div class="right">
+                                        <h1><a href="{{ asset('/'.$value['id']) }}">{{ $value['title'] }}</a></h1>
+                                        <h2>{{ $value['channelTitle'] }}</h2>
+                                        <h2>{{ $value['viewCount'] }} views {{ $value['publishedAt'] }}</h2>
+
+                                        <p>{{ $value['description'] }}</p>
+                                        <div class="c_info">
+                                            <span id="c_stars" data-star="{{ $value['rate'] }}"></span>
+                                            <div class="c_num">{{ $value['rate'] }}</div >
+                                        </div>
+
+                                        <ul>
+                                            <li><i class="fa fa-eye"></i></li>
+                                            <li><i class="fa fa-heart-o"></i></li>
+                                            <li><i class="fa fa-envelope-o"></i></li>
+                                            <li><i class="fa fa-share-alt"></i></li>
+                                        </ul>
+
                                     </div>
 
-                                    <ul>
-                                        <li><i class="fa fa-eye"></i></li>
-                                        <li><i class="fa fa-heart-o"></i></li>
-                                        <li><i class="fa fa-envelope-o"></i></li>
-                                        <li><i class="fa fa-share-alt"></i></li>
-                                    </ul>
-
                                 </div>
 
-                            </div>
+                            @endforeach
 
-                        @endforeach
+                        @endif
+
+
 
                     </div>
                 </div>

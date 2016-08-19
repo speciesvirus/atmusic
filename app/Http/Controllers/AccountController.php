@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Facebook\Facebook;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 
@@ -183,4 +184,30 @@ class AccountController extends Controller
         $file = Storage::disk('local')->get($filename);
         return new Response($file, 200);
     }
+
+
+
+
+
+
+    public function postAuthFacebook(Request $request)
+    {
+
+        $fb = new Facebook([
+            'app_id' => '{app-id}',
+            'app_secret' => '{app-secret}',
+            'default_graph_version' => 'v2.5',
+        ]);
+
+        $fb = new Facebook\Facebook([/* . . . */]);
+
+        $helper = $fb->getRedirectLoginHelper();
+        $permissions = ['email', 'user_likes']; // optional
+        $loginUrl = $helper->getLoginUrl('http://{your-website}/login-callback.php', $permissions);
+
+        echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
+        //return redirect()->route('dashboard');
+        return redirect('/');
+    }
+
 }

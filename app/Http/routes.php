@@ -11,13 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 Route::get('/', [
     'uses' => 'HomeController@index',
     'as' => 'home'
 ]);
+
+
+
+
+Route::get('/redirect/{provider}', 'SocialAuthController@redirect');
+Route::get('/callback/{provider}', 'SocialAuthController@callback');
 
 //Route::get('/watch', function () {
 //    return view('watch');

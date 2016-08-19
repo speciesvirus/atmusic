@@ -72,14 +72,14 @@
             <li>
 
                 @if( !Auth::guest() )
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>{{ Auth::user()->email }}</b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>{{ Auth::user()->email == null ? Auth::user()->name : Auth::user()->email }}</b></a>
                     <ul id="login-dp" class="dropdown-menu">
                         <li>
                             <div class="row">
                                 <div class="col-md-12">
                                     <center>
-                                        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" name="aboutme" width="96" height="96" border="0" class="img-circle"></a>
-                                        <h5 class="media-heading">{{ Auth::user()->name }}</h5>
+                                        <img src="{{ Auth::user()->avatar }}" name="aboutme" width="50" height="50" border="0" class="img-circle"></a>
+                                        <h5 class="">{{ Auth::user()->name }}</h5>
                                     </center>
                                     <hr>
                                     <center>
@@ -102,8 +102,8 @@
                                 <div class="col-md-12">
                                     Login via
                                     <div class="social-buttons">
-                                        <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-                                        <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                                        <a href="{{ asset('redirect/facebook') }}" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                                        <a href="{{ asset('redirect/google') }}" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
                                     </div>
                                     or
                                     <form class="form" role="form" method="post" action="{{ route('account.signin') }}" accept-charset="UTF-8" id="login-nav">
