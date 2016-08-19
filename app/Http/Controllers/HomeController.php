@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -48,9 +49,7 @@ class HomeController extends Controller
 
                     foreach ($videosResponse['items'] as $videoResult) {
 
-                        $like = $videoResult['statistics']['likeCount'];
-                        $disLike = $videoResult['statistics']['dislikeCount'];
-                        $rate = number_format(($like * 100) / ($like + $disLike), 1, '.', '');
+                        $rate = $this->rateVideo($videoResult['statistics']['likeCount'],$videoResult['statistics']['dislikeCount'],5,1);
 
                         $snippet = [
                             "id"            => $videoResult['id'],
@@ -90,9 +89,7 @@ class HomeController extends Controller
 
                     foreach ($videosResponse['items'] as $videoResult) {
 
-                        $like = $videoResult['statistics']['likeCount'];
-                        $disLike = $videoResult['statistics']['dislikeCount'];
-                        $rate = number_format(($like * 100) / ($like + $disLike), 1, '.', '');
+                        $rate = $this->rateVideo($videoResult['statistics']['likeCount'],$videoResult['statistics']['dislikeCount'],5,1);
 
                         $snippet = [
                             "id"            => $videoResult['id'],
@@ -210,5 +207,48 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function terms()
+    {
+        return view('terms');
+    }
+
+    public function privacy()
+    {
+        return view('privacy');
+    }
+
+    public function contact()
+    {
+        return view('contact');
+    }
+
+
+    public function postContact(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:120',
+            'email' => 'required|email',
+            'phone' => 'required|min:9',
+            'message' => 'required|min:6'
+        ]);
+
+
+        $contact = new Contact();
+        $contact->name = $request['name'];
+        $contact->email = $request['email'];
+        $contact->phone = $request['phone'];
+        $contact->message = $request['message'];
+
+        $result = $contact->save();
+
+        if(!$result){
+            return redirect()->route('contact')->with('message', 'Error');
+        }
+
+        //return redirect()->route('dashboard');
+        return redirect()->route('contact')->with('message', 'Thanks for contacting us!');
     }
 }

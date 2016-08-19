@@ -62,9 +62,8 @@
                 </a>
             </li>
             <li>
-                <a href='#contact'>
+                <a href='{{ route('contact') }}'>
                     <div class='fa fa-envelope'></div>
-
                 </a>
             </li>
             {{--<li>--}}
@@ -251,6 +250,14 @@
 
 </div>
 {{--<div class="container">--}}
+
+
+<dev class="footer" class="">
+    <a href="{{ asset('/') }}">Home</a>
+    <a href="{{ route('privacy') }}">Privacy &amp; Cookies</a>
+    <a href="{{ route('terms') }}">Term and Conditions</a>
+    <a href="{{ route('contact') }}">Contact</a>
+</dev>
 
 {{--</div>--}}
 </body>

@@ -283,6 +283,7 @@
 
 
         <div class="watch-bg" style="background-image: url('{{ $result['thumbnails'] == '' ? $result['thumbnailsSD'] : $result['thumbnails'] }}')"></div>
+        <div class="watch-pattern"></div>
         <div class="page-watch">
             <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
             {{--<div class="player-container">--}}

@@ -37,6 +37,17 @@
 }
 
 
+.wrapper {
+    top: 82px;
+    margin-top: 0;
+    padding-bottom: 0;
+
+}
+.footer{
+    display: none;
+}
+
+
 .page-watch{
     height: calc(100vh - 82px);
     overflow: hidden;
@@ -69,6 +80,13 @@
 
     -webkit-filter: blur(6px);
     filter: blur(6px);
+}
+
+.watch-pattern {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: url("../images/brushed-alum-dark.png");
 }
 
 #player{

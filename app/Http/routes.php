@@ -27,6 +27,17 @@ Route::get('/', [
 //    return view('watch');
 //});
 
+Route::get('/terms', [
+    'uses' => 'HomeController@terms',
+    'as' => 'terms'
+]);
+
+Route::get('/privacy', [
+    'uses' => 'HomeController@privacy',
+    'as' => 'privacy'
+]);
+
+
 Route::get('/signup', [
     'uses' => 'AccountController@getSignUp',
     'as' => 'signup'
@@ -40,6 +51,17 @@ Route::get('/account', [
     'uses' => 'AccountController@getAccount',
     'as' => 'account'
 ]);
+
+Route::get('/contact', [
+    'uses' => 'HomeController@contact',
+    'as' => 'contact'
+]);
+
+Route::post('/service/contact', [
+    'uses' => 'HomeController@postContact',
+    'as' => 'post.contact'
+]);
+
 
 Route::get('/search/{q?}', 'SearchController@search');
 Route::get('/{id?}', 'SearchController@show');

@@ -30,7 +30,7 @@
 
                     <fieldset>
                         <div id="legend">
-                            <legend class="">Sign Up</legend>
+                            <legend class="page-header">Sign Up</legend>
                         </div>
 
                         <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
