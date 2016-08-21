@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Storage;
 
 class AccountController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -93,52 +104,7 @@ class AccountController extends Controller
 
 
 
-    public function getSignUp()
-    {
-        return view('account.SignUp');
-    }
 
-
-    public function postSignUp(Request $request)
-    {
-        $this->validate($request, [
-            'email' => 'required|email|unique:users',
-            'name' => 'required|max:120',
-            'password' => 'required|min:6'
-        ]);
-
-        $email = $request['email'];
-        $name = $request['name'];
-        $password = bcrypt($request['password']);
-
-        $user = new User();
-        $user->email = $email;
-        $user->name = $name;
-        $user->password = $password;
-        $user->newsletter = $request['newsletter'] ? 1 : 0;
-
-        $user->save();
-
-        Auth::login($user);
-
-        //return redirect()->route('dashboard');
-        return redirect('/');
-    }
-
-    public function postSignIn(Request $request)
-    {
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required|min:6'
-        ]);
-
-
-        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']], $request->remember)) {
-//            return redirect()->route('dashboard');
-            return redirect('/');
-        }
-        return redirect()->back();
-    }
 
     public function getLogout()
     {
@@ -149,6 +115,10 @@ class AccountController extends Controller
     public function getAccount()
     {
         return view('account.account', ['user' => Auth::user()]);
+    }
+    public function getProfile()
+    {
+        return view('account.profile', ['user' => Auth::user()]);
     }
 
     public function postSaveAccount(Request $request)
@@ -187,27 +157,5 @@ class AccountController extends Controller
 
 
 
-
-
-
-    public function postAuthFacebook(Request $request)
-    {
-
-        $fb = new Facebook([
-            'app_id' => '{app-id}',
-            'app_secret' => '{app-secret}',
-            'default_graph_version' => 'v2.5',
-        ]);
-
-        $fb = new Facebook\Facebook([/* . . . */]);
-
-        $helper = $fb->getRedirectLoginHelper();
-        $permissions = ['email', 'user_likes']; // optional
-        $loginUrl = $helper->getLoginUrl('http://{your-website}/login-callback.php', $permissions);
-
-        echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
-        //return redirect()->route('dashboard');
-        return redirect('/');
-    }
 
 }

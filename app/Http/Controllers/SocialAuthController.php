@@ -102,7 +102,7 @@ class SocialAuthController extends Controller
         ]));
 
         //return dd($user);
-        auth()->login($user);
+        auth()->login($user, true);
 
         return redirect()->to('/');
     }

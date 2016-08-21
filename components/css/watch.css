@@ -135,6 +135,9 @@ ul.watch-content{
     display: block;
     list-style-type: disc;
     padding-left: 15px;
+
+    white-space: normal;
+    word-wrap: break-word;
 }
 
 .icon-button {

@@ -45,9 +45,9 @@ Route::get('/privacy', [
 
 
 Route::get('/signup', [
-    'uses' => 'AccountController@getSignUp',
+    'uses' => 'HomeController@getSignUp',
     'as' => 'signup'
-]);
+])->middleware('guest');
 
 Route::get('/logout', [
     'uses' => 'AccountController@getLogout',
@@ -69,6 +69,18 @@ Route::post('/service/contact', [
 ]);
 
 
+
+Route::get('/account', [
+    'uses' => 'AccountController@getAccount',
+    'as' => 'account'
+]);
+Route::get('/profile', [
+    'uses' => 'AccountController@getProfile',
+    'as' => 'profile'
+]);
+
+
+
 Route::get('/search/{q?}', 'SearchController@search');
 Route::get('/{id?}', 'SearchController@show');
 
@@ -80,14 +92,20 @@ Route::post('service/youtube/search/more', 'SearchController@searchMore');
 
 //Route::get('/signup', 'AccountController@getSignUp');
 Route::post('/service/account/signup', [
-    'uses' => 'AccountController@postSignUp',
+    'uses' => 'HomeController@postSignUp',
     'as' => 'account.signup'
 ]);
 
 Route::post('/service/account/signin', [
-    'uses' => 'AccountController@postSignIn',
+    'uses' => 'HomeController@postSignIn',
     'as' => 'account.signin'
 ]);
 
+
+
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
 
 

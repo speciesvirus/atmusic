@@ -10,6 +10,67 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //$this->middleware('guest');
+        //$this->middleware('auth');
+    }
+
+
+    public function getSignUp()
+    {
+        return view('account.SignUp');
+    }
+
+    public function postSignUp(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email|unique:users',
+            'name' => 'required|max:120',
+            'password' => 'required|min:6'
+        ]);
+
+        $email = $request['email'];
+        $name = $request['name'];
+        $password = bcrypt($request['password']);
+
+        $user = new User();
+        $user->email = $email;
+        $user->name = $name;
+        $user->password = $password;
+        $user->newsletter = $request['newsletter'] ? 1 : 0;
+
+        $user->save();
+
+        Auth::login($user, true);
+
+        //return redirect()->route('dashboard');
+        return redirect('/');
+    }
+
+    public function postSignIn(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+
+        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']], $request->remember)) {
+//            return redirect()->route('dashboard');
+            return redirect('/');
+        }
+        return redirect()->back();
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *

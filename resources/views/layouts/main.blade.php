@@ -33,7 +33,10 @@
 <header>
 
     <div class="site-branding">
-        <a href="http://www.workwithsmart.com/" rel="home"><img src="http://www.workwithsmart.com/wp-content/themes/smartcreative-theme/images/smartcreative.png" alt="SmartCreative"></a>
+        <a href="{{ url('/') }}" rel="home">
+            {{--<img src="http://www.workwithsmart.com/wp-content/themes/smartcreative-theme/images/smartcreative.png" alt="SmartCreative">--}}
+            memo
+        </a>
     </div>
 
     <div class="search">
@@ -62,7 +65,7 @@
                 </a>
             </li>
             <li>
-                <a href='{{ route('contact') }}'>
+                <a href='{{ url('contact') }}'>
                     <div class='fa fa-envelope'></div>
                 </a>
             </li>
@@ -83,13 +86,12 @@
                                     </center>
                                     <hr>
                                     <center>
-                                        <p class="text-left"><strong>Bio: </strong><br>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sem dui, tempor sit amet commodo a, vulputate vel tellus.</p>
-                                        <br>
+                                        <p class="text-left"><strong><a href="{{ route('profile') }}">Profile</a></strong></p>
+                                        <p class="text-left"><strong><a href="{{ route('account') }}">Account</a></strong></p>
                                     </center>
                                 </div>
                                 <div class="bottom text-center">
-                                    <a href="{{ Route('logout') }}"><b>Log Out</b></a>
+                                    <a href="{{ url('logout') }}"><b>Log Out</b></a>
                                 </div>
                             </div>
                         </li>
@@ -101,9 +103,9 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     Login via
-                                    <div class="social-buttons">
+                                    <div class="social-buttons btn-social">
                                         <a href="{{ asset('redirect/facebook') }}" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-                                        <a href="{{ asset('redirect/google') }}" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                                        <a href="{{ asset('redirect/google') }}" class="btn btn-google"><i class="fa fa-google"></i> Google</a>
                                     </div>
                                     or
                                     <form class="form" role="form" method="post" action="{{ route('account.signin') }}" accept-charset="UTF-8" id="login-nav">
@@ -116,7 +118,7 @@
                                             <label class="sr-only" for="password">Password</label>
                                             <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                                             <span class="help-inline">{{ $errors->has('password') ? $errors->first('password') : '' }}</span>
-                                            <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+                                            <div class="help-block text-right"><a href="{{ url('/password/reset') }}">Forget the password ?</a></div>
                                         </div>
                                         <input type="hidden" name="_token" value="{{ Session::token() }}">
                                         <div class="form-group">

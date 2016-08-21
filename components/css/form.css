@@ -1,5 +1,23 @@
 
 
+
+.form-group{
+    margin-bottom: 20px;
+}
 .form-control {
     width: 270px;
+    height: 36px;
+}
+
+.form-horizontal .form-group-birth {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.div-avatar{
+    width: 270px;
+}
+#img-uploaded{
+    width: 50px;
+    height: 50px;
 }

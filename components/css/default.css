@@ -69,11 +69,15 @@ header > div > *{
 .site-branding {
     float: left;
     margin: 0 0 0 53px;
-    width: 219px;
+    /*width: 219px;*/
+    width: 170px;
     transition: all .5s ease;
 
     display: table;
     height: 80px;
+
+
+
 }
 .site-branding a {
     line-height: 0;
@@ -135,7 +139,7 @@ header > div > *{
     position: absolute;
     z-index: 1;
     top: 0;
-    right: -14px;
+    right: -15px;
     content: '';
     width: 0;
     height: 0;
@@ -234,7 +238,7 @@ header > div > *{
 }
 
 
-.nav, .menu{
+header .nav, header .menu{
     width: 58%;
     float: right;
 }
@@ -409,7 +413,7 @@ header > div > *{
     background: #fcb501;
     padding: 0 25px 0 30px;
     color: #FFFFFF;
-    line-height: 36px;
+    line-height: 37px;
 }
 #search ul li:first-child a{
     padding: 0;
@@ -418,28 +422,31 @@ header > div > *{
     background: transparent;
     border: none;
     border-bottom: 2px solid #fcb501;
+    border-left: 1px solid #eee;
+    border-top: 1px solid #eee;
+
     -webkit-appearance: none;
 
     font-size: 16px;
-    color: #fcb501;
+    color: #0b1f2c;
     line-height: 2;
     /* top: -100px; */
     width: 320px;
     padding: 1px 10px;
 }
 
-.input-search:after {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    right: -15px;
-    content: '';
-    width: 0;
-    height: 0;
-    display: block;
-    border-left: 15px solid #FFFFFF;
-    border-bottom: 34px solid transparent;
-}
+/*.input-search:after {*/
+    /*position: absolute;*/
+    /*z-index: 1;*/
+    /*top: 0;*/
+    /*right: -15px;*/
+    /*content: '';*/
+    /*width: 0;*/
+    /*height: 0;*/
+    /*display: block;*/
+    /*border-left: 15px solid #FFFFFF;*/
+    /*border-bottom: 34px solid transparent;*/
+/*}*/
 
 
 
@@ -576,19 +583,22 @@ a.ui-button:active,
 .btn-fb{
     color: #fff;
     background-color:#3b5998;
+    border-color: rgba(0,0,0,0.2);
 }
 .btn-fb:hover{
     color: #fff;
     background-color:#496ebc
 }
-.btn-tw{
+.btn-google {
     color: #fff;
-    background-color:#55acee;
+    background-color: #dd4b39;
+    border-color: rgba(0,0,0,0.2);
 }
-.btn-tw:hover{
-    color: #fff;
-    background-color:#59b5fa;
+.btn-google:hover {
+    color:#fff;
+    background-color:#c23321;
 }
+
 @media(max-width:768px){
     #login-dp{
         background-color: inherit;
