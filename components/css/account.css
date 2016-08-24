@@ -2,7 +2,9 @@
     height: 34px;
     width: calc(100% - 59px);
 }
-
+#yt-embed{
+    width: 100%;
+}
 .left_col {
     background: #2A3F54
 }

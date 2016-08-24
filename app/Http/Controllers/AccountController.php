@@ -162,22 +162,56 @@ class AccountController extends Controller
     public function postFindVideo(Request $request)
     {
 
+        $id = strpos($request->id, 'watch?v=') ? explode('watch?v=', $request->id)[1] : $request->id;
+
         $client = new \GuzzleHttp\Client(['verify' => false ,'http_errors' => false]);
         $res = $client->request('POST', config('services.domain.default').'/service/youtube/video', [
             'query' => [
-                'id' => $request->id
+                'id' => $id
             ],
         ]);
         $res->getStatusCode();
 
         $result = json_decode($res->getBody()->getContents(), true);
-        $result = isset($result['items'][0]);
+        $result = isset($result['items'][0]) ? $result['items'][0] : false;
 
-        Log::info(json_decode($result, true));
+
         //return view('search', ['result' => json_decode($res->getBody(), true)]);
 
         //return view('account.landing.video', ['result' => json_decode($res->getBody(), true)]);
         return view('account.landing.video', ['result' => $result]);
+        //return response()->json($result, 200);
+
+
+//        "kind" => "youtube#video"
+//  "etag" => ""I_8xdZu766_FSaexEaDXTIfEWc0/TrgqOu0BD8lGP796VOTGnTxrgYg""
+//  "id" => "PzLxt8fIGEI"
+//  "snippet" => array:11 [▼
+//    "publishedAt" => "2016-08-21T08:58:47.000Z"
+//    "channelId" => "UCE2B5Sp_BcgAShEiGH7Mrtg"
+//    "title" => "โหน่ง.. ร้องเพลงหลบเสียง อย่างฮา | รวมความฮา หม่ำ เท่ง โหน่ง ชิงร้อย #5"
+//    "description" => """
+//      ชิงร้อยชิงล้านย้อนหลัง ชิงร้อย ชิงล้าน ช่องเวิร์คพอยท์ ทุกวันอาทิตย์ เวลา 14.45 - 17.00 น.\n
+//      โหน่ง.. ร้องเพลงหลบเสียงอีกแล้ว อย่างฮา | รวมความฮา หม่ำ เท่ง โหน่ง ชิงร้อย #5\n
+//      ฝากกดติดตามเพื่อชมคลิปใหม่ๆ ► https://goo.gl/z1QNgk\n
+//      \n
+//      ตัวเต็ม : https://goo.gl/6jRdHU
+//      """
+//    "thumbnails" => array:4 [▶]
+//    "channelTitle" => "Maxxximus channel"
+//    "tags" => array:24 [▶]
+//    "categoryId" => "23"
+//    "liveBroadcastContent" => "none"
+//    "defaultLanguage" => "th"
+//    "localized" => array:2 [▶]
+//  ]
+//  "statistics" => array:5 [▼
+//    "viewCount" => "89532"
+//    "likeCount" => "187"
+//    "dislikeCount" => "17"
+//    "favoriteCount" => "0"
+//    "commentCount" => "11"
+//  ]
 
     }
 
