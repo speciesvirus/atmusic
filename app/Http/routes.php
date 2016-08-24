@@ -68,6 +68,11 @@ Route::post('/service/contact', [
     'as' => 'post.contact'
 ]);
 
+Route::post('/service/account/video', [
+    'uses' => 'AccountController@postFindVideo',
+    'as' => 'post.find.video'
+]);
+
 
 
 Route::get('/account', [

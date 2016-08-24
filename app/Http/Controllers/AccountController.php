@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
+
 class AccountController extends Controller
 {
 
@@ -116,6 +117,7 @@ class AccountController extends Controller
     {
         return view('account.account', ['user' => Auth::user()]);
     }
+
     public function getProfile()
     {
         return view('account.profile', ['user' => Auth::user()]);
@@ -156,6 +158,28 @@ class AccountController extends Controller
     }
 
 
+
+    public function postFindVideo(Request $request)
+    {
+
+        $client = new \GuzzleHttp\Client(['verify' => false ,'http_errors' => false]);
+        $res = $client->request('POST', config('services.domain.default').'/service/youtube/video', [
+            'query' => [
+                'id' => $request->id
+            ],
+        ]);
+        $res->getStatusCode();
+
+        $result = json_decode($res->getBody()->getContents(), true);
+        $result = isset($result['items'][0]);
+
+        Log::info(json_decode($result, true));
+        //return view('search', ['result' => json_decode($res->getBody(), true)]);
+
+        //return view('account.landing.video', ['result' => json_decode($res->getBody(), true)]);
+        return view('account.landing.video', ['result' => $result]);
+
+    }
 
 
 }

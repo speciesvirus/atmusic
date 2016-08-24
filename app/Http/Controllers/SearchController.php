@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Log;
 
 class SearchController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -154,7 +155,7 @@ class SearchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function video(Request $request)
+    public static function video(Request $request)
     {
 
 

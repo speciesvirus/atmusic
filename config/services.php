@@ -49,12 +49,14 @@ return [
         'client_id' => '950643235062155',
         'client_secret' => 'e66d7d3dd01930aab44916b42c6bdd3b',
         'redirect' => 'http://localhost/atmusic/callback/facebook',
+        //'redirect' => 'http://www.unbok.com/callback/facebook',
     ],
 
     'google' => [
         'client_id' => '493662001300-ltq4pt04gfnrplgb2kvjo54fslnpo3p6.apps.googleusercontent.com',
         'client_secret' => 'u4na4P845bHq6ypCGVrxiJYk',
         'redirect' => 'http://localhost/atmusic/callback/google',
+        //'redirect' => 'http://www.unbok.com/callback/google',
         'key' => 'AIzaSyDs-xqZ9eBPASEi0pFCSjf8JS3-FYVJ2pI',
         //'key' => 'AIzaSyDGFbK0CvMXKVzCJA_2Fj5B7pItfK0a1QA',
 
