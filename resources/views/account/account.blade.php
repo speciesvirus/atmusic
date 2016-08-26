@@ -716,6 +716,14 @@
             });
         });
 
+        $(document).on('change','.checkbox-input input[type="checkbox"]',function () {
+
+            var $this = $(this),
+                $input = $this.parent().find('input[type="text"]');
+
+            $input.prop('disabled', !$this.is(":checked"));
+
+        });
 
 
         $(window).resize(function(){

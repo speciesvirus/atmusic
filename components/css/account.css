@@ -5,6 +5,36 @@
 #yt-embed{
     width: 100%;
 }
+.checkbox-input > label{
+    width: 100%;
+}
+.checkbox-input input[type="text"].form-control {
+    width: 100%;
+}
+
+._fx{
+    position: fixed;
+}
+._lf{
+    left: 0;
+}
+._btm{
+    bottom: 0;
+}
+._fr{
+    float: right;
+}
+._w100{
+    width: 100%;
+}
+
+._dsa{
+    background-color: rgba(255,255,255,0.8);
+    z-index: 1000;
+    padding: 15px;
+}
+
+
 .left_col {
     background: #2A3F54
 }
@@ -1399,7 +1429,7 @@ ul.to_do {
     padding: 0
 }
 ul.to_do li {
-    background: #f3f3f3;
+    /*background: #f3f3f3;*/
     border-radius: 3px;
     position: relative;
     padding: 7px;

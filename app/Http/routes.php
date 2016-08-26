@@ -106,6 +106,11 @@ Route::post('/service/account/signin', [
     'as' => 'account.signin'
 ]);
 
+Route::post('/service/account/signin', [
+    'uses' => 'HomeController@postSignIn',
+    'as' => 'account.signin'
+]);
+
 
 
 

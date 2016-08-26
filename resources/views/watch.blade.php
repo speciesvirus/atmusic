@@ -36,10 +36,10 @@
                 <strong>channel :</strong>
                 {{ $result['channelTitle'] }}
             </li>
-            <li>
-                <strong>description :</strong>
-                {{ $result['description'] }}
-            </li>
+            {{--<li>--}}
+                {{--<strong  data-toggle="popover" data-content="And here's some amazing content. It's very engaging. Right?">description</strong>--}}
+                {{--<pre>{{ $result['description'] }}</pre>--}}
+            {{--</li>--}}
             <li>
                 <strong>download</strong><br>
                 <a href="#" class="icon-button joox"><img src="{{ asset('components/images/download/joox.png') }}"></a>
@@ -436,7 +436,6 @@
 
 
 
-
             // !Play progress
             (function(){
                 var slider_play = $('#video-progress');
@@ -597,6 +596,7 @@
             });
 
 
+            $('[data-toggle="tooltip"]').tooltip();
 
 
         });// ! end read
