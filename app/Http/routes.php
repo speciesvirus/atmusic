@@ -68,9 +68,13 @@ Route::post('/service/contact', [
     'as' => 'post.contact'
 ]);
 
-Route::post('/service/account/video', [
-    'uses' => 'AccountController@postFindVideo',
-    'as' => 'post.find.video'
+Route::post('/service/video/find', [
+    'uses' => 'VideoController@postVideoFind',
+    'as' => 'post.video.find'
+]);
+Route::post('/service/video/post/{video?}', [
+    'uses' => 'VideoController@postVideo',
+    'as' => 'post.video'
 ]);
 
 
@@ -106,10 +110,6 @@ Route::post('/service/account/signin', [
     'as' => 'account.signin'
 ]);
 
-Route::post('/service/account/signin', [
-    'uses' => 'HomeController@postSignIn',
-    'as' => 'account.signin'
-]);
 
 
 

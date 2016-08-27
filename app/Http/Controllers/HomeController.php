@@ -94,8 +94,10 @@ class HomeController extends Controller
         $recommend = [];
         $hit = [];
 
-        $videos = DB::table('features')->join('videos', 'videos.id', '=', 'features.video')
-            ->where('recommend', 1)->orWhere('hit', 1)->select('watch','recommend','hit')->get();
+//        $videos = DB::table('features')->join('videos', 'videos.id', '=', 'features.video')
+//            ->where('recommend', 1)->orWhere('hit', 1)->select('video','recommend','hit')->get();
+
+        $videos = DB::table('features')->where('recommend', 1)->orWhere('hit', 1)->select('video','recommend','hit')->get();
 
         foreach ($videos as $video) {
             //echo $title;

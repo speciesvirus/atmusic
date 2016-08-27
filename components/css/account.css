@@ -31,9 +31,23 @@
 ._dsa{
     background-color: rgba(255,255,255,0.8);
     z-index: 1000;
-    padding: 15px;
+    padding: 10px;
+}
+.has-success .form-control {
+    color: #3c763d;
+}
+.has-warning .form-control {
+    color: #8a6d3b;
+}
+.has-warning .help-inline {
+    color: #8a6d3b;
+    font-size: 11px;
 }
 
+._xcl{
+    max-height: 666px;
+    overflow: auto;
+}
 
 .left_col {
     background: #2A3F54
@@ -305,6 +319,9 @@ body .container.body .right_col {
 }
 .red {
     color: #E74C3C
+}
+.orange {
+    color: #F39C12
 }
 .dark {
     color: #34495E
@@ -2239,9 +2256,19 @@ ul.timeline li {
 }
 .timeline h2.title {
     position: relative;
-    font-size: 16px;
+    font-size: 15px;
     margin: 0
 }
+.timeline h2.title._st1{
+    color: #3c763d;
+}
+.timeline h2.title._st2{
+    color: #a94442;
+}
+.timeline h2.title._st3{
+    color: #fcb501;
+}
+
 .timeline h2.title:before {
     content: "";
     position: absolute;
@@ -2260,7 +2287,8 @@ ul.timeline li {
 .byline {
     -webkit-font-smoothing: antialiased;
     font-style: italic;
-    font-size: .9375em;
+    /*font-size: .9375em;*/
+    font-size: 11px;
     line-height: 1.3;
     color: #aab6aa
 }
