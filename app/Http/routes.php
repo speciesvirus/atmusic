@@ -63,6 +63,11 @@ Route::get('/contact', [
     'as' => 'contact'
 ]);
 
+Route::get('/social/v/{id?}/{token?}', [
+    'uses' => 'VideoController@getSocialView'
+]);
+
+
 Route::post('/service/contact', [
     'uses' => 'HomeController@postContact',
     'as' => 'post.contact'
@@ -76,7 +81,6 @@ Route::post('/service/video/post/{video?}', [
     'uses' => 'VideoController@postVideo',
     'as' => 'post.video'
 ]);
-
 
 
 Route::get('/account', [

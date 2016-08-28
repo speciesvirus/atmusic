@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\SocialView;
+use App\VideoSocial;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class VideoController extends Controller
 {
@@ -167,26 +171,73 @@ class VideoController extends Controller
     public function postVideo(Request $request)
     {
 
-        $id = strpos($request->id, 'watch?v=') ? explode('watch?v=', $request->id)[1] : $request->id;
+        $user = Auth::user();
+        $req = DB::table('video_socials')->where('video', $request->video)->where('status', 3)->where('user', $user->id)->get();
 
-        $client = new \GuzzleHttp\Client(['verify' => false ,'http_errors' => false]);
-        $res = $client->request('POST', config('services.domain.default').'/service/youtube/video', [
-            'query' => [
-                'id' => $id
-            ],
-        ]);
-        $res->getStatusCode();
+        if($req != null){
+            return redirect()->route('account')->with('code', 1)->with('message', 'ไม่สามารถเพิ่มคำขอได้เนื่องจาก คำขอของคุณอยู่ในระหว่างดำเนินการ');
+        }
 
-        $result = json_decode($res->getBody()->getContents(), true);
-        $result = isset($result['items'][0]) ? $result['items'][0] : false;
+//        $socials = DB::table('socials')->select('socials.id', 'video_socials.url')
+//            ->leftJoin('video_socials', 'video_socials.social', '=', 'socials.id')
+//            ->where('video_socials.video', $request->video)->where('video_socials.status', 1)->get();
+
+        $socials = DB::table('socials')->select('socials.id', 'video_socials.url')
+            ->leftJoin(DB::raw('(SELECT `video_socials`.`social`,`video_socials`.`url` FROM video_socials where `video_socials`.`video` = "'.$request->video.'" and `video_socials`.`status` = 1) as video_socials'), function ($join) {
+                $join->on('video_socials.social', '=', 'socials.id');
+            })->get();
+
+        foreach($socials as $social){
+
+            if(isset($request[$social->id])){
+                if($request[$social->id] != $social->url && trim($request[$social->id])){
+                    $vs = new VideoSocial();
+                    $vs->user = $user->id;
+                    $vs->status = 3;
+
+                    $vs->video = $request->video;
+                    $vs->social = $social->id;
+                    $vs->url = $request[$social->id];
+                    $vs->save();
+
+                    if(!$vs){
+                        return redirect()->route('account')->with('code', 1)->with('message', 'เกิดข้อผิดพลาด!');
+                    }
+                }
+            }
+
+        }
+
+//        $social = new VideoSocial();
+//        $social->user = $user->id;
+//        $social->status = 3;
+//
+//        $social->video = $request['video'];
+//        $social->social = $request['social'];
+//        $social->url = $request['url'];
+//        $result = $social->save();
+//
+//        if(!$result){
+//            return redirect()->route('account')->with('code', 1)->with('message', 'เกิดข้อผิดพลาด!');
+//        }
 
 
-        //return view('search', ['result' => json_decode($res->getBody(), true)]);
+//        return redirect()->route('account')->with('code', 0)->with('message', 'คำขอของคุณได้รับการนำเข้าและอยู่ระหว่างการดำเนินการ');
+        return redirect()->route('account')->with('code', 0)->with('message', 'คำขอของคุณได้รับการนำเข้าและอยู่ระหว่างการดำเนินการ');
 
-        //return view('account.landing.video', ['result' => json_decode($res->getBody(), true)]);
-        return view('account.landing.video', ['result' => $result]);
-        //return response()->json($result, 200);
+    }
 
+    public function getSocialView(Request $request)
+    {
+        if(Session::token() == $request->token){
+            $view = new SocialView();
+            $view->video_socials = $request->id;
+            $view->user = Auth::user() ? Auth::user()->id : null;
+            $view->save();
+        }
+
+        $url = DB::table('video_socials')->select('video_socials.url')->where('video_socials.id', $request->id)->first();
+        return redirect($url->url);
 
     }
 

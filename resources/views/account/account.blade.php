@@ -32,34 +32,34 @@
 
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-trophy"></i> Ranking</span>
-                    <div class="count green">2,500</div>
-                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+                    <div class="count green">{{ $statuses['rank'] }}</div>
+                    <span class="count_bottom">&nbsp;</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-eye"></i> Visitor</span>
-                    <div class="count">4,567</div>
-                    <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+                    <div class="count">{{ $statuses['visitor'] }}</div>
+                    <span class="count_bottom"><i class="{{ $statuses['user_diff'] <= 0 ? 'red' : 'green' }}"><i class="fa {{ $statuses['user_diff'] <= 0 ? 'fa-sort-desc' : 'fa-sort-asc' }}"></i>{{ $statuses['user_diff'] }}% </i> From Yesterday</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-hand-o-up"></i> Total Connections</span>
-                    <div class="count">7,325</div>
-                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+                    <div class="count">{{ $statuses['click'] }}</div>
+                    <span class="count_bottom"><i class="{{ $statuses['social_diff'] <= 0 ? 'red' : 'green' }}"><i class="fa {{ $statuses['social_diff'] <= 0 ? 'fa-sort-desc' : 'fa-sort-asc' }}"></i>{{ $statuses['social_diff'] }}% </i> From Yesterday</span>
                 </div>
 
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="green"><i class="fa fa-thumbs-o-up"></i></i> Approved</span>
-                    <div class="count">2500</div>
-
+                    <div class="count">{{ $statuses['approved'] }}</div>
+                    <span class="count_bottom">&nbsp;</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="red"><i class="fa fa-thumbs-o-down"></i></i> Disapprove</span>
-                    <div class="count">123.50</div>
-
+                    <div class="count">{{ $statuses['disapprove'] }}</div>
+                    <span class="count_bottom">&nbsp;</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="orange"><i class="fa fa-thumb-tack"></i></i> Waiting</span>
-                    <div class="count">2,315</div>
-
+                    <div class="count">{{ $statuses['waiting'] }}</div>
+                    <span class="count_bottom">&nbsp;</span>
                 </div>
 
 
@@ -409,6 +409,14 @@
 
                     <div class="video-description">
 
+                        @if(Session::has('message'))
+
+                            <div class="alert {{ Session::get('code') == 0 ? 'alert-info' : 'alert-warning' }}">
+                                <h3>{{Session::get('message')}}</h3>
+                            </div>
+
+                        @endif
+
                     </div>
 
                 </div>
@@ -433,16 +441,12 @@
 
         $formVideo.submit(function (e) {
             e.preventDefault();
-
-            $.post( "{{ route('post.video.find') }}", { id: $formVideo.find('input').val() }, function( data ) {
-                console.log( data );
-                $divVideo.html(data);
-                ytSize();
-                //console.log( data.items.length );
-
-            });
+            ytSearch();
         });
-
+        $(document).on('click', '#discard', function(e){
+            e.preventDefault();
+            ytSearch();
+        });
 
 
         $(window).resize(function(){
@@ -455,7 +459,14 @@
         });
 
 
-
+        function ytSearch(){
+            $.post( "{{ route('post.video.find') }}", { id: $formVideo.find('input').val() }, function( data ) {
+                console.log( data );
+                $divVideo.html(data);
+                ytSize();
+                //console.log( data.items.length );
+            });
+        }
 
         function ytSize(){
             var $player = $('#yt-embed'),

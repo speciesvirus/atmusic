@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\SocialView;
 use App\User;
+use App\UserView;
+use App\VideoSocial;
+use Carbon\Carbon;
 use Facebook\Facebook;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
@@ -123,7 +127,27 @@ class AccountController extends Controller
             ->select('video_socials.*', 'socials.name', 'video_social_statuses.title', 'video_social_statuses.description')
             ->orderBy('video_socials.created_at', 'desc')->get();
 
-        return view('account.account', ['user' => Auth::user(), 'histories' => $histories]);
+        $st1 = VideoSocial::where('user', $user->id)->where('status', 1)->count();
+        $st2 = VideoSocial::where('user', $user->id)->where('status', 2)->count();
+        $st3 = VideoSocial::where('user', $user->id)->where('status', 3)->count();
+        $st4 = UserView::where('user', $user->id)->where('created_at', '<=', Carbon::now())->count();
+        $st_user = UserView::where('user', $user->id)->where('created_at', '<=', Carbon::now()->addDay(-1))
+            ->where('created_at', '!=', "0000-00-00 00:00:00")->count();
+        $st5 = SocialView::where('user', $user->id)->count();
+        $st_social = SocialView::where('user', $user->id)->where('created_at', '<=', Carbon::now()->addDay(-1))
+            ->where('created_at', '!=', "0000-00-00 00:00:00")->count();
+
+        $statuses = [
+            "approved" => number_format($st1),
+            "disapprove" => number_format($st2),
+            "waiting" => number_format($st3),
+            "visitor" => number_format($st4),
+            "click" => number_format($st5),
+            "rank" => $this->ranks($st4),
+            "user_diff" => HomeController::calcPercentage($st_user, $st4, 100, 0),
+            "social_diff" => HomeController::calcPercentage($st_social, $st5, 100, 0)
+        ];
+        return view('account.account', ['user' => Auth::user(), 'histories' => $histories, 'statuses' => $statuses]);
     }
 
     public function getProfile()
@@ -166,6 +190,34 @@ class AccountController extends Controller
     }
 
 
+
+    public static function ranks($i){
+
+        switch ($i) {
+            case $i >= 1000000:
+                return "Legendary";
+                break;
+            case $i >= 500000:
+                return "Extreme";
+                break;
+            case $i >= 250000:
+                return "Superior";
+                break;
+            case $i >= 125000:
+                return "Legendary";
+                break;
+            case $i >= 67500:
+                return "Senior";
+                break;
+            case $i >= 30000:
+                return "Junior";
+                break;
+            default:
+                return "User";
+        }
+
+
+    }
 
 
 

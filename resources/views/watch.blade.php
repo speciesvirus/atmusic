@@ -2,11 +2,38 @@
 
 @section('title', 'unbok')
 
-@section('facebook-meta')
-    <meta property="og:type"          content="article" />
-    <meta property="og:title"         content="{{ $result['title'] }}" />
-    <meta property="og:description"   content="{{ $result['description'] }}" />
-    <meta property="og:image"         content="{{ asset("components/image/ECIR/ecir_logo.jpg") }}" />
+@section('meta')
+
+    <meta property="og:site_name" content="unbok">
+    <meta property="og:title" content="{{ $result['title'] }}">
+    <meta property="og:image" content="{{ $result['thumbnails'] == '' ? $result['thumbnailsSD'] : $result['thumbnails'] }}">
+    <meta property="og:description" content="{{ strlen($result['description']) > 157 ? preg_replace('/\s+/', ' ',trim(substr($result['description'],0,157)))."..." : trim($result['description']) }}">
+
+    <meta property="og:type" content="video">
+    <meta property="og:video:url" content="https://www.youtube.com/embed/{{ $result['id'] }}">
+    <meta property="og:video:secure_url" content="https://www.youtube.com/embed/{{ $result['id'] }}">
+    <meta property="og:video:type" content="text/html">
+    <meta property="og:video:width" content="1280">
+    <meta property="og:video:height" content="720">
+    <meta property="og:video:url" content="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
+    <meta property="og:video:secure_url" content="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
+    <meta property="og:video:type" content="application/x-shockwave-flash">
+    <meta property="og:video:width" content="1280">
+    <meta property="og:video:height" content="720">
+
+    @foreach($result['tags'] as $tag)
+<meta property="og:video:tag" content="{{ $tag }}">
+    @endforeach
+
+    <meta name="twitter:card" content="player">
+    <meta name="twitter:site" content="@youtube">
+    <meta name="twitter:url" content="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
+    <meta name="twitter:title" content="{{ $result['title'] }}">
+    <meta name="twitter:description" content="{{ strlen($result['description']) > 157 ? preg_replace('/\s+/', ' ',trim(substr($result['description'],0,157)))."..." : trim($result['description']) }}">
+    <meta name="twitter:image" content="{{ $result['thumbnails'] == '' ? $result['thumbnailsSD'] : $result['thumbnails'] }}">
+    <meta name="twitter:player" content="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
+    <meta name="twitter:player:width" content="1280">
+    <meta name="twitter:player:height" content="720">
 @stop
 
 @section('source')
@@ -40,24 +67,57 @@
                 {{--<strong  data-toggle="popover" data-content="And here's some amazing content. It's very engaging. Right?">description</strong>--}}
                 {{--<pre>{{ $result['description'] }}</pre>--}}
             {{--</li>--}}
-            <li>
-                <strong>download</strong><br>
-                <a href="#" class="icon-button joox"><img src="{{ asset('components/images/download/joox.png') }}"></a>
-                <a href="#" class="icon-button kkbox"><img src="{{ asset('components/images/download/kkbox.png') }}"></a>
-                <a href="#" class="icon-button itunes"><img src="{{ asset('components/images/download/itunes.png') }}"></a>
-                {{--<a href="#" class="icon-button youtube"><i class="fa fa-youtube"></i><span></span></a>--}}
-                {{--<a href="#" class="icon-button pinterest"><i class="fa fa-pinterest"></i><span></span></a>--}}
-            </li>
-            <li>
-                <strong>follow</strong><br>
-                <a href="https://www.facebook.com/blueshadebkk...">https://www.facebook.com/blueshadebkk........</a>
-                {{--<a href="#" class="icon-button youtube"><i class="fa fa-youtube"></i><span></span></a>--}}
-                {{--<a href="#" class="icon-button pinterest"><i class="fa fa-pinterest"></i><span></span></a>--}}
-            </li>
-            <li>
-                <strong>lyrics</strong><br>
-                <a href="http://chordtabs.in.th/%E0%B9%80%E0%B8%9E%E0%B8%A5%E0%B8%87_%E0%B8%8B%E0%B8%B2%E0%B9%82%E0%B8%A2%E0%B8%99%E0%B8%B2%E0%B8%A3%E0%B8%B0-Mild-14540.html">Chord Tap</a>
-            </li>
+            @if(isset($socials))
+
+                <li>
+                    <strong>download</strong><br>
+                    @php $i = true @endphp
+                    @foreach($socials as $social)
+                        @if($social->group == 1)
+                            <a href="{{ asset('social/v/'.$social->id.'/'.Session::token()) }}" target="_blank" class="icon-button"><img src="{{ asset($social->image) }}"></a>
+                            @php $i = false @endphp
+                        @endif
+                    @endforeach
+                    @if($i)
+                        -
+                    @endif
+                    {{--<a href="#" class="icon-button joox"><img src="{{ asset('components/images/download/joox.png') }}"></a>--}}
+                    {{--<a href="#" class="icon-button kkbox"><img src="{{ asset('components/images/download/kkbox.png') }}"></a>--}}
+                    {{--<a href="#" class="icon-button itunes"><img src="{{ asset('components/images/download/itunes.png') }}"></a>--}}
+                </li>
+                <li>
+                    <strong>socials</strong><br>
+                    @php $i = true @endphp
+                    @foreach($socials as $social)
+                        @if($social->group == 2)
+                            <a href="{{ asset('social/v/'.$social->id.'/'.Session::token()) }}" target="_blank" class="icon-button"><img src="{{ asset($social->image) }}"></a>
+                            @php $i = false @endphp
+                        @endif
+                    @endforeach
+                    @if($i)
+                        -
+                    @endif
+                    {{--<a href="#" class="icon-button youtube"><i class="fa fa-youtube"></i><span></span></a>--}}
+                    {{--<a href="#" class="icon-button pinterest"><i class="fa fa-pinterest"></i><span></span></a>--}}
+                </li>
+                <li>
+                    <strong>other</strong><br>
+                    @php $i = true @endphp
+                    @foreach($socials as $social)
+                        @if($social->group == 3)
+                            <a href="{{ asset('social/v/'.$social->id.'/'.Session::token()) }}" target="_blank" class="icon-button">{{ $social->name }}</a>
+                            @php $i = false @endphp
+                        @endif
+                    @endforeach
+                    @if($i)
+                        -
+                    @endif
+                </li>
+
+
+
+            @endif
+
 
             <li>
                 <strong>share</strong><br>
@@ -143,17 +203,17 @@
 		c24.145,0,37.359-20.004,37.359-37.355c0-0.57-0.012-1.137-0.043-1.7C60.008,11.099,62.238,8.786,64,6.154z"/>
                     </symbol>
 
-                    <symbol id="icon-youtube" viewBox="0 0 64 44.907">
-                        <title>YouTube</title>
-                        <desc>Link to YouTube</desc>
+                    {{--<symbol id="icon-youtube" viewBox="0 0 64 44.907">--}}
+                        {{--<title>YouTube</title>--}}
+                        {{--<desc>Link to YouTube</desc>--}}
 
-                        <path d="M63.394,9.304c0,0-0.115-8.491-9.777-8.838C43.966,0.113,32.994,0,32.994,0h-1.992
-		c0,0-10.967,0.113-20.623,0.466C0.717,0.813,0.603,9.304,0.603,9.304S-0.675,23.151,0.49,33.565
-		c0.877,7.875,2.556,10.41,11.752,10.875c9.186,0.467,18.771,0.467,18.771,0.467h1.971c0,0,9.586,0,18.771-0.467
-		c9.195-0.465,10.875-3,11.752-10.875C64.677,23.151,63.394,9.304,63.394,9.304z M25.386,31.411V13.258l17.215,9.196L25.386,31.411z
-		"/>
-                        <polygon opacity="0.2" points="25.386,13.258 40.478,23.557 42.601,22.454 	"/>
-                    </symbol>
+                        {{--<path d="M63.394,9.304c0,0-0.115-8.491-9.777-8.838C43.966,0.113,32.994,0,32.994,0h-1.992--}}
+		{{--c0,0-10.967,0.113-20.623,0.466C0.717,0.813,0.603,9.304,0.603,9.304S-0.675,23.151,0.49,33.565--}}
+		{{--c0.877,7.875,2.556,10.41,11.752,10.875c9.186,0.467,18.771,0.467,18.771,0.467h1.971c0,0,9.586,0,18.771-0.467--}}
+		{{--c9.195-0.465,10.875-3,11.752-10.875C64.677,23.151,63.394,9.304,63.394,9.304z M25.386,31.411V13.258l17.215,9.196L25.386,31.411z--}}
+		{{--"/>--}}
+                        {{--<polygon opacity="0.2" points="25.386,13.258 40.478,23.557 42.601,22.454 	"/>--}}
+                    {{--</symbol>--}}
 
                 </svg>
                 <div class="socialLinks">
@@ -162,31 +222,35 @@
                             <use xlink:href="#icon-facebook" />
                         </svg>
                     </a>
-                    <a class="googleplus" href="#" title="Find me on Google Plus">
+                    <a class="googleplus" href="https://plus.google.com/share?url=<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>" onclick="javascript:window.open(this.href, '',
+            'menubar=no,toolbar=no,height=600,width=600');return false;" title="Find me on Google Plus">
                         <svg class="socialIcon">
                             <use xlink:href="#icon-googleplus" />
                         </svg>
                     </a>
-                    <a class="linkedin" href="#" title="Find me on LinkedIn">
+                    <a class="linkedin" href="https://www.linkedin.com/cws/share?url=<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>" onclick="javascript:window.open(this.href, '',
+            'menubar=no,toolbar=no,height=420,width=550');return false;" title="Find me on LinkedIn">
                         <svg class="socialIcon">
                             <use xlink:href="#icon-linkedin" />
                         </svg>
                     </a>
-                    <a class="pinterest" href="#" title="Find me on Pinterest">
+                    <a class="pinterest" href="http://www.pinterest.com/pin/create/button?url=<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>&media={{ $result['thumbnails'] == '' ? $result['thumbnailsSD'] : $result['thumbnails'] }}&description={{ $result['title'] }}" onclick="javascript:window.open(this.href, '',
+            'menubar=no,toolbar=no,height=650,width=1024');return false;" title="Find me on Pinterest">
                         <svg class="socialIcon">
                             <use xlink:href="#icon-pinterest" />
                         </svg>
                     </a>
-                    <a class="twitter" href="#" title="Find me on Twitter">
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text={{ $result['title'] }}&url=<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>" onclick="javascript:window.open(this.href, '',
+            'menubar=no,toolbar=no,height=420,width=550');return false;" title="Find me on Twitter">
                         <svg class="socialIcon">
                             <use xlink:href="#icon-twitter" />
                         </svg>
                     </a>
-                    <a class="youtube" href="#" title="Find me on YouTube">
-                        <svg class="socialIcon">
-                            <use xlink:href="#icon-youtube" />
-                        </svg>
-                    </a>
+                    {{--<a class="youtube" href="#" title="Find me on YouTube">--}}
+                        {{--<svg class="socialIcon">--}}
+                            {{--<use xlink:href="#icon-youtube" />--}}
+                        {{--</svg>--}}
+                    {{--</a>--}}
                 </div>
 
 
@@ -198,86 +262,6 @@
 
     </div>
 
-
-    {{--<ul id="navmenu" class="side-menu -left -active shadow-z-2">--}}
-
-        {{--<li class="section"><span>Hosts</span></li>--}}
-        {{--<li class="option">--}}
-            {{--<a href="#null" class="-active">--}}
-                {{--<i class="icon mdi-action-view-quilt"></i>Overview--}}
-            {{--</a>--}}
-            {{--<a href="#null" class="helptoggle">--}}
-                {{--<i class="icon mdi-action-help"></i>--}}
-            {{--</a>--}}
-        {{--</li>--}}
-        {{--<li class="option">--}}
-            {{--<a href="#null">--}}
-                {{--<i class="icon mdi-hardware-memory"></i>CPU/Memory--}}
-            {{--</a>--}}
-            {{--<a href="#null" class="helptoggle">--}}
-                {{--<i class="icon mdi-action-help"></i>--}}
-            {{--</a>--}}
-        {{--</li>--}}
-        {{--<li class="option">--}}
-            {{--<a href="#null">--}}
-                {{--<i class="icon mdi-action-query-builder"></i>Requests Time Breakdown--}}
-            {{--</a>--}}
-            {{--<a href="#null" class="helptoggle">--}}
-                {{--<i class="icon mdi-action-help"></i>--}}
-            {{--</a>--}}
-        {{--</li>--}}
-        {{--<li class="option">--}}
-            {{--<a href="#null">--}}
-                {{--<i class="icon mdi-action-language"></i>Network--}}
-            {{--</a>--}}
-            {{--<a href="#null" class="helptoggle">--}}
-                {{--<i class="icon mdi-action-help"></i>--}}
-            {{--</a>--}}
-        {{--</li>--}}
-        {{--<li class="option">--}}
-            {{--<a href="#null">--}}
-                {{--<i class="icon mdi-action-swap-vert-circle"></i>File I/O--}}
-            {{--</a>--}}
-            {{--<a href="#null" class="helptoggle">--}}
-                {{--<i class="icon mdi-action-help"></i>--}}
-            {{--</a>--}}
-        {{--</li>--}}
-        {{--<li class="option">--}}
-            {{--<a href="#null">--}}
-                {{--<i class="icon mdi-action-get-app"></i>Requests--}}
-            {{--</a>--}}
-            {{--<a href="#null" class="helptoggle">--}}
-                {{--<i class="icon mdi-action-help"></i>--}}
-            {{--</a>--}}
-        {{--</li>--}}
-        {{--<li class="option">--}}
-            {{--<a href="#null">--}}
-                {{--<i class="icon mdi-device-brightness-high"></i>Forecast--}}
-            {{--</a>--}}
-            {{--<a href="#null" class="helptoggle">--}}
-                {{--<i class="icon mdi-action-help"></i>--}}
-            {{--</a>--}}
-        {{--</li>--}}
-        {{--<li class="section"><span>AWS Services</span></li>--}}
-        {{--<li class="option">--}}
-            {{--<a href="#null"><img src="http://emisferosud.it/share/aws-ec2.svg" class="icon">EC2 Instances</a>--}}
-            {{--<a href="#null" class="helptoggle">--}}
-                {{--<i class="icon mdi-action-help"></i>--}}
-            {{--</a>--}}
-        {{--</li>--}}
-        {{--<li class="option">--}}
-            {{--<a href="#null"><img src="http://emisferosud.it/share/aws-rds.svg" class="icon">RDS Instances</a>--}}
-            {{--<a href="#null" class="helptoggle">--}}
-                {{--<i class="icon mdi-action-help"></i>--}}
-            {{--</a>--}}
-        {{--</li>--}}
-        {{--<li class="option">--}}
-            {{--<a href="#null"><img src="http://emisferosud.it/share/aws-elb.svg" class="icon">ELB Instances</a>--}}
-            {{--<a href="#null" class="helptoggle">--}}
-                {{--<i class="icon mdi-action-help"></i>--}}
-            {{--</a>--}}
-        {{--</li>--}}
-    {{--</ul>--}}
 
     <div class="content">
 
@@ -309,16 +293,16 @@
                 {{--</div>--}}
 
                 <div class="play-console">
-                    <div class="back">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 306 306" xml:space="preserve">
-                                <g>
-                                    <g id="skip-previous">
-                                        <rect width="51" height="306" ></rect>
-                                        <polygon points="89.25,153 306,306 306,0"></polygon>
-                                    </g>
-                                </g>
-                            </svg>
-                    </div>
+                    {{--<div class="back">--}}
+                        {{--<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 306 306" xml:space="preserve">--}}
+                                {{--<g>--}}
+                                    {{--<g id="skip-previous">--}}
+                                        {{--<rect width="51" height="306" ></rect>--}}
+                                        {{--<polygon points="89.25,153 306,306 306,0"></polygon>--}}
+                                    {{--</g>--}}
+                                {{--</g>--}}
+                            {{--</svg>--}}
+                    {{--</div>--}}
 
 
                     <div class="play-button">
@@ -329,18 +313,15 @@
                     </div>
 
 
-                    <div class="forward">
-                        <!--?xml version="1.0" encoding="iso-8859-1"?-->
-                        <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 306 306" style="enable-background:new 0 0 306 306;" xml:space="preserve">
-                                <g>
-                                    <g id="skip-next">
-                                        <path d="M0,306l216.75-153L0,0V306z M255,0v306h51V0H255z"></path>
-                                    </g>
-                                </g>
-                            </svg>
-                    </div>
+                    {{--<div class="forward">--}}
+                        {{--<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 306 306" style="enable-background:new 0 0 306 306;" xml:space="preserve">--}}
+                                {{--<g>--}}
+                                    {{--<g id="skip-next">--}}
+                                        {{--<path d="M0,306l216.75-153L0,0V306z M255,0v306h51V0H255z"></path>--}}
+                                    {{--</g>--}}
+                                {{--</g>--}}
+                            {{--</svg>--}}
+                    {{--</div>--}}
 
 
                     <div class="play-progress-bar">
@@ -383,11 +364,11 @@
                                 </div>
 
                             </i>
-                            <i class="fa fa-random" aria-hidden="true"></i>
+                            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
                             {{--<i class="material-icons">battery_full</i>--}}
-                            <i class="fa fa-cc" aria-hidden="true"></i>
+                            {{--<i class="fa fa-cc" aria-hidden="true"></i>--}}
                             <i class="fa fa-television" aria-hidden="true"></i>
-                            <i id="op-set" class="fa fa-cog" aria-hidden="true">
+                            <i id="op-set" class="fa fa-cog hidden" aria-hidden="true">
 
                                 <div class="mdl-card tray-menu flex vertical mdl-shadow--2dp">
 
@@ -398,7 +379,7 @@
                                         <i class="fa fa-cc" aria-hidden="true"></i>
                                     </div>
                                     <div class="row clickable">
-                                        <i class="fa fa-random" aria-hidden="true"></i>
+                                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
                                     </div>
                                     <div class="row final">
                                         <i class="fa fa-volume-up"></i>
@@ -518,7 +499,7 @@
                     $playHeight = $playCon.height();
 
                 var currWidth = $playWidth > 800 ? 800 : $playWidth;
-                $player.width(currWidth);
+                $player.width(currWidth+1);
                 $player.height(calcWideScreen(currWidth));
 
 
@@ -578,13 +559,13 @@
             });
 
             //*! switch player
-            $(document).on("click", ".tray-button .fa-random", function() {
+            $(document).on("click", ".tray-button .fa-arrow-circle-right", function() {
                 playLoop(true);
-                $(this).removeClass('fa-random').addClass('fa-undo');
+                $(this).removeClass('fa-arrow-circle-right').addClass('fa-undo');
             });
             $(document).on("click", ".tray-button .fa-undo", function() {
                 playLoop(false);
-                $(this).removeClass('fa-undo').addClass('fa-random');
+                $(this).removeClass('fa-undo').addClass('fa-arrow-circle-right');
             });
 
 
@@ -596,10 +577,41 @@
             });
 
 
-            $('[data-toggle="tooltip"]').tooltip();
+            $('#skip-previous').on('click', function () {
+                player.previousVideo();
+            });
+
+            $('#skip-next').on('click', function () {
+                player.nextVideo();
+            });
+
+            share();
+
 
 
         });// ! end read
+
+        function share(){
+
+            //! facebook
+            $('.socialLinks a.facebook').click(function(){
+                FB.ui(
+                        {
+                            method: 'share',
+                            href: '<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>'
+                        },
+                        // callback
+                        function(response) {
+//                            if (response && !response.error_message) {
+//                                alert('Posting completed.');
+//                            } else {
+//                                alert('Error while posting.');
+//                            }
+                        }
+                );
+            });
+
+        }
 
 
         // Find the right method, call on correct element
@@ -683,7 +695,8 @@
                     'controls' : 0,
                     'modestbranding' : 1,
                     'rel' : 0,
-                    'showinfo' : 0
+                    'showinfo' : 0,
+                    'playlist' : 'taJ60kskkns,FG0fTKAqZ5g'
                 }
             });
         }
@@ -799,7 +812,7 @@
 
 
         function calcWideScreen($width){
-            return parseInt(($width*9)/16);
+            return parseInt(($width*9)/16)+1;
         }
 
         function playLoop($status){
@@ -869,5 +882,25 @@
         //player.seekTo(parseFloat($("#seekto").val()));
 
 
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '950643235062155',
+                cookie     : true,  // enable cookies to allow the server to access
+                                    // the session
+                xfbml      : true,  // parse social plugins on this page
+                version    : 'v2.7' // use graph api version 2.5
+            });
+        };
+        // Load the SDK asynchronously
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
     </script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 @stop

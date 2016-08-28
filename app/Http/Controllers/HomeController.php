@@ -413,9 +413,39 @@ class HomeController extends Controller
      * @param  float  $disLike
      * @return float
      */
-    public function rateVideo($like,$disLike,$percentage,$decimal)
+    public static function rateVideo($like,$disLike,$percentage,$decimal)
     {
         return number_format(($like * $percentage) / ($like + $disLike), $decimal, '.', '');
+
+//        switch(form.attr("id")) {
+//            case "f1":
+//                var totalValue = a / 100 * b;
+//                break;
+//            case "f2":
+//                var totalValue = a / b * 100;
+//                break;
+//            case "f3":
+//                var totalValue = (b - a) / a  * 100;
+//                break;
+//        }
+
+    }
+
+    /**
+     * What is the percentage increase/decrease
+     *
+     * @param  int  $decimal
+     * @param  int  $percentage
+     * @param  float  $like
+     * @param  float  $disLike
+     * @return float
+     */
+    public static function calcPercentage ($like,$disLike,$percentage,$decimal)
+    {
+        if($like == 0){
+            return 100;
+        }
+        return number_format(($disLike - $like) / $like  * $percentage, $decimal, '.', '');
     }
     
 }

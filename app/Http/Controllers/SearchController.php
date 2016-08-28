@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\UserView;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 
@@ -55,6 +58,12 @@ class SearchController extends Controller
     public function show($id)
     {
 
+        if(Auth::user()){
+            $u = new UserView();
+            $u->video = $id;
+            $u->user = Auth::user()->id;
+            $u->save();
+        }
         // Call set_include_path() as needed to point to your client library.
 
         /*
@@ -90,7 +99,8 @@ class SearchController extends Controller
                     "publishedAt"   => $this->timeAgo($videoResult['snippet']['publishedAt']),
                     "viewCount"     => number_format($videoResult['statistics']['viewCount']),
                     "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
-                    "thumbnailsSD"    => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/mqdefault.jpg',
+                    "thumbnailsSD"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/mqdefault.jpg',
+                    "tags"           => $videoResult['snippet']['tags'],
                 ];
 
             }
@@ -107,10 +117,15 @@ class SearchController extends Controller
         }
 
 
+        $socials = DB::table('socials')->select('video_socials.id', 'socials.image', 'socials.name', 'socials.group')
+            ->join('video_socials', 'video_socials.social', '=', 'socials.id')
+            ->where('video_socials.video', $id)->where('video_socials.status', 1)->get();
+
+
         // all good so return the token
         //return response()->json(['result' => $videosResponse->toSimpleObject()], 200);
         //return view('watch', ['result' => $videosResponse->toSimpleObject()]);
-        return view('watch', ['result' => $result]);
+        return view('watch', ['result' => $result, 'socials' => $socials]);
 
     }
 

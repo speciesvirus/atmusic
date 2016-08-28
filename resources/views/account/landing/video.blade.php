@@ -46,13 +46,13 @@
                             <ul class="to_do">
                                 <li>
                                     <div class="checkbox-input {{ isset($social[1][3]) ? 'has-warning' : (isset($social[1][1]) ? ($social[1][1]['user'] ? 'has-success' : null) : null) }}">
-                                        <input type="text" class="form-control" placeholder="Jook" value="{{ isset($social[1][1])?$social[1][1]['url']:null }}">
+                                        <input type="text" class="form-control" name="1" placeholder="Jook" value="{{ isset($social[1][1])?$social[1][1]['url']:null }}">
                                         <span class="help-inline">{{ isset($social[1][3]['url']) ? '* '.$social[1][3]['url'] : null }}</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="checkbox-input {{ isset($social[3][3]) ? 'has-warning' : (isset($social[3][1]) ? ($social[3][1]['user'] ? 'has-success' : null) : null) }}">
-                                        <input type="text" class="form-control" placeholder="KKBox" value="{{ isset($social[3][1])?$social[3][1]['url']:null }}">
+                                        <input type="text" class="form-control" name="3" placeholder="KKBox" value="{{ isset($social[3][1])?$social[3][1]['url']:null }}">
                                         <span class="help-inline">{{ isset($social[3][3]) ? '* '.$social[3][3]['url'] : null }}</span>
                                     </div>
                                 </li>
@@ -89,7 +89,7 @@
                             <ul class="to_do">
                                 <li>
                                     <div class="checkbox-input {{ isset($social[2][3]) ? 'has-warning' : (isset($social[2][1]) ? ($social[2][1]['user'] ? 'has-success' : null) : null) }}">
-                                        <input type="text" class="form-control" placeholder="facebook" value="{{ isset($social[2][1])?$social[2][1]['url']:null }}">
+                                        <input type="text" class="form-control" name="2" placeholder="facebook" value="{{ isset($social[2][1])?$social[2][1]['url']:null }}">
                                         <span class="help-inline">{{ isset($social[2][3]) ? '* '.$social[2][3]['url'] : null }}</span>
                                     </div>
                                 </li>
@@ -176,8 +176,8 @@
         <div class="_fx _lf _btm _w100 _dsa">
             <div class="clearfix">
                 <div class="_fr">
-                    <a href="#" class="btn btn-default" role="button">Discard</a>
-                    <button type="submit" class="btn btn-info">Save Changes</button>
+                    <a href="#" class="btn btn-default" id="discard" role="button">Discard</a>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
                 </div>
             </div>
         </div>
@@ -192,21 +192,6 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Description</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Settings 1</a>
-                                </li>
-                                <li><a href="#">Settings 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
-                    </ul>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -219,50 +204,6 @@
             </div>
         </div>
 
-    </div>
-
-    <div class="row">
-
-
-        <!-- Start to do list -->
-        <div class="col-md-6 col-sm-6 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>To Do List <small>Sample tasks</small></h2>
-
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
-        <!-- End to do list -->
-
-        <!-- start of weather widget -->
-        <div class="col-md-6 col-sm-6 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>Daily active users <small>Sessions</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Settings 1</a>
-                                </li>
-                                <li><a href="#">Settings 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-
-            </div>
-
-        </div>
-        <!-- end of weather widget -->
     </div>
 
 @endif
