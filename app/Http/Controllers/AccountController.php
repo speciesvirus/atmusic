@@ -14,9 +14,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use PhpParser\Node\Scalar\MagicConst\File;
 
 
 class AccountController extends Controller
@@ -169,28 +169,50 @@ class AccountController extends Controller
 
     public function postProfile(Request $request)
     {
+        $user = Auth::user();
+
         $this->validate($request, [
             'name' => 'required|max:120',
-            'email' => 'required|email',
+            'email' => $user->email ? '' : 'required|email|unique:users',
             'gender' => 'required',
             'birth_day' => 'required',
             'birth_month' => 'required',
             'birth_year' => 'required',
         ]);
 
-        $user = Auth::user();
+        $profile = User::find($user->id);
+
+        $avatarPath = 'avatar/';
+        $avatarURL = 'http://'.$_SERVER['HTTP_HOST'].'/avatar/';
+
         $file = $request->file('avatar');
         $filename = $user->id . '.jpg';
-        $old_filename = $user->id . '.jpg';
+        //$old_filename = $user->id . '.jpg';
 
-        if (Storage::disk('components/images/avatar')->has($old_filename)) {
-            $old_file = Storage::disk('$old_filename')->get($old_filename);
-            Storage::disk('components/images/avatar')->put($filename, $old_file);
-            $update = true;
+        if (Storage::disk('local')->has($avatarPath.$filename)) {
+            Storage::delete($avatarPath.$filename);
         }
+
         if ($file) {
-            Storage::disk('components/images/avatar')->put($filename, File::get($file));
+            Storage::disk('local')->put($avatarPath.$filename, File::get($file));
+            $profile->avatar = $avatarURL.$filename;
+            //Image::make($file->getRealPath())->resize(20, 20)->save($avatarPath.$filename);
         }
+
+        if(!$user->email){
+            $profile->email = $request->email;
+        }
+
+        $profile->name = $request->name;
+        $profile->birth = $request->birth_year.'-'.$request->birth_month.'-'.$request->birth_day;
+        $profile->gender = $request->gender;
+        $profile->newsletter = $request->newsletter ? 1 : 0;
+        $result = $profile->save();
+
+//        if ($update && $old_filename !== $filename) {
+//            Storage::delete($old_filename);
+//        }
+
 //        $contact = new Contact();
 //        $contact->name = $request['name'];
 //        $contact->email = $request['email'];
@@ -199,12 +221,12 @@ class AccountController extends Controller
 //
 //        $result = $contact->save();
 //
-//        if(!$result){
-//            return redirect()->route('contact')->with('message', 'Error');
-//        }
+        if(!$result){
+            return redirect()->route('contact')->with('message', 'เกิดข้อผิดพลาด');
+        }
 
         //return redirect()->route('dashboard');
-        return redirect()->route('profile')->with('message', 'Thanks for contacting us!');
+        return redirect()->route('profile')->with('message', 'บันทึกข้อมูล');
     }
 
     public function postSaveAccount(Request $request)

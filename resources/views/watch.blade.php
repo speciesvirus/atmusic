@@ -48,7 +48,7 @@
 
     <div id="navmenu" class="side-menu -left -active shadow-z-2">
 
-        <h5>{{ $result['title'] }}</h5>
+        <p>{{ $result['title'] }}</p>
         <ul class="watch-content">
 
             <li>
@@ -696,7 +696,6 @@
                     'modestbranding' : 1,
                     'rel' : 0,
                     'showinfo' : 0,
-                    'playlist' : 'taJ60kskkns,FG0fTKAqZ5g'
                 }
             });
         }

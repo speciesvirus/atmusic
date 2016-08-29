@@ -25,20 +25,20 @@
         <div class="container">
             <div class="row-fluid">
 
-                @if(Session::has('message'))
-                    <div class="page-header">
-                        <div class="alert alert-info">
-                            <h2>{{Session::get('message')}}</h2>
-                        </div>
-                    </div>
-                @endif
 
-                <form class="form-horizontal" action="{{ route('post.profile') }}" method="post">
+                <form class="form-horizontal" action="{{ route('post.profile') }}" method="post" enctype="multipart/form-data">
 
                     <fieldset>
                         <div id="legend">
                             <legend class="page-header">Profile</legend>
                         </div>
+
+
+                        @if(Session::has('message'))
+                            <div class="alert alert-info">
+                                <h5>{{Session::get('message')}}</h5>
+                            </div>
+                        @endif
 
 
 
@@ -64,7 +64,7 @@
                         <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                             <label for="name" class="col-sm-2 control-label">Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="name" placeholder="Name" value="{{ Auth::user()->name }}">
+                                <input type="text" class="form-control" name="name" placeholder="Name" value="{{ Auth::user()->name ? Auth::user()->name : old('name') }}">
                                 <span class="help-inline">{{ $errors->has('name') ? $errors->first('name') : '' }}</span>
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                         <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                             <label for="email" class="col-sm-2 control-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" name="email" placeholder="Email" value="{{ Auth::user()->email }}" {{ Auth::user()->email ? 'disabled' : '' }}>
+                                <input type="email" class="form-control" name="email" placeholder="Email" value="{{ Auth::user()->email ? Auth::user()->email : old('email') }}" {{ Auth::user()->email ? 'disabled' : '' }}>
                                 <span class="help-inline">{{ $errors->has('email') ? $errors->first('email') : '' }}</span>
                             </div>
                         </div>
@@ -244,8 +244,8 @@
 
                 reader.onload = function (e) {
                     $('#img-uploaded').attr('src', e.target.result);
-                    //$('input.img-path').val(tmppath);
-                }
+                    $('input[name="avatar"]').val(tmppath);
+                };
 
                 reader.readAsDataURL(input.files[0]);
             }
