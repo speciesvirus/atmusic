@@ -25,8 +25,15 @@
         <div class="container">
             <div class="row-fluid">
 
-                <form class="form-horizontal" action="{{ route('account.signup') }}" method="post">
+                @if(Session::has('message'))
+                    <div class="page-header">
+                        <div class="alert alert-info">
+                            <h2>{{Session::get('message')}}</h2>
+                        </div>
+                    </div>
+                @endif
 
+                <form class="form-horizontal" action="{{ route('post.profile') }}" method="post">
 
                     <fieldset>
                         <div id="legend">
@@ -45,7 +52,7 @@
 
                                 </div>
 
-                                <input type="file" name="photo" id="imgInp" class="uploader form-control">
+                                <input type="file" name="avatar" class="uploader form-control">
 
 
                                 {{--<input type="text" class="img-path" placeholder="Imgender Path">--}}
@@ -57,37 +64,44 @@
                         <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                             <label for="name" class="col-sm-2 control-label">Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ old('name') }}">
+                                <input type="text" class="form-control" name="name" placeholder="Name" value="{{ Auth::user()->name }}">
                                 <span class="help-inline">{{ $errors->has('name') ? $errors->first('name') : '' }}</span>
                             </div>
                         </div>
 
-
                         <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                             <label for="email" class="col-sm-2 control-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
+                                <input type="email" class="form-control" name="email" placeholder="Email" value="{{ Auth::user()->email }}" {{ Auth::user()->email ? 'disabled' : '' }}>
                                 <span class="help-inline">{{ $errors->has('email') ? $errors->first('email') : '' }}</span>
                             </div>
                         </div>
+
                         <div class="form-group {{ $errors->has('gender') ? 'has-error' : '' }}">
                             <label for="gender" class="col-sm-2 control-label">gender</label>
                             <div class="col-sm-10">
-                                <select class="form-control" id="gender" name="gender">
-                                    <option value="1">ชาย</option>
-                                    <option value="2">หญิง</option>
+                                <select class="form-control" name="gender">
+                                    @if(!Auth::user()->gender)
+                                        <option value="">เพศ</option>
+                                    @endif
+                                    <option value="1" {{ Auth::user()->gender == 1 ? "selected" : null}}>ชาย</option>
+                                    <option value="2" {{ Auth::user()->gender == 2 ? "selected" : null}}>หญิง</option>
                                 </select>
                                 <span class="help-inline">{{ $errors->has('gender') ? $errors->first('gender') : '' }}</span>
                             </div>
                         </div>
-                        <div class="form-group {{ $errors->has('birth') ? 'has-error' : '' }}">
+
+                        <div class="form-group {{ $errors->has('birth_day') ? 'has-error' : $errors->has('birth_month') ? 'has-error' : $errors->has('birth_year') ? 'has-error' : '' }}">
                             <label class="col-sm-2 control-label">date of birth</label>
                             <div class="col-sm-10">
 
 
                                 <div class="form-inline">
-                                    <div class="form-group form-group-birth">
-                                        <select class="form-control form-control-birth" name="expiry-year">
+                                    <div class="form-group form-group-birth {{ $errors->has('birth_day') ? 'has-error' : '' }}">
+                                        <select class="form-control form-control-birth" name="birth_day">
+                                            @if(!Auth::user()->birth)
+                                                <option value="">วัน</option>
+                                            @endif
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -121,9 +135,11 @@
                                             <option value="31">31</option>
                                         </select>
                                     </div>
-                                    <div class="form-group form-group-birth">
-                                        <select class="form-control form-control-birth col-sm-2" name="expiry-month" id="expiry-month">
-                                            <option>Month</option>
+                                    <div class="form-group form-group-birth {{ $errors->has('birth_month') ? 'has-error' : '' }}">
+                                        <select class="form-control form-control-birth col-sm-2" name="birth_month">
+                                            @if(!Auth::user()->birth)
+                                                <option value="">เดือน</option>
+                                            @endif
                                             <option value="01">Jan (01)</option>
                                             <option value="02">Feb (02)</option>
                                             <option value="03">Mar (03)</option>
@@ -138,19 +154,16 @@
                                             <option value="12">Dec (12)</option>
                                         </select>
                                     </div>
-                                    <div class="form-group form-group-birth">
-                                        <select class="form-control form-control-birth" name="expiry-year">
-                                            <option value="13">2013</option>
-                                            <option value="14">2014</option>
-                                            <option value="15">2015</option>
-                                            <option value="16">2016</option>
-                                            <option value="17">2017</option>
-                                            <option value="18">2018</option>
-                                            <option value="19">2019</option>
-                                            <option value="20">2020</option>
-                                            <option value="21">2021</option>
-                                            <option value="22">2022</option>
-                                            <option value="23">2023</option>
+                                    <div class="form-group form-group-birth {{ $errors->has('birth_year') ? 'has-error' : '' }}">
+                                        <select class="form-control form-control-birth" name="birth_year">
+                                            @if(!Auth::user()->birth)
+                                                <option value="">ปี</option>
+                                            @endif
+
+                                            @for($i = 1950; $i <= 2000; $i++)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
+
                                         </select>
                                     </div>
                                 </div>
@@ -174,7 +187,7 @@
                             <div class="col-sm-offset-2 col-sm-10">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="newsletter"> subscribe to newsletter
+                                        <input type="checkbox" name="newsletter" {{ Auth::user()->newsletter ? 'checked' : '' }}> subscribe to newsletter
                                     </label>
                                 </div>
                             </div>
@@ -242,6 +255,17 @@
             readURL(this);
         });
 
+
+
+        @if(Auth::user()->birth)
+
+        var $d = new Date("{{ Auth::user()->birth }}");
+            $("select[name='birth_day'] > option[value=" + $d.getDate() + "]").attr("selected",true);
+            $("select[name='birth_month'] > option[value=" + ( $d.getMonth() + 1 ) + "]").attr("selected",true);
+            $("select[name='birth_year'] > option[value=" + $d.getFullYear() + "]").attr("selected",true);
+
+
+        @endif
 
     </script>
 

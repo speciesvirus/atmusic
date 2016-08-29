@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Laravel\Socialite\Contracts\Provider;
 use Laravel\Socialite\Contracts\User as ProviderUser;
 
@@ -19,8 +20,7 @@ class SocialAccountService
             ->first();
 
         if ($account) {
-            DB::table('users')
-                ->where('id', $account->user->id)
+            User::where('id', $account->user->id)
                 ->update(['token' => $providerUser->token]);
             return $account->user;
         } else {

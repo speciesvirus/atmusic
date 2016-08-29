@@ -83,6 +83,7 @@ Route::post('/service/video/post/{video?}', [
 ]);
 
 
+
 Route::get('/account', [
     'uses' => 'AccountController@getAccount',
     'as' => 'account'
@@ -113,6 +114,12 @@ Route::post('/service/account/signin', [
     'uses' => 'HomeController@postSignIn',
     'as' => 'account.signin'
 ]);
+
+Route::post('/service/video/post/{video?}', [
+    'uses' => 'AccountController@postProfile',
+    'as' => 'post.profile'
+]);
+
 
 
 

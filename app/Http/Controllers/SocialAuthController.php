@@ -98,7 +98,7 @@ class SocialAuthController extends Controller
         // Important change from previous post is that I'm now passing
         // whole driver, not only the user. So no more ->user() part
         $user = $service->createOrGetUser(Socialite::driver($provider)->scopes([
-                'email', 'public_profile', 'user_friends'
+                'email', 'public_profile', 'user_friends', 'user_birthday'
         ]));
 
         //return dd($user);

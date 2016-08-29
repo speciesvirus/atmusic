@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\VideoFeature;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -97,17 +99,17 @@ class HomeController extends Controller
 //        $videos = DB::table('features')->join('videos', 'videos.id', '=', 'features.video')
 //            ->where('recommend', 1)->orWhere('hit', 1)->select('video','recommend','hit')->get();
 
-        $videos = DB::table('features')->where('recommend', 1)->orWhere('hit', 1)->select('video','recommend','hit')->get();
+        $videos = VideoFeature::select('video','feature')->where('status', 1)->get();
 
         foreach ($videos as $video) {
             //echo $title;
 
-            if($video->recommend == 1){
+            if($video->feature == 1){
 
                 try {
 
                     $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
-                        'id' => $video->watch,
+                        'id' => $video->video,
                     ));
 
                     foreach ($videosResponse['items'] as $videoResult) {
@@ -142,12 +144,12 @@ class HomeController extends Controller
             }
 
 
-            if($video->hit == 1){
+            if($video->feature == 2){
 
                 try {
 
                     $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
-                        'id' => $video->watch,
+                        'id' => $video->video,
                     ));
 
                     foreach ($videosResponse['items'] as $videoResult) {

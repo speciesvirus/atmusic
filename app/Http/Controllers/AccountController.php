@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use PhpParser\Node\Scalar\MagicConst\File;
 
 
 class AccountController extends Controller
@@ -137,6 +138,17 @@ class AccountController extends Controller
         $st_social = SocialView::where('user', $user->id)->where('created_at', '<=', Carbon::now()->addDay(-1))
             ->where('created_at', '!=', "0000-00-00 00:00:00")->count();
 
+
+//        "select
+//( select count(*) from `video_socials` where `user` = 1 and `status` = 1  ) st1,
+//( select count(*) from `video_socials` where `user` = 1 and `status` = 2  ) st2,
+//( select count(*) from `video_socials` where `user` = 1 and `status` = 3  ) st3,
+//( select count(*) from `user_views` where `user` = 1 and `created_at` = '2016-08-29 02:51:35'  ) st4,
+//( select count(*) from `social_views` where `user` = 1 ) st5,
+//( select count(*) from `user_views` where `user` = 1 and `created_at` <= '2016-08-28 02:51:35' and `created_at` != '0000-00-00 00:00:00' ) st6,
+//( select count(*) from `social_views` where `user` = 1 and `created_at` <= '2016-08-28 02:51:35' and `created_at` != '0000-00-00 00:00:00' ) st7"
+
+
         $statuses = [
             "approved" => number_format($st1),
             "disapprove" => number_format($st2),
@@ -153,6 +165,46 @@ class AccountController extends Controller
     public function getProfile()
     {
         return view('account.profile', ['user' => Auth::user()]);
+    }
+
+    public function postProfile(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:120',
+            'email' => 'required|email',
+            'gender' => 'required',
+            'birth_day' => 'required',
+            'birth_month' => 'required',
+            'birth_year' => 'required',
+        ]);
+
+        $user = Auth::user();
+        $file = $request->file('avatar');
+        $filename = $user->id . '.jpg';
+        $old_filename = $user->id . '.jpg';
+
+        if (Storage::disk('components/images/avatar')->has($old_filename)) {
+            $old_file = Storage::disk('$old_filename')->get($old_filename);
+            Storage::disk('components/images/avatar')->put($filename, $old_file);
+            $update = true;
+        }
+        if ($file) {
+            Storage::disk('components/images/avatar')->put($filename, File::get($file));
+        }
+//        $contact = new Contact();
+//        $contact->name = $request['name'];
+//        $contact->email = $request['email'];
+//        $contact->phone = $request['phone'];
+//        $contact->message = $request['message'];
+//
+//        $result = $contact->save();
+//
+//        if(!$result){
+//            return redirect()->route('contact')->with('message', 'Error');
+//        }
+
+        //return redirect()->route('dashboard');
+        return redirect()->route('profile')->with('message', 'Thanks for contacting us!');
     }
 
     public function postSaveAccount(Request $request)
@@ -193,25 +245,19 @@ class AccountController extends Controller
 
     public static function ranks($i){
 
-        switch ($i) {
+        switch (true) {
             case $i >= 1000000:
                 return "Legendary";
-                break;
             case $i >= 500000:
                 return "Extreme";
-                break;
             case $i >= 250000:
                 return "Superior";
-                break;
             case $i >= 125000:
                 return "Legendary";
-                break;
             case $i >= 67500:
                 return "Senior";
-                break;
             case $i >= 30000:
                 return "Junior";
-                break;
             default:
                 return "User";
         }
