@@ -115,10 +115,6 @@ Route::post('/service/account/signin', [
     'as' => 'account.signin'
 ]);
 
-Route::post('/service/video/post/{video?}', [
-    'uses' => 'AccountController@postProfile',
-    'as' => 'post.profile'
-]);
 
 
 

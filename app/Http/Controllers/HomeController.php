@@ -95,11 +95,14 @@ class HomeController extends Controller
 
         $recommend = [];
         $hit = [];
-
+        $movie = [];
+        $funny = [];
+        $food = [];
+        $troll = [];
 //        $videos = DB::table('features')->join('videos', 'videos.id', '=', 'features.video')
 //            ->where('recommend', 1)->orWhere('hit', 1)->select('video','recommend','hit')->get();
 
-        $videos = VideoFeature::select('video','feature')->where('status', 1)->get();
+        $videos = VideoFeature::select('video','feature')->where('status', 1)->orderBy('created_at', 'desc')->get();
 
         foreach ($videos as $video) {
             //echo $title;
@@ -183,10 +186,170 @@ class HomeController extends Controller
 
             }
 
+            if($video->feature == 4){
+
+                try {
+
+                    $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
+                        'id' => $video->video,
+                    ));
+
+                    foreach ($videosResponse['items'] as $videoResult) {
+
+                        $rate = $this->rateVideo($videoResult['statistics']['likeCount'],$videoResult['statistics']['dislikeCount'],5,1);
+
+                        $snippet = [
+                            "id"            => $videoResult['id'],
+                            "title"         => $videoResult['snippet']['title'],
+                            "channelTitle"  => $videoResult['snippet']['channelTitle'],
+                            "description"   => $this->descriptionVideo($videoResult['snippet']['description']),
+                            "publishedAt"   => $this->timeAgo($videoResult['snippet']['publishedAt']),
+                            "viewCount"     => number_format($videoResult['statistics']['viewCount']),
+                            "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
+                            "thumbnailsSD"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/mqdefault.jpg',
+                            "rate"          => $rate
+                        ];
+
+                        array_push($movie,$snippet);
+
+                    }
+
+
+                } catch (Google_Service_Exception $e) {
+                    return response()->json(['page' => $e], 200);
+                    //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
+                } catch (Google_Exception $e) {
+                    return response()->json(['page' => $e], 200);
+                    //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
+                }
+
+            }
+
+            if($video->feature == 5){
+
+                try {
+
+                    $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
+                        'id' => $video->video,
+                    ));
+
+                    foreach ($videosResponse['items'] as $videoResult) {
+
+                        $rate = $this->rateVideo($videoResult['statistics']['likeCount'],$videoResult['statistics']['dislikeCount'],5,1);
+
+                        $snippet = [
+                            "id"            => $videoResult['id'],
+                            "title"         => $videoResult['snippet']['title'],
+                            "channelTitle"  => $videoResult['snippet']['channelTitle'],
+                            "description"   => $this->descriptionVideo($videoResult['snippet']['description']),
+                            "publishedAt"   => $this->timeAgo($videoResult['snippet']['publishedAt']),
+                            "viewCount"     => number_format($videoResult['statistics']['viewCount']),
+                            "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
+                            "thumbnailsSD"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/mqdefault.jpg',
+                            "rate"          => $rate
+                        ];
+
+                        array_push($funny,$snippet);
+
+                    }
+
+
+                } catch (Google_Service_Exception $e) {
+                    return response()->json(['page' => $e], 200);
+                    //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
+                } catch (Google_Exception $e) {
+                    return response()->json(['page' => $e], 200);
+                    //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
+                }
+
+            }
+
+            if($video->feature == 7){
+
+                try {
+
+                    $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
+                        'id' => $video->video,
+                    ));
+
+                    foreach ($videosResponse['items'] as $videoResult) {
+
+                        $rate = $this->rateVideo($videoResult['statistics']['likeCount'],$videoResult['statistics']['dislikeCount'],5,1);
+
+                        $snippet = [
+                            "id"            => $videoResult['id'],
+                            "title"         => $videoResult['snippet']['title'],
+                            "channelTitle"  => $videoResult['snippet']['channelTitle'],
+                            "description"   => $this->descriptionVideo($videoResult['snippet']['description']),
+                            "publishedAt"   => $this->timeAgo($videoResult['snippet']['publishedAt']),
+                            "viewCount"     => number_format($videoResult['statistics']['viewCount']),
+                            "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
+                            "thumbnailsSD"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/mqdefault.jpg',
+                            "rate"          => $rate
+                        ];
+
+                        array_push($food,$snippet);
+
+                    }
+
+
+                } catch (Google_Service_Exception $e) {
+                    return response()->json(['page' => $e], 200);
+                    //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
+                } catch (Google_Exception $e) {
+                    return response()->json(['page' => $e], 200);
+                    //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
+                }
+
+            }
+
+            if($video->feature == 6){
+
+                try {
+
+                    $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
+                        'id' => $video->video,
+                    ));
+
+                    foreach ($videosResponse['items'] as $videoResult) {
+
+                        $rate = $this->rateVideo($videoResult['statistics']['likeCount'],$videoResult['statistics']['dislikeCount'],5,1);
+
+                        $snippet = [
+                            "id"            => $videoResult['id'],
+                            "title"         => $videoResult['snippet']['title'],
+                            "channelTitle"  => $videoResult['snippet']['channelTitle'],
+                            "description"   => $this->descriptionVideo($videoResult['snippet']['description']),
+                            "publishedAt"   => $this->timeAgo($videoResult['snippet']['publishedAt']),
+                            "viewCount"     => number_format($videoResult['statistics']['viewCount']),
+                            "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
+                            "thumbnailsSD"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/mqdefault.jpg',
+                            "rate"          => $rate
+                        ];
+
+                        array_push($troll,$snippet);
+
+                    }
+
+
+                } catch (Google_Service_Exception $e) {
+                    return response()->json(['page' => $e], 200);
+                    //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
+                } catch (Google_Exception $e) {
+                    return response()->json(['page' => $e], 200);
+                    //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
+                }
+
+            }
+
 
             $result = [
                 "recommend"    => $recommend,
-                "hit"          => $hit
+                "hit"          => $hit,
+                "movie"          => $movie,
+                "funny"          => $funny,
+                "food"          => $food,
+                "troll"          => $troll
             ];
 
 

@@ -108,7 +108,7 @@
                     @php $i = true @endphp
                     @foreach($socials as $social)
                         @if($social->group == 3)
-                            <a href="{{ asset('social/v/'.$social->id.'/'.Session::token()) }}" target="_blank" class="icon-button">{{ $social->name }}</a>
+                            <a href="{{ asset('social/v/'.$social->id.'/'.Session::token()) }}" target="_blank" class="icon-button"><img src="{{ asset($social->image) }}"></a>
                             @php $i = false @endphp
                         @endif
                     @endforeach
@@ -335,8 +335,9 @@
                                     </span>
                             </div>
                             <section id="play-progress-container" class="middle-center-container slider-bars">
-                                <div id="progress-behind"> </div>
+
                                 <div id="video-progress" class="slider-drag" data-min-range="0"> </div>
+                                <div id="progress-behind"> </div>
                             </section>
                         </div>
                     </div>
@@ -363,6 +364,7 @@
                                     <div id="video-volume" class="middle-center-container slider-container">
                                         <section id="vl-container" class="middle-center-container slider-bars">
                                             <div id="vl-progress" class="slider-drag" data-min-range="5"> </div>
+                                            <div id="vl-progress-behind"> </div>
                                         </section>
                                     </div>
                                 </div>
@@ -483,7 +485,8 @@
 
                 $volume.css({
                     "left": (position.left - (($volume.width() / 2) - ($con.width() / 2))) + "px",
-                    "top": (position.top - $volume.height()) - 10 + "px"
+                    //"top": (position.top - $volume.height()) - 10 + "px"
+                    "top": (position.top - $volume.height()) + 10 + "px"
                 });
 
                 var $volume = $('.tray-menu'),

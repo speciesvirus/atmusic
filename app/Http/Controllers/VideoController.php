@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Social;
 use App\SocialView;
 use App\VideoSocial;
 use Illuminate\Http\Request;
@@ -172,9 +173,9 @@ class VideoController extends Controller
     {
 
         $user = Auth::user();
-        $req = DB::table('video_socials')->where('video', $request->video)->where('status', 3)->where('user', $user->id)->get();
+        $req = VideoSocial::where('video', $request->video)->where('status', 3)->where('user', $user->id)->get();
 
-        if($req != null){
+        if($req->count()){
             return redirect()->route('account')->with('code', 1)->with('message', 'ไม่สามารถเพิ่มคำขอได้เนื่องจาก คำขอของคุณอยู่ในระหว่างดำเนินการ');
         }
 
@@ -182,7 +183,7 @@ class VideoController extends Controller
 //            ->leftJoin('video_socials', 'video_socials.social', '=', 'socials.id')
 //            ->where('video_socials.video', $request->video)->where('video_socials.status', 1)->get();
 
-        $socials = DB::table('socials')->select('socials.id', 'video_socials.url')
+        $socials = Social::select('socials.id', 'video_socials.url')
             ->leftJoin(DB::raw('(SELECT `video_socials`.`social`,`video_socials`.`url` FROM video_socials where `video_socials`.`video` = "'.$request->video.'" and `video_socials`.`status` = 1) as video_socials'), function ($join) {
                 $join->on('video_socials.social', '=', 'socials.id');
             })->get();

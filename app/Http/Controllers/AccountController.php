@@ -209,18 +209,6 @@ class AccountController extends Controller
         $profile->newsletter = $request->newsletter ? 1 : 0;
         $result = $profile->save();
 
-//        if ($update && $old_filename !== $filename) {
-//            Storage::delete($old_filename);
-//        }
-
-//        $contact = new Contact();
-//        $contact->name = $request['name'];
-//        $contact->email = $request['email'];
-//        $contact->phone = $request['phone'];
-//        $contact->message = $request['message'];
-//
-//        $result = $contact->save();
-//
         if(!$result){
             return redirect()->route('contact')->with('message', 'เกิดข้อผิดพลาด');
         }

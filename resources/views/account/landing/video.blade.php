@@ -46,19 +46,20 @@
                             <ul class="to_do">
                                 <li>
                                     <div class="checkbox-input {{ isset($social[1][3]) ? 'has-warning' : (isset($social[1][1]) ? ($social[1][1]['user'] ? 'has-success' : null) : null) }}">
-                                        <input type="text" class="form-control" name="1" placeholder="Jook" value="{{ isset($social[1][1])?$social[1][1]['url']:null }}">
+                                        <input type="text" class="form-control" name="1" placeholder="Joox" value="{{ isset($social[1][1])?$social[1][1]['url']:null }}">
                                         <span class="help-inline">{{ isset($social[1][3]['url']) ? '* '.$social[1][3]['url'] : null }}</span>
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="checkbox-input {{ isset($social[3][3]) ? 'has-warning' : (isset($social[3][1]) ? ($social[3][1]['user'] ? 'has-success' : null) : null) }}">
-                                        <input type="text" class="form-control" name="3" placeholder="KKBox" value="{{ isset($social[3][1])?$social[3][1]['url']:null }}">
-                                        <span class="help-inline">{{ isset($social[3][3]) ? '* '.$social[3][3]['url'] : null }}</span>
+                                    <div class="checkbox-input {{ isset($social[2][3]) ? 'has-warning' : (isset($social[2][1]) ? ($social[2][1]['user'] ? 'has-success' : null) : null) }}">
+                                        <input type="text" class="form-control" name="2" placeholder="KKBox" value="{{ isset($social[2][1])?$social[2][1]['url']:null }}">
+                                        <span class="help-inline">{{ isset($social[2][3]) ? '* '.$social[2][3]['url'] : null }}</span>
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="checkbox-input">
-                                        <input type="text" class="form-control" placeholder="iTunes">
+                                    <div class="checkbox-input {{ isset($social[3][3]) ? 'has-warning' : (isset($social[3][1]) ? ($social[3][1]['user'] ? 'has-success' : null) : null) }}">
+                                        <input type="text" class="form-control" name="3" placeholder="iTunes" value="{{ isset($social[3][1])?$social[3][1]['url']:null }}">
+                                        <span class="help-inline">{{ isset($social[3][3]) ? '* '.$social[3][3]['url'] : null }}</span>
                                     </div>
                                 </li>
                                 {{--<li>--}}
@@ -80,7 +81,7 @@
 
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Media</h2>
+                        <h2>Music</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -88,25 +89,23 @@
                         <div class="">
                             <ul class="to_do">
                                 <li>
-                                    <div class="checkbox-input {{ isset($social[2][3]) ? 'has-warning' : (isset($social[2][1]) ? ($social[2][1]['user'] ? 'has-success' : null) : null) }}">
-                                        <input type="text" class="form-control" name="2" placeholder="facebook" value="{{ isset($social[2][1])?$social[2][1]['url']:null }}">
-                                        <span class="help-inline">{{ isset($social[2][3]) ? '* '.$social[2][3]['url'] : null }}</span>
+                                    <div class="checkbox-input {{ isset($social[7][3]) ? 'has-warning' : (isset($social[7][1]) ? ($social[7][1]['user'] ? 'has-success' : null) : null) }}">
+                                        <input type="text" class="form-control" name="7" placeholder="Chord Tab" value="{{ isset($social[7][1])?$social[7][1]['url']:null }}">
+                                        <span class="help-inline">{{ isset($social[7][3]) ? '* '.$social[7][3]['url'] : null }}</span>
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="checkbox-input">
-                                        <input type="text" class="form-control" placeholder="google plus">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="checkbox-input">
-                                        <input type="text" class="form-control" placeholder="twitter">
+                                    <div class="checkbox-input {{ isset($social[8][3]) ? 'has-warning' : (isset($social[8][1]) ? ($social[8][1]['user'] ? 'has-success' : null) : null) }}">
+                                        <input type="text" class="form-control" name="8" placeholder="SiamZone" value="{{ isset($social[8][1])?$social[8][1]['url']:null }}">
+                                        <span class="help-inline">{{ isset($social[8][3]) ? '* '.$social[8][3]['url'] : null }}</span>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
+
+
             </div>
             <!-- End to do list -->
 
@@ -117,54 +116,37 @@
                         <h2>Social</h2>
                         <div class="clearfix"></div>
                     </div>
+
                     <div class="x_content">
 
                         <div class="">
                             <ul class="to_do">
                                 <li>
-                                    <div class="checkbox-input">
-                                        <input type="text" class="form-control" placeholder="Jook">
+                                    <div class="checkbox-input {{ isset($social[4][3]) ? 'has-warning' : (isset($social[4][1]) ? ($social[4][1]['user'] ? 'has-success' : null) : null) }}">
+                                        <input type="text" class="form-control" name="4" placeholder="Facebook" value="{{ isset($social[4][1])?$social[4][1]['url']:null }}">
+                                        <span class="help-inline">{{ isset($social[4][3]) ? '* '.$social[4][3]['url'] : null }}</span>
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="checkbox-input">
-                                        <input type="text" class="form-control" placeholder="KKBox">
+                                    <div class="checkbox-input {{ isset($social[5][3]) ? 'has-warning' : (isset($social[5][1]) ? ($social[5][1]['user'] ? 'has-success' : null) : null) }}">
+                                        <input type="text" class="form-control" name="5" placeholder="Google" value="{{ isset($social[5][1])?$social[5][1]['url']:null }}">
+                                        <span class="help-inline">{{ isset($social[5][3]) ? '* '.$social[5][3]['url'] : null }}</span>
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="checkbox-input">
-                                        <input type="text" class="form-control" placeholder="iTunes">
+                                    <div class="checkbox-input {{ isset($social[6][3]) ? 'has-warning' : (isset($social[6][1]) ? ($social[6][1]['user'] ? 'has-success' : null) : null) }}">
+                                        <input type="text" class="form-control" name="6" placeholder="Twitter" value="{{ isset($social[6][1])?$social[6][1]['url']:null }}">
+                                        <span class="help-inline">{{ isset($social[6][3]) ? '* '.$social[6][3]['url'] : null }}</span>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </div>
+
+
                 </div>
 
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Music</h2>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
 
-                        <div class="">
-                            <ul class="to_do">
-                                <li>
-                                    <div class="checkbox-input">
-                                        <input type="text" class="form-control" placeholder="Chord Tab">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="checkbox-input">
-                                        <input type="text" class="form-control" placeholder="SiamZone">
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- end of weather widget -->
 

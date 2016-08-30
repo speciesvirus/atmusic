@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Social;
 use App\UserView;
 use Illuminate\Http\Request;
 
@@ -88,7 +89,6 @@ class SearchController extends Controller
                 'id' => $id,
             ));
 
-
             foreach ($videosResponse['items'] as $videoResult) {
 
                 $result = [
@@ -117,7 +117,7 @@ class SearchController extends Controller
         }
 
 
-        $socials = DB::table('socials')->select('video_socials.id', 'socials.image', 'socials.name', 'socials.group')
+        $socials = Social::select('video_socials.id', 'socials.image', 'socials.name', 'socials.group')
             ->join('video_socials', 'video_socials.social', '=', 'socials.id')
             ->where('video_socials.video', $id)->where('video_socials.status', 1)->get();
 
