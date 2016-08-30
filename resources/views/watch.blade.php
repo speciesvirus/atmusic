@@ -21,9 +21,12 @@
     <meta property="og:video:width" content="1280">
     <meta property="og:video:height" content="720">
 
+    @if($result['tags'])
     @foreach($result['tags'] as $tag)
 <meta property="og:video:tag" content="{{ $tag }}">
     @endforeach
+    @endif
+
 
     <meta name="twitter:card" content="player">
     <meta name="twitter:site" content="@youtube">
@@ -332,6 +335,7 @@
                                     </span>
                             </div>
                             <section id="play-progress-container" class="middle-center-container slider-bars">
+                                <div id="progress-behind"> </div>
                                 <div id="video-progress" class="slider-drag" data-min-range="0"> </div>
                             </section>
                         </div>

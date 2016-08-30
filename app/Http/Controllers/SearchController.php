@@ -202,6 +202,7 @@ class SearchController extends Controller
             //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
         }
 
+
         // all good so return the token
 //        return response()->json(['page' => $searchResponse->toSimpleObject()], 200);
 

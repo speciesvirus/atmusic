@@ -932,13 +932,11 @@ body {
 
 .play-console{
     display: inline-block;
-    cursor: pointer;
     float: left;
     padding: 0 20px;
 }
 .play-console > div{
     display: inline-block;
-    cursor: pointer;
     float: left;
 }
 .play-console .back svg, .play-console .forward svg{
@@ -1062,17 +1060,72 @@ body {
 
 /*}*/
 
+.ui-widget.ui-widget-content {
+    background: none;
+    border: none;
+}
+
 .slider-container .slider-bars .slider-drag{
     margin-top: 13px;
     height: 3px;
     width: 100%;
-    border: solid 1px rgba(207,65,60,0.1);
+    /*border: solid 1px rgba(207,65,60,0.1);*/
     position: absolute;
     top: 0;
     bottom: 0;
     margin: auto 0;
     cursor: pointer;
 }
+.slider-container .slider-bars .slider-drag:before{
+    content: ' ';
+    height: 33px;
+    width: 104%;
+    left: -2%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    cursor: pointer;
+}
+
+#progress-behind{
+    height: 3px;
+    width: 100%;
+    background: rgba(255,255,255,0.5);
+    /*border: solid 1px rgba(207,65,60,0.1);*/
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+
+.slider-container .slider-bars .slider-drag:hover + #progress-behind{
+    -ms-transform: scale(1,3);
+    -webkit-transform: scale(1,3);
+    transform: scale(1,3);
+    border-radius: 0;
+}
+
+/*.slider-container .slider-bars .slider-drag:hover .ui-slider-handle {*/
+
+    /*-ms-transform: scale(1,0.6);*/
+    /*-webkit-transform: scale(1,0.6);*/
+    /*transform: scale(1,0.6);*/
+
+/*}*/
+
+/*#progress-behind{*/
+    /*height: 3px;*/
+    /*width: 100%;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*margin: auto 0;*/
+    /*background-color: rgba(255,255,255,0.5);*/
+    /*-ms-transform: scale(1,4);*/
+    /*-webkit-transform: scale(1,4);*/
+    /*transform: scale(1,4);*/
+/*}*/
 
 
 .slider-container .slider-bars .ui-slider-handle {
@@ -1083,7 +1136,7 @@ body {
     width: 12px;
     height: 12px;
     border-radius: 6px;
-    margin-top: -1px;
+    /*margin-top: -1px;*/
     background: #fff;
 }
 
