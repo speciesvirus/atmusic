@@ -124,7 +124,7 @@
                     <h4 class="feed-topic">Top Hit</h4>
                     <div class="owl-carousel">
 
-                        @if(isset($result['recommend']))
+                        @if(isset($result['hit']))
 
                             @foreach($result['hit'] as $key => $value)
 

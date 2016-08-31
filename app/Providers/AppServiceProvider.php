@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->composeNavigation();
     }
 
     /**
@@ -25,4 +25,10 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+
+    public function composeNavigation()
+    {
+        view()->composer('composers.headerMenu', 'App\Http\Composers\NavigationComposer');
+    }
+
 }
