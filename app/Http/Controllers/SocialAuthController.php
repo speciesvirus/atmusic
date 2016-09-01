@@ -6,6 +6,7 @@ use App\SocialAccountService;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Log;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialAuthController extends Controller
@@ -95,6 +96,7 @@ class SocialAuthController extends Controller
 
     public function callback(SocialAccountService $service, $provider)
     {
+        Log::info('aaaa');
         // Important change from previous post is that I'm now passing
         // whole driver, not only the user. So no more ->user() part
         $user = $service->createOrGetUser(Socialite::driver($provider)->scopes([

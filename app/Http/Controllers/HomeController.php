@@ -137,6 +137,7 @@ class HomeController extends Controller
                     }
 
 
+
                 } catch (Google_Service_Exception $e) {
                     return response()->json(['page' => $e], 200);
                     //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
@@ -562,11 +563,11 @@ class HomeController extends Controller
      * description video
      *
      * @param  string  $str
-     * @return \Illuminate\Http\Response
+     * @return static
      */
     public function descriptionVideo($str)
     {
-        return strlen($str) > 130 ? substr($str,0,130) ." ..." : $str;
+        return strlen($str) >= 190 ? mb_substr($str,0,190, 'UTF-8') .'...' : $str;
     }
 
 

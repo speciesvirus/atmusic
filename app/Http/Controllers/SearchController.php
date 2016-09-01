@@ -100,7 +100,8 @@ class SearchController extends Controller
                     "viewCount"     => number_format($videoResult['statistics']['viewCount']),
                     "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
                     "thumbnailsSD"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/mqdefault.jpg',
-                    "tags"           => $videoResult['snippet']['tags'],
+                    "tags"          => $videoResult['snippet']['tags'],
+                    "keywords"      => $this->keywords($videoResult['snippet']['tags']),
                 ];
 
             }
@@ -478,7 +479,24 @@ class SearchController extends Controller
         }
     }
 
-
+    /**
+     * @param $videoResult
+     * @return mixed
+     */
+    public function keywords($videoResult)
+    {
+        $words = '';
+        $i = true;
+        foreach($videoResult as $word){
+            if($i){
+                $words .=  ''.$word;
+            }else{
+                $words .=  ', '.$word;
+            }
+            $i = false;
+        }
+        return $words;
+    }
 
 
 }

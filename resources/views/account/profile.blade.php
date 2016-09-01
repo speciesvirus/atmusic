@@ -2,9 +2,6 @@
 
 @section('title', 'unbok')
 
-@section('facebook-meta')
-
-@stop
 
 @section('source')
 

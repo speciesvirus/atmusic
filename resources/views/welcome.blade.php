@@ -93,16 +93,15 @@
                                         <h2>{{ $value['viewCount'] }} views {{ $value['publishedAt'] }}</h2>
 
                                         <p>{{ $value['description'] }}</p>
-                                        <div class="c_info">
-                                            <span id="c_stars" data-star="{{ $value['rate'] }}"></span>
-                                            <div class="c_num">{{ $value['rate'] }}</div >
-                                        </div>
+
 
                                         <ul>
-                                            <li><i class="fa fa-eye"></i></li>
-                                            <li><i class="fa fa-heart-o"></i></li>
-                                            <li><i class="fa fa-envelope-o"></i></li>
-                                            <li><i class="fa fa-share-alt"></i></li>
+                                            <li>
+                                                <div class="c_info">
+                                                    <span id="c_stars" data-star="{{ $value['rate'] }}"></span>
+                                                    <div class="c_num">{{ $value['rate'] }}</div >
+                                                </div>
+                                            </li>
                                         </ul>
 
                                     </div>
@@ -140,16 +139,14 @@
                                         <h2>{{ $value['viewCount'] }} views {{ $value['publishedAt'] }}</h2>
 
                                         <p>{{ $value['description'] }}</p>
-                                        <div class="c_info">
-                                            <span id="c_stars" data-star="{{ $value['rate'] }}"></span>
-                                            <div class="c_num">{{ $value['rate'] }}</div >
-                                        </div>
 
                                         <ul>
-                                            <li><i class="fa fa-eye"></i></li>
-                                            <li><i class="fa fa-heart-o"></i></li>
-                                            <li><i class="fa fa-envelope-o"></i></li>
-                                            <li><i class="fa fa-share-alt"></i></li>
+                                            <li>
+                                                <div class="c_info">
+                                                    <span id="c_stars" data-star="{{ $value['rate'] }}"></span>
+                                                    <div class="c_num">{{ $value['rate'] }}</div >
+                                                </div>
+                                            </li>
                                         </ul>
 
                                     </div>
@@ -192,17 +189,28 @@
                                         <h2>{{ $value['viewCount'] }} views {{ $value['publishedAt'] }}</h2>
 
                                         <p>{{ $value['description'] }}</p>
-                                        <div class="c_info">
-                                            <span id="c_stars" data-star="{{ $value['rate'] }}"></span>
-                                            <div class="c_num">{{ $value['rate'] }}</div >
-                                        </div>
+
 
                                         <ul>
-                                            <li><i class="fa fa-eye"></i></li>
-                                            <li><i class="fa fa-heart-o"></i></li>
-                                            <li><i class="fa fa-envelope-o"></i></li>
-                                            <li><i class="fa fa-share-alt"></i></li>
+                                            <li>
+                                                <div class="c_info">
+                                                    <span id="c_stars" data-star="{{ $value['rate'] }}"></span>
+                                                    <div class="c_num">{{ $value['rate'] }}</div >
+                                                </div>
+                                            </li>
                                         </ul>
+
+                                        {{--<div class="c_info">--}}
+                                            {{--<span id="c_stars" data-star="{{ $value['rate'] }}"></span>--}}
+                                            {{--<div class="c_num">{{ $value['rate'] }}</div >--}}
+                                        {{--</div>--}}
+
+                                        {{--<ul>--}}
+                                            {{--<li><i class="fa fa-eye"></i></li>--}}
+                                            {{--<li><i class="fa fa-heart-o"></i></li>--}}
+                                            {{--<li><i class="fa fa-envelope-o"></i></li>--}}
+                                            {{--<li><i class="fa fa-share-alt"></i></li>--}}
+                                        {{--</ul>--}}
 
                                     </div>
 

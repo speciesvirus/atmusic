@@ -208,11 +208,11 @@ section:after {
     margin-top: 10px;
     bottom: 0;
     position: absolute;
-    margin-bottom: 5px;
+    /*margin-bottom: 5px;*/
 }
 
 .feed li {
-    display: inline;
+    /*display: inline;*/
     list-style: none;
     padding-right: 15px;
     color: #7B7B7B;

@@ -3,15 +3,9 @@
 <head>
     <title>@yield('title')</title>
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    {{--<meta name="google-site-verification" content="VISjwlrj-JBTlfdSHyJQu2bqklIV618wZO1_75BPC0w" />--}}
-    {{--<meta name="author" content="Awecent Co. Ltd., Thailand" />--}}
-    {{--<meta name="keywords" content="เกมส์ , เกมส์ออนไลน์ , Game Online , เกมส์มือถือ , ข่าวเกมส์ออนไลน์" />--}}
-    {{--<meta name="description" content="playing the game." />--}}
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    {{--<meta property="fb:app_id" content="500822303376396">--}}
-    <meta property="og:url"    content="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>" />
+
     <meta property="fb:app_id" content="950643235062155">
+    <meta property="og:url"    content="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>" />
     @yield('meta')
 
     <link rel="stylesheet" type="text/css" href="{{ asset("components/jquery-ui/themes/base/jquery-ui.css") }}">

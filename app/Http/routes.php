@@ -115,6 +115,10 @@ Route::post('/service/account/signin', [
     'as' => 'account.signin'
 ]);
 
+Route::post('/postProfile', [
+    'uses' => 'AccountController@postProfile',
+    'as' => 'post.profile'
+]);
 
 
 

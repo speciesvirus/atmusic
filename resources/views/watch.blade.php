@@ -1,17 +1,20 @@
 @extends('layouts.main')
 
-@section('title', 'unbok')
+@section('title', $result['title'])
 
 @section('meta')
 
-    <meta property="og:site_name" content="unbok">
-    <meta property="og:title" content="{{ $result['title'] }}">
-    <meta property="og:image" content="{{ $result['thumbnails'] == '' ? $result['thumbnailsSD'] : $result['thumbnails'] }}">
-    <meta property="og:description" content="{{ strlen($result['description']) > 157 ? preg_replace('/\s+/', ' ',trim(substr($result['description'],0,157)))."..." : trim($result['description']) }}">
+
+    <meta name="description" content="{{ strlen($result['description']) > 157 ? preg_replace('/\s+/', ' ',trim(mb_substr($result['description'],0,157, 'UTF-8')))."..." : trim($result['description']) }}">
+    <meta name="keywords" content="{{ $result['keywords'] }}">
+
+    <link rel="shortlink" href="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
 
     <meta property="og:type" content="video">
-    <meta property="og:video:url" content="https://www.youtube.com/embed/{{ $result['id'] }}">
-    <meta property="og:video:secure_url" content="https://www.youtube.com/embed/{{ $result['id'] }}">
+    <meta property="og:title" content="{{ $result['title'] }}">
+    <meta property="og:description" content="{{ strlen($result['description']) > 157 ? preg_replace('/\s+/', ' ',trim(mb_substr($result['description'],0,157, 'UTF-8')))."..." : trim($result['description']) }}">
+    <meta property="og:image" content="{{ $result['thumbnails'] == '' ? $result['thumbnailsSD'] : $result['thumbnails'] }}">
+
     <meta property="og:video:type" content="text/html">
     <meta property="og:video:width" content="1280">
     <meta property="og:video:height" content="720">
@@ -21,6 +24,7 @@
     <meta property="og:video:width" content="1280">
     <meta property="og:video:height" content="720">
 
+    <meta property="og:site_name" content="unbok">
     @if($result['tags'])
     @foreach($result['tags'] as $tag)
 <meta property="og:video:tag" content="{{ $tag }}">
@@ -32,7 +36,7 @@
     <meta name="twitter:site" content="@youtube">
     <meta name="twitter:url" content="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
     <meta name="twitter:title" content="{{ $result['title'] }}">
-    <meta name="twitter:description" content="{{ strlen($result['description']) > 157 ? preg_replace('/\s+/', ' ',trim(substr($result['description'],0,157)))."..." : trim($result['description']) }}">
+    <meta name="twitter:description" content="{{ strlen($result['description']) > 157 ? preg_replace('/\s+/', ' ',trim(mb_substr($result['description'],0,157, 'UTF-8')))."..." : trim($result['description']) }}">
     <meta name="twitter:image" content="{{ $result['thumbnails'] == '' ? $result['thumbnailsSD'] : $result['thumbnails'] }}">
     <meta name="twitter:player" content="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
     <meta name="twitter:player:width" content="1280">

@@ -8,6 +8,10 @@
 }
 body{
     background-color: #f1f1f1;
+
+}
+body, header {
+    min-width: 960px;
 }
 
 /*body:after{*/
@@ -78,7 +82,7 @@ header > div > *{
 
 
     float: left;
-    margin: 0 50px;
+    margin: 0 25px;
     /* width: 219px; */
     width: 90px;
     transition: all .5s ease;
@@ -250,8 +254,14 @@ header > div > *{
 
 
 header .nav, header .menu{
-    width: 58%;
+    width: 42%;
     float: right;
+}
+@media screen and (max-width: 950px) {
+    header .nav, header .menu{
+        width: 45%;
+        float: right;
+    }
 }
 
 
@@ -741,11 +751,11 @@ a.ui-button:active,
     .side-menu.-left.-active ~ .container-fluid {
         padding-left: 15px;
     }
-    .side-menu.-left {
-        z-index: 120;
-        top: 0;
-        height: 100vh !important;
-    }
+    /*.side-menu.-left {*/
+        /*z-index: 120;*/
+        /*top: 0;*/
+        /*height: 100vh !important;*/
+    /*}*/
     .side-menu.-left.-active ~ .sidemenu-backdrop.-left {
         opacity: 1;
         pointer-events: all;
