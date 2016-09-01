@@ -35,30 +35,32 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+
+
     'domain' => [
-//        'default' => 'http://localhost/atmusic/search/2-1=0',
-        'default' => 'http://localhost/atmusic',
+        //'default' => 'http://localhost/atmusic/search/2-1=0',
+        'default' => 'http://www.unbok.com',
     ],
 
-//    'google' => [
-//        'default' => 'http://localhost/atmusic/search/2-1=0',
-//        'key' => 'AIzaSyDGFbK0CvMXKVzCJA_2Fj5B7pItfK0a1QA',
-//    ],
 
     'facebook' => [
         'client_id' => '950643235062155',
         'client_secret' => 'e66d7d3dd01930aab44916b42c6bdd3b',
-        'redirect' => 'http://localhost/atmusic/callback/facebook',
-        //'redirect' => 'http://www.unbok.com/callback/facebook',
+        'redirect' => 'http://www.unbok.com/callback/facebook',
+
+        //'redirect' => 'http://localhost/atmusic/callback/facebook',
     ],
 
     'google' => [
-        'client_id' => '493662001300-ltq4pt04gfnrplgb2kvjo54fslnpo3p6.apps.googleusercontent.com',
-        'client_secret' => 'u4na4P845bHq6ypCGVrxiJYk',
-        'redirect' => 'http://localhost/atmusic/callback/google',
-        //'redirect' => 'http://www.unbok.com/callback/google',
+//        'client_id' => '493662001300-ltq4pt04gfnrplgb2kvjo54fslnpo3p6.apps.googleusercontent.com',
+//        'client_secret' => '2U-bLPzmFgEy9sKRjOk6RjoY',
+//        'redirect' => 'http://www.unbok.com/callback/google',
+//        'key' => 'AIzaSyDs-xqZ9eBPASEi0pFCSjf8JS3-FYVJ2pI',
+
+        'client_id' => '493662001300-7d3hlf9842iu4d72h6up88q3teummmh2.apps.googleusercontent.com',
+        'client_secret' => 'Nt3teV2gdI2S9-ICGUGrc2Se',
+        'redirect' => 'http://www.unbok.com/callback/google',
         'key' => 'AIzaSyDs-xqZ9eBPASEi0pFCSjf8JS3-FYVJ2pI',
-        //'key' => 'AIzaSyDGFbK0CvMXKVzCJA_2Fj5B7pItfK0a1QA',
 
     ],
 

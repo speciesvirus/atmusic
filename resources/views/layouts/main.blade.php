@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>@yield('title')</title>
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     {{--<meta name="google-site-verification" content="VISjwlrj-JBTlfdSHyJQu2bqklIV618wZO1_75BPC0w" />--}}
     {{--<meta name="author" content="Awecent Co. Ltd., Thailand" />--}}
@@ -35,8 +36,8 @@
 
     <div class="site-branding">
         <a href="{{ url('/') }}" rel="home">
-            {{--<img src="http://www.workwithsmart.com/wp-content/themes/smartcreative-theme/images/smartcreative.png" alt="SmartCreative">--}}
-            memo
+            <img src="{{ asset('components/images/unbok.png') }}" alt="unbok">
+
         </a>
     </div>
 
@@ -170,6 +171,17 @@
 
 
 @yield('script')
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-79878986-2', 'auto');
+    ga('send', 'pageview');
+
+</script>
 
 </html>
 

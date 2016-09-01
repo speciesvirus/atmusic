@@ -67,16 +67,23 @@ header > div > *{
     vertical-align: middle;
 }
 .site-branding {
-    float: left;
-    margin: 0 0 0 53px;
-    /*width: 219px;*/
-    width: 170px;
-    transition: all .5s ease;
+    /*float: left;*/
+    /*margin: 0 0 0 53px;*/
+    /*width: 170px;*/
+    /*transition: all .5s ease;*/
 
+    /*display: table;*/
+    /*height: 80px;*/
+
+
+
+    float: left;
+    margin: 0 50px;
+    /* width: 219px; */
+    width: 90px;
+    transition: all .5s ease;
     display: table;
     height: 80px;
-
-
 
 }
 .site-branding a {
@@ -85,6 +92,10 @@ header > div > *{
 
     display: table-cell;
     vertical-align: middle;
+}
+
+.site-branding a > img {
+    max-width: 100%;
 }
 
 .nav {
@@ -480,7 +491,7 @@ header .nav, header .menu{
     padding: 4px 0;
     margin: 0 0 10px 25px;
     list-style: none;
-    background-color: #ffffff;
+    background-color: #ffffff !important;
     border-color: #ccc;
     border-color: rgba(0, 0, 0, 0.2);
     border-style: solid;
@@ -1112,6 +1123,10 @@ body {
     transform: scale(1,1.9);
 }
 
+#video-progress:hover .ui-slider-handle{
+    display: block;
+}
+
 /*.slider-container .slider-bars .slider-drag:hover .ui-slider-handle {*/
 
     /*-ms-transform: scale(1,0.6);*/
@@ -1144,6 +1159,7 @@ body {
     border-radius: 6px;
     /*margin-top: -1px;*/
     background: #fff;
+    display: none;
 }
 
 .slider-container .slider-bars .ui-state-default,
