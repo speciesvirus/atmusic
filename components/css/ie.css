@@ -1,0 +1,6 @@
+.site-branding a > img {
+    width: 70px;
+}
+#search input[type=search] {
+    height: 37px;
+}

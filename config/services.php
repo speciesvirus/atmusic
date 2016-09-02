@@ -50,13 +50,13 @@ return [
     ],
 
     'google' => [
-//        'client_id' => '493662001300-c4cs3m4hh96sov9qh6jo1sm0cb8br6jn.apps.googleusercontent.com',
-//        'client_secret' => 'AJnajx3ii2FSnaMAp0QX9L6r',
+        'client_id' => '493662001300-c4cs3m4hh96sov9qh6jo1sm0cb8br6jn.apps.googleusercontent.com',
+        'client_secret' => 'AJnajx3ii2FSnaMAp0QX9L6r',
 //        'redirect' => 'http://www.unbok.com/callback/google',
         'key' => 'AIzaSyAvoJpKbVU5poSAjGlaC8K-lUUdlioAwt4',
 
-        'client_id' => '493662001300-opese7j7pvjdd3kip38n6e65mc2b68t7.apps.googleusercontent.com',
-        'client_secret' => 'QXBtFysQvZaF-jvt-2NcVJ7l',
+//        'client_id' => '493662001300-opese7j7pvjdd3kip38n6e65mc2b68t7.apps.googleusercontent.com',
+//        'client_secret' => 'QXBtFysQvZaF-jvt-2NcVJ7l',
         'redirect' => 'http://localhost/atmusic/callback/google',
     ],
 

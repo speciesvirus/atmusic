@@ -99,9 +99,10 @@ class SearchController extends Controller
                     "publishedAt"   => $this->timeAgo($videoResult['snippet']['publishedAt']),
                     "viewCount"     => number_format($videoResult['statistics']['viewCount']),
                     "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
-                    "thumbnailsSD"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/mqdefault.jpg',
+                    "thumbnailsSD"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/sddefault.jpg',
+                    "thumbnailsHQ"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/hqdefault.jpg',
                     "tags"          => $videoResult['snippet']['tags'],
-                    "keywords"      => $this->keywords($videoResult['snippet']['tags']),
+                    "keywords"      => $videoResult['snippet']['tags'] ? $this->keywords($videoResult['snippet']['tags']) : null,
                 ];
 
             }

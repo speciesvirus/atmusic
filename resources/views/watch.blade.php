@@ -14,7 +14,7 @@
     <meta property="og:description" content="{{ strlen($result['description']) > 157 ? preg_replace('/\s+/', ' ',trim(mb_substr($result['description'],0,157, 'UTF-8')))."..." : trim($result['description']) }}" />
     <meta property="article:author" content="{{ $result['channelTitle'] }}" />
     <meta property="article:section" content="player" />
-    <meta property="og:image" content="{{ $result['thumbnails'] == '' ? $result['thumbnailsSD'] : $result['thumbnails'] }}" />
+    <meta property="og:image" content="{{ $result['thumbnails'] == '' ? $result['thumbnailsSD'] == '' ? $result['thumbnailsHQ'] : $result['thumbnailsSD'] : $result['thumbnails'] }}" />
 
 
     <meta property="og:video:type" content="text/html">
@@ -379,21 +379,21 @@
                             {{--<i class="material-icons">battery_full</i>--}}
                             {{--<i class="fa fa-cc" aria-hidden="true"></i>--}}
                             <i class="fa fa-television" aria-hidden="true"></i>
-                            <i id="op-set" class="fa fa-cog hidden" aria-hidden="true">
+                            <i id="op-set" class="fa fa-cog" aria-hidden="true">
 
                                 <div class="mdl-card tray-menu flex vertical mdl-shadow--2dp">
 
+                                    {{--<div class="row clickable">--}}
+                                        {{--<i class="fa fa-lock" aria-hidden="true"></i>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="row">--}}
+                                        {{--<i class="fa fa-television" aria-hidden="true"></i>--}}
+                                    {{--</div>--}}
                                     <div class="row clickable">
                                         <i class="fa fa-television" aria-hidden="true"></i>
                                     </div>
-                                    <div class="row">
-                                        <i class="fa fa-cc" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="row clickable">
-                                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                                    </div>
                                     <div class="row final">
-                                        <i class="fa fa-volume-up"></i>
+                                        <i class="fa fa-arrow-circle-right"></i>
                                     </div>
                                 </div>
 

@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function composeNavigation()
     {
+        view()->composer('*', 'App\Http\Composers\BaseComposer');
         view()->composer('composers.headerMenu', 'App\Http\Composers\NavigationComposer');
     }
 

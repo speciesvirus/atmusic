@@ -111,9 +111,16 @@ section:after {
 
 /* Right side of the card */
 .feed .right {
+    /*padding: 10px;*/
+    /*position: absolute;*/
+    /*height: 100%;*/
+
+
     padding: 10px;
-    position: absolute;
-    height: 100%;
+    display: block;
+    padding-left: 15px;
+    word-wrap: break-word;
+    /* text-align: justify; */
 }
 
 .feed h1 {
@@ -179,11 +186,16 @@ section:after {
 }
 
 .feed p {
-    text-align: justify;
-    padding-top: 20px;
-    /*font-size: 0.95rem;*/
-    /*font-size: 1.1rem;*/
-    color: #4B4B4B;
+    /*text-align: justify;*/
+    padding-top: 23px;
+    /* font-size: 0.95rem; */
+    /* font-size: 1.1rem; */
+    /* display: block; */
+    /* list-style-type: disc; */
+    /* padding-left: 15px; */
+    /* white-space: normal; */
+    /* word-wrap: break-word; */
+    /* color: #4B4B4B; */
 }
 
 /* DATE of release */

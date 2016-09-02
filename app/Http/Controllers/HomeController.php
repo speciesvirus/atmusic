@@ -385,7 +385,7 @@ class HomeController extends Controller
      */
     public function descriptionVideo($str)
     {
-        return strlen($str) >= 190 ? mb_substr($str,0,190, 'UTF-8') .'...' : $str;
+        return strlen($str) >= 180 ? mb_substr($str,0,180, 'UTF-8') .'...' : $str;
     }
 
 
@@ -400,6 +400,9 @@ class HomeController extends Controller
      */
     public static function rateVideo($like,$disLike,$percentage,$decimal)
     {
+        if($like == 0){
+            return 0;
+        }
         return number_format(($like * $percentage) / ($like + $disLike), $decimal, '.', '');
 
 //        switch(form.attr("id")) {

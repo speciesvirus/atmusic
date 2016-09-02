@@ -10,9 +10,7 @@ body{
     background-color: #f1f1f1;
 
 }
-body, header {
-    min-width: 960px;
-}
+
 
 /*body:after{*/
     /*content: "";*/
@@ -178,7 +176,7 @@ header > div > *{
     font-size: 13px;
     line-height: 30px;
     text-decoration: none;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 
     -webkit-transition: all 0.3s linear 0s;
     -moz-transition: all 0.3s linear 0s;
@@ -257,12 +255,7 @@ header .nav, header .menu{
     width: 42%;
     float: right;
 }
-@media screen and (max-width: 950px) {
-    header .nav, header .menu{
-        width: 45%;
-        float: right;
-    }
-}
+
 
 
 .menu{
@@ -283,12 +276,12 @@ header .nav, header .menu{
 .menu > ul > li > a {
     color: #666666;
     display: block;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: normal;
     line-height: 18px;
     padding: 16px 20px;
     text-decoration: none;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     transition: all 0.4s ease;
 }
 
@@ -341,6 +334,7 @@ header .nav, header .menu{
 .menu-dropdown .dropdown-item .title {
     display: block;
     display: -webkit-box;
+    text-align: left;
     max-width: 100%;
     max-height: 2.4em;
     line-height: 1.2;
@@ -399,6 +393,7 @@ header .nav, header .menu{
     vertical-align: middle;
     float: left;
 }
+
 
 #search ul li:first-child, #search ul li:nth-child(2), #search ul li:last-child {
     border-left: 0;
@@ -587,7 +582,7 @@ a.ui-button:active,
     font-size:12px
 }
 #login-dp .bottom{
-    background-color:rgba(255,255,255,.8);
+    background-color:rgba(255,255,255,0.99);
     border-top:1px solid #ddd;
     clear:both;
     padding:14px;
@@ -620,16 +615,6 @@ a.ui-button:active,
     background-color:#c23321;
 }
 
-@media(max-width:768px){
-    #login-dp{
-        background-color: inherit;
-        color: #fff;
-    }
-    #login-dp .bottom{
-        background-color: inherit;
-        border-top:0 none;
-    }
-}
 
 
 
@@ -1529,19 +1514,122 @@ body {
 
 /*!------------------------------------------- responsive */
 
-
 @media screen and (max-width: 950px){
-    body, header {
-        min-width: 0;
-    }
 
+    header {
+        height: 93px;
+    }
     header .nav, header .menu {
-        display: none;
+        /*display: none;*/
+        width: initial;
+    }
+    header .menu{
+        float: left;
+    }
+    .site-branding{
+        width: 60px;
+        height: 60px;
     }
     .search {
+        height: 60px;
         width: calc(100% - 140px);
+    }
+    #search ul li:first-child {
+        width: calc(100% - 68px);
     }
     #search input[type=search] {
         width: 100%;
     }
+    .nav > ul > li:first-child, .nav > ul > li:nth-child(2) {
+        display: none;
+    }
+
+    .menu > ul > li > a {
+        padding: 7px 20px;
+    }
+
+    .nav ul li:last-child > a {
+        font-weight: initial;
+        max-width: 240px;
+        color: #fcb501;
+        background: #fff;
+    }
+    .nav ul li:last-child > a:hover {
+        background: none;
+    }
+
+    .wrapper {
+        margin-top: 93px;
+    }
 }
+
+@media screen and (max-width: 890px){
+    #audioplayer .cover {
+        display: none;
+    }
+    #audioplayer .player-bar {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 760px){
+    #audioplayer .cover {
+        display: none;
+    }
+    #audioplayer .player-bar {
+        margin-left: 0;
+        width: 100%;
+    }
+    .play-console {
+        width: 100%;
+    }
+    .play-progress-bar{
+        width: calc(100% - 180px);
+    }
+    #play-progress-container {
+
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    header .nav {
+        position: absolute;
+        right: 0;
+    }
+    header .menu {
+        text-align: center;
+    }
+    .menu > ul{
+        float: none;
+        display: inline-block;
+    }
+    header .menu {
+        width: 100%;
+    }
+    .nav ul li:last-child > a {
+        padding: 0 10px;
+        border-left: 1px solid #fcb501;
+        border-bottom: 1px solid #fcb501;
+        border-bottom-left-radius: 8px;
+
+    }
+    .menu > ul > li > a {
+        padding: 7px 15px;
+    }
+}
+@media screen and (max-width: 430px) {
+    .wrapper {
+        padding-bottom: 170px;
+    }
+    .footer {
+        height: auto;
+    }
+    .footer > a {
+        border-right: none;
+        width: 100%;
+        text-align: center;
+    }
+}
+

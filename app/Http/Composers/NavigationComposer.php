@@ -1,7 +1,9 @@
 <?php namespace App\Http\Composers;
 
+use App\UserView;
 use App\VideoFeature;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class NavigationComposer
@@ -84,9 +86,13 @@ class NavigationComposer
             //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
         }
 
+        $rank = "Login";
+        if(!Auth::guest()){
+            $user = Auth::user();
+            $rank = $this->ranks(UserView::where('user', $user->id)->count());
+        }
 
-
-        $view->with('menu', $result);
+        $view->with(['menu' => $result, 'rank' => $rank]);
     }
 
 
@@ -114,6 +120,29 @@ class NavigationComposer
             }
         }
         return $vid;
+    }
+
+
+    public static function ranks($i){
+
+        switch (true) {
+            case $i >= 1000000:
+                return "Legendary";
+            case $i >= 500000:
+                return "Extreme";
+            case $i >= 250000:
+                return "Superior";
+            case $i >= 125000:
+                return "Legendary";
+            case $i >= 67500:
+                return "Senior";
+            case $i >= 30000:
+                return "Junior";
+            default:
+                return "User";
+        }
+
+
     }
 
 

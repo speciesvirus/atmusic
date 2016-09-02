@@ -1,6 +1,9 @@
 #videoInput{
     height: 34px;
     width: calc(100% - 59px);
+
+    display: inline-block;
+    vertical-align: middle;
 }
 #yt-embed{
     width: 100%;

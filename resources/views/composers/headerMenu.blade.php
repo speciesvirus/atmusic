@@ -1,6 +1,6 @@
 <div class="menu">
     <ul>
-        <li><a href="#">recommend</a>
+        <li><a href="#">Recommend</a>
              <span class="menu-dropdown">
                  <div class="frame crazy sub-menu-list-item" id="basic">
                      <ul>
@@ -21,7 +21,7 @@
                  </div>
             </span>
         </li>
-        <li><a href="#">top hit</a>
+        <li><a href="#">Top Hit</a>
              <span class="menu-dropdown">
                  <div class="frame crazy sub-menu-list-item" id="basic">
                      <ul>
@@ -42,7 +42,7 @@
                  </div>
             </span>
         </li>
-        <li><a href="#">movie</a>
+        <li><a href="#">Movie</a>
             <span class="menu-dropdown">
                  <div class="frame crazy sub-menu-list-item" id="basic">
                      <ul>
@@ -63,7 +63,7 @@
                  </div>
             </span>
         </li>
-        <li><a href="#">food</a>
+        <li><a href="#">Food</a>
              <span class="menu-dropdown">
                  <div class="frame crazy sub-menu-list-item" id="basic">
                      <ul>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Composers\NavigationComposer;
 use App\SocialView;
 use App\User;
 use App\UserView;
@@ -153,7 +154,7 @@ class AccountController extends Controller
             "waiting" => number_format($st3),
             "visitor" => number_format($st4),
             "click" => number_format($st5),
-            "rank" => $this->ranks($st4),
+            "rank" => NavigationComposer::ranks($st4),
             "user_diff" => HomeController::calcPercentage($st_user, $st4, 100, 0),
             "social_diff" => HomeController::calcPercentage($st_social, $st5, 100, 0)
         ];

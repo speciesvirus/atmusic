@@ -223,3 +223,80 @@ ul.watch-content{
 }
 
 
+
+
+
+
+#op-set{
+    display: none;
+}
+
+
+/*!------------------------------------------- responsive */
+
+@media screen and (max-width: 1150px){
+
+    .content, .side-menu.-left{
+        position: relative;
+        float: right;
+        width: 100%;
+    }
+    .content {
+        left: auto;
+        padding-bottom: 15%;
+    }
+
+    .page-watch{
+        padding: 40px 20px;
+        height: auto;
+    }
+    .watch-container {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: translate(0,0);
+        -ms-transform: translate(0, 0);
+        -webkit-transform: translate(0, 0);
+
+        padding-bottom: 56.25%;
+    }
+    #audioplayer {
+        /*min-width: 450px;*/
+    }
+    #player {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        border: 0;
+    }
+
+    .side-menu.-left {
+        top: 10px;
+        padding-bottom: 6px;
+        height: auto;
+    }
+    #navmenu:after, #navmenu:before {
+        display: table;
+        content: " ";
+    }
+    #navmenu:after {
+        clear: both;
+    }
+    .slider-container {
+        margin: 0 15px;
+    }
+    .tray-button > *:not(#op-set) {
+        display: none;
+    }
+    .tray-button > *:not(:last-child) {
+         margin-right: 0;
+    }
+
+    #op-set{
+        display: block;
+    }
+
+}

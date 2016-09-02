@@ -17,6 +17,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset("components/font-awesome/css/font-awesome.min.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("components/css/default.css") }}">
 
+    <!--[if IE]>
+    <link rel="stylesheet" type="text/css" href="{{ asset("components/css/ie.css") }}" />
+    <![endif]-->
+
     <script src="{{ asset("components/jquery/dist/jquery.min.js") }}"></script>
     <script src="{{ asset("components/jquery-ui/jquery-ui.min.js") }}"></script>
     <script src="{{ asset("components/bootstrap/dist/js/bootstrap.min.js") }}"></script>
@@ -74,7 +78,7 @@
             <li>
 
                 @if( !Auth::guest() )
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>{{ Auth::user()->email == null ? Auth::user()->name : Auth::user()->email }}</b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>{{ $rank }}</b></a>
                     <ul id="login-dp" class="dropdown-menu">
                         <li>
                             <div class="row">
@@ -84,6 +88,7 @@
                                         <h5 class="">{{ Auth::user()->name }}</h5>
                                     </center>
                                     <hr>
+                                    <p>{{ Auth::user()->email == null ? Auth::user()->name : Auth::user()->email }}</p>
                                     <center>
                                         <p class="text-left"><strong><a href="{{ route('profile') }}">Profile</a></strong></p>
                                         <p class="text-left"><strong><a href="{{ route('account') }}">Account</a></strong></p>
