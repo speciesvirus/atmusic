@@ -29,140 +29,93 @@ class NavigationComposer
 
         $videos = VideoFeature::select('video','feature')->where('status', 1)->orderBy('created_at', 'desc')->get();
 
-        foreach ($videos as $video) {
-            //echo $title;
+        //!* video list
+        $vid = $this->distinctVideo($videos);
 
-            if($video->feature == 1){
+        try {
 
-                try {
+            $videosResponse = $youtube->videos->listVideos('snippet', array(
+                'id' => $vid,
+            ));
 
-                    $videosResponse = $youtube->videos->listVideos('snippet', array(
-                        'id' => $video->video,
-                    ));
+            foreach ($videosResponse['items'] as $videoResult) {
 
-                    if(isset($videosResponse['items'][0]['id'])){
-                        $snippet = [
-                            "id"            => $videosResponse['items'][0]['id'],
-                            "title"         => $videosResponse['items'][0]['snippet']['title']
-                        ];
-                        array_push($recommend,$snippet);
+                //if video lost from youtube
+                if(isset($videoResult['id'])) {
+
+                    $snippet = [
+                        "id"            => $videoResult['id'],
+                        "title"         => $videoResult['snippet']['title']
+                    ];
+
+                    foreach ($videos as $video) {
+                        if($video->video == $videoResult['id']){
+                            if($video->feature == 1){
+                                array_push($recommend,$snippet);
+                            }elseif ($video->feature == 2){
+                                array_push($hit,$snippet);
+                            }elseif ($video->feature == 4){
+                                array_push($movie,$snippet);
+                            }elseif ($video->feature == 7){
+                                array_push($food,$snippet);
+                            }
+                        }
                     }
 
-
-
-
-                } catch (Google_Service_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                } catch (Google_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
                 }
-
             }
 
 
-            if($video->feature == 2){
-
-                try {
-
-                    $videosResponse = $youtube->videos->listVideos('snippet', array(
-                        'id' => $video->video,
-                    ));
-
-                    if(isset($videosResponse['items'][0]['id'])){
-                        $snippet = [
-                            "id"            => $videosResponse['items'][0]['id'],
-                            "title"         => $videosResponse['items'][0]['snippet']['title']
-                        ];
-                        array_push($hit,$snippet);
-                    }
+            $result = [
+                "recommend"    => $recommend,
+                "hit"          => $hit,
+                "movie"        => $movie,
+                "food"         => $food
+            ];
 
 
 
 
-                } catch (Google_Service_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                } catch (Google_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                }
-
-            }
-
-
-            if($video->feature == 4){
-
-                try {
-
-                    $videosResponse = $youtube->videos->listVideos('snippet', array(
-                        'id' => $video->video,
-                    ));
-
-                    if(isset($videosResponse['items'][0]['id'])){
-                        $snippet = [
-                            "id"            => $videosResponse['items'][0]['id'],
-                            "title"         => $videosResponse['items'][0]['snippet']['title']
-                        ];
-                        array_push($movie,$snippet);
-                    }
-
-
-
-
-                } catch (Google_Service_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                } catch (Google_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                }
-
-            }
-
-
-            if($video->feature == 7){
-
-                try {
-
-                    $videosResponse = $youtube->videos->listVideos('snippet', array(
-                        'id' => $video->video,
-                    ));
-
-                    if(isset($videosResponse['items'][0]['id'])){
-                        $snippet = [
-                            "id"            => $videosResponse['items'][0]['id'],
-                            "title"         => $videosResponse['items'][0]['snippet']['title']
-                        ];
-                        array_push($food,$snippet);
-                    }
-
-
-
-
-                } catch (Google_Service_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                } catch (Google_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                }
-
-            }
-
+        } catch (Google_Service_Exception $e) {
+            return response()->json(['page' => $e], 200);
+            //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
+        } catch (Google_Exception $e) {
+            return response()->json(['page' => $e], 200);
+            //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
         }
-
-        $result = [
-            "recommend"    => $recommend,
-            "hit"          => $hit,
-            "movie"        => $movie,
-            "food"         => $food
-        ];
 
 
 
         $view->with('menu', $result);
     }
+
+
+
+    /**
+     * @param $videos
+     * @return string
+     */
+    public function distinctVideo($videos)
+    {
+        $vi = true;
+        $vid = '';
+        $vr = [];
+        foreach ($videos as $video) {
+
+            $c = true;
+            foreach ($vr as $vri) {
+                $vri['id'] == $video->video ? $c = false : null;
+            }
+
+            if ($c) {
+                $vid .= $vi ? $video->video : ', ' . $video->video;
+                array_push($vr, ["id" => $video->video]);
+                $vi = false;
+            }
+        }
+        return $vid;
+    }
+
+
 
 }

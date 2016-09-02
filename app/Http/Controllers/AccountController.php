@@ -137,8 +137,7 @@ class AccountController extends Controller
         $st5 = SocialView::where('user', $user->id)->count();
         $st_social = SocialView::where('user', $user->id)->where('created_at', '<=', Carbon::now()->addDay(-1))
             ->where('created_at', '!=', "0000-00-00 00:00:00")->count();
-
-
+        
 //        "select
 //( select count(*) from `video_socials` where `user` = 1 and `status` = 1  ) st1,
 //( select count(*) from `video_socials` where `user` = 1 and `status` = 2  ) st2,
@@ -147,8 +146,7 @@ class AccountController extends Controller
 //( select count(*) from `social_views` where `user` = 1 ) st5,
 //( select count(*) from `user_views` where `user` = 1 and `created_at` <= '2016-08-28 02:51:35' and `created_at` != '0000-00-00 00:00:00' ) st6,
 //( select count(*) from `social_views` where `user` = 1 and `created_at` <= '2016-08-28 02:51:35' and `created_at` != '0000-00-00 00:00:00' ) st7"
-
-
+        
         $statuses = [
             "approved" => number_format($st1),
             "disapprove" => number_format($st2),

@@ -278,8 +278,6 @@ class SearchController extends Controller
         ]);
         $res->getStatusCode();
 
-
-
         //$result = $this->search($q,$pageToken);
 
         return view('searchMore', ['result' => json_decode($res->getBody(), true)]);
@@ -339,51 +337,69 @@ class SearchController extends Controller
             $arr = [];
             // Add each result to the appropriate list, and then display the lists of
             // matching videos, channels, and playlists.
+            $des = [];
 
+            $vi = true; $vid = '';
             foreach ($searchResponse['items'] as $searchResult) {
                 switch ($searchResult['id']['kind']) {
                     case 'youtube#video':
 
-                        $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
-                            'id' => $searchResult['id']['videoId'],
-                        ));
-
-                        //$aaa = (new Controller())->timeAgo($searchResult['snippet']['publishedAt']);
                         $snippet = [
                             "id"            => $searchResult['id']['videoId'],
                             "title"         => $searchResult['snippet']['title'],
                             "channelTitle"  => $searchResult['snippet']['channelTitle'],
                             "description"   => $searchResult['snippet']['description'],
                             "publishedAt"   => $this->timeAgo($searchResult['snippet']['publishedAt']),
-                            "viewCount"     => number_format($videosResponse['items'][0]['statistics']['viewCount']),
                         ];
-                        array_push($arr,$snippet);
+                        array_push($des,$snippet);
 
-                        //$arr = $arr[$searchResult['id']['videoId']];
-//                        $des['title'] = $searchResult['snippet']['title'];
-//                        $des['description'] = $searchResult['snippet']['description'];
-//                        $des['publishedAt'] = $searchResult['snippet']['publishedAt'];
-//                        $des['title'] = $videosResponse['snippet']['title'];
-
-
-//                        $videos .= sprintf('<li>%s (%s)</li>',
-//                            $searchResult['snippet']['title'], $this->timeAgo($searchResult['snippet']['publishedAt']));
+                        $vid .= $vi ? $searchResult['id']['videoId'] : ', '.$searchResult['id']['videoId'];
+                        $vi = false;
                         break;
                     case 'youtube#channel':
-//                        $channels .= sprintf('<li>%s (%s)</li>',
-//                            $searchResult['snippet']['title'], $searchResult['id']['channelId']);
+
                         break;
                     case 'youtube#playlist':
-//                        $playlists .= sprintf('<li>%s (%s)</li>',
-//                            $searchResult['snippet']['title'], $searchResult['id']['playlistId']);
+
                         break;
                 }
+            }
+            
+            $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
+                'id' => $vid,
+            ));
+
+
+
+            foreach ($videosResponse['items'] as $videoResult) {
+
+
+
+                foreach ($des as $de) {
+
+                    if($de['id'] == $videoResult['id']){
+
+                        //$rate = $this->rateVideo($videoResult['statistics']['likeCount'],$videoResult['statistics']['dislikeCount'],5,1);
+                        $snippet = [
+                            "id"            => $de['id'],
+                            "title"         => $de['title'],
+                            "channelTitle"  => $de['channelTitle'],
+                            "description"   => $de['description'],
+                            "publishedAt"   => $de['publishedAt'],
+                            "viewCount"     => number_format($videoResult['statistics']['viewCount']),
+                        ];
+                        array_push($arr,$snippet);
+                    }
+
+                }
+
             }
 
             $snippet = [
                 "nextPageToken" => $searchResponse['nextPageToken'],
                 "item"          => $arr
             ];
+
             $arr = [];
             array_push($arr,$snippet);
 
@@ -485,17 +501,7 @@ class SearchController extends Controller
      */
     public function keywords($videoResult)
     {
-        $words = '';
-        $i = true;
-        foreach($videoResult as $word){
-            if($i){
-                $words .=  ''.$word;
-            }else{
-                $words .=  ', '.$word;
-            }
-            $i = false;
-        }
-        return $words;
+        return implode(', ', $videoResult);
     }
 
 

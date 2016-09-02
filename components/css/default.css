@@ -1502,3 +1502,46 @@ body {
 .footer > a:last-child {
     border-right: none;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*!------------------------------------------- responsive */
+
+
+@media screen and (max-width: 950px){
+    body, header {
+        min-width: 0;
+    }
+
+    header .nav, header .menu {
+        display: none;
+    }
+    .search {
+        width: calc(100% - 140px);
+    }
+    #search input[type=search] {
+        width: 100%;
+    }
+}

@@ -88,11 +88,9 @@ class HomeController extends Controller
         $youtube = new \Google_Service_YouTube($client);
 
 
-
         $videosResponse = null;
         $result = [];
         $thumbnails = null;
-
 
         $recommend = [];
         $hit = [];
@@ -105,257 +103,77 @@ class HomeController extends Controller
 
         $videos = VideoFeature::select('video','feature')->where('status', 1)->orderBy('created_at', 'desc')->get();
 
-        foreach ($videos as $video) {
-            //echo $title;
+        //!* video list
+        $vid = $this->distinctVideo($videos);
 
-            if($video->feature == 1){
+        try {
 
-                try {
+            $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
+                'id' => $vid,
+            ));
 
-                    $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
-                        'id' => $video->video,
-                    ));
+            foreach ($videosResponse['items'] as $videoResult) {
 
-                    foreach ($videosResponse['items'] as $videoResult) {
+                //if video lost from youtube
+                if(isset($videoResult['id'])) {
 
-                        $rate = $this->rateVideo($videoResult['statistics']['likeCount'],$videoResult['statistics']['dislikeCount'],5,1);
+                    $rate = $this->rateVideo($videoResult['statistics']['likeCount'],$videoResult['statistics']['dislikeCount'],5,1);
 
-                        $snippet = [
-                            "id"            => $videoResult['id'],
-                            "title"         => $videoResult['snippet']['title'],
-                            "channelTitle"  => $videoResult['snippet']['channelTitle'],
-                            "description"   => $this->descriptionVideo($videoResult['snippet']['description']),
-                            "publishedAt"   => $this->timeAgo($videoResult['snippet']['publishedAt']),
-                            "viewCount"     => number_format($videoResult['statistics']['viewCount']),
-                            "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
-                            "thumbnailsSD"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/mqdefault.jpg',
-                            "rate"          => $rate
-                        ];
+                    $snippet = [
+                        "id"            => $videoResult['id'],
+                        "title"         => $videoResult['snippet']['title'],
+                        "channelTitle"  => $videoResult['snippet']['channelTitle'],
+                        "description"   => $this->descriptionVideo($videoResult['snippet']['description']),
+                        "publishedAt"   => $this->timeAgo($videoResult['snippet']['publishedAt']),
+                        "viewCount"     => number_format($videoResult['statistics']['viewCount']),
+                        "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
+                        "thumbnailsSD"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/mqdefault.jpg',
+                        "rate"          => $rate
+                    ];
 
-                        array_push($recommend,$snippet);
 
+                    foreach ($videos as $video) {
+                        if($video->video == $videoResult['id']){
+                            if($video->feature == 1){
+                                array_push($recommend,$snippet);
+                            }elseif ($video->feature == 2){
+                                array_push($hit,$snippet);
+                            }elseif ($video->feature == 4){
+                                array_push($movie,$snippet);
+                            }elseif ($video->feature == 5){
+                                array_push($funny,$snippet);
+                            }elseif ($video->feature == 7){
+                                array_push($food,$snippet);
+                            }elseif ($video->feature == 6){
+                                array_push($troll,$snippet);
+                            }
+                        }
                     }
 
 
-
-                } catch (Google_Service_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                } catch (Google_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
                 }
+
+
+                $result = [
+                    "recommend"    => $recommend,
+                    "hit"          => $hit,
+                    "movie"          => $movie,
+                    "funny"          => $funny,
+                    "food"          => $food,
+                    "troll"          => $troll
+                ];
 
             }
 
 
-            if($video->feature == 2){
-
-                try {
-
-                    $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
-                        'id' => $video->video,
-                    ));
-
-                    foreach ($videosResponse['items'] as $videoResult) {
-
-                        $rate = $this->rateVideo($videoResult['statistics']['likeCount'],$videoResult['statistics']['dislikeCount'],5,1);
-
-                        $snippet = [
-                            "id"            => $videoResult['id'],
-                            "title"         => $videoResult['snippet']['title'],
-                            "channelTitle"  => $videoResult['snippet']['channelTitle'],
-                            "description"   => $this->descriptionVideo($videoResult['snippet']['description']),
-                            "publishedAt"   => $this->timeAgo($videoResult['snippet']['publishedAt']),
-                            "viewCount"     => number_format($videoResult['statistics']['viewCount']),
-                            "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
-                            "thumbnailsSD"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/mqdefault.jpg',
-                            "rate"          => $rate
-                        ];
-
-                        array_push($hit,$snippet);
-
-                    }
 
 
-                } catch (Google_Service_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                } catch (Google_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                }
-
-            }
-
-            if($video->feature == 4){
-
-                try {
-
-                    $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
-                        'id' => $video->video,
-                    ));
-
-                    foreach ($videosResponse['items'] as $videoResult) {
-
-                        $rate = $this->rateVideo($videoResult['statistics']['likeCount'],$videoResult['statistics']['dislikeCount'],5,1);
-
-                        $snippet = [
-                            "id"            => $videoResult['id'],
-                            "title"         => $videoResult['snippet']['title'],
-                            "channelTitle"  => $videoResult['snippet']['channelTitle'],
-                            "description"   => $this->descriptionVideo($videoResult['snippet']['description']),
-                            "publishedAt"   => $this->timeAgo($videoResult['snippet']['publishedAt']),
-                            "viewCount"     => number_format($videoResult['statistics']['viewCount']),
-                            "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
-                            "thumbnailsSD"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/mqdefault.jpg',
-                            "rate"          => $rate
-                        ];
-
-                        array_push($movie,$snippet);
-
-                    }
-
-
-                } catch (Google_Service_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                } catch (Google_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                }
-
-            }
-
-            if($video->feature == 5){
-
-                try {
-
-                    $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
-                        'id' => $video->video,
-                    ));
-
-                    foreach ($videosResponse['items'] as $videoResult) {
-
-                        $rate = $this->rateVideo($videoResult['statistics']['likeCount'],$videoResult['statistics']['dislikeCount'],5,1);
-
-                        $snippet = [
-                            "id"            => $videoResult['id'],
-                            "title"         => $videoResult['snippet']['title'],
-                            "channelTitle"  => $videoResult['snippet']['channelTitle'],
-                            "description"   => $this->descriptionVideo($videoResult['snippet']['description']),
-                            "publishedAt"   => $this->timeAgo($videoResult['snippet']['publishedAt']),
-                            "viewCount"     => number_format($videoResult['statistics']['viewCount']),
-                            "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
-                            "thumbnailsSD"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/mqdefault.jpg',
-                            "rate"          => $rate
-                        ];
-
-                        array_push($funny,$snippet);
-
-                    }
-
-
-                } catch (Google_Service_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                } catch (Google_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                }
-
-            }
-
-            if($video->feature == 7){
-
-                try {
-
-                    $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
-                        'id' => $video->video,
-                    ));
-
-                    foreach ($videosResponse['items'] as $videoResult) {
-
-                        $rate = $this->rateVideo($videoResult['statistics']['likeCount'],$videoResult['statistics']['dislikeCount'],5,1);
-
-                        $snippet = [
-                            "id"            => $videoResult['id'],
-                            "title"         => $videoResult['snippet']['title'],
-                            "channelTitle"  => $videoResult['snippet']['channelTitle'],
-                            "description"   => $this->descriptionVideo($videoResult['snippet']['description']),
-                            "publishedAt"   => $this->timeAgo($videoResult['snippet']['publishedAt']),
-                            "viewCount"     => number_format($videoResult['statistics']['viewCount']),
-                            "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
-                            "thumbnailsSD"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/mqdefault.jpg',
-                            "rate"          => $rate
-                        ];
-
-                        array_push($food,$snippet);
-
-                    }
-
-
-                } catch (Google_Service_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                } catch (Google_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                }
-
-            }
-
-            if($video->feature == 6){
-
-                try {
-
-                    $videosResponse = $youtube->videos->listVideos('snippet, recordingDetails, statistics', array(
-                        'id' => $video->video,
-                    ));
-
-                    foreach ($videosResponse['items'] as $videoResult) {
-
-                        $rate = $this->rateVideo($videoResult['statistics']['likeCount'],$videoResult['statistics']['dislikeCount'],5,1);
-
-                        $snippet = [
-                            "id"            => $videoResult['id'],
-                            "title"         => $videoResult['snippet']['title'],
-                            "channelTitle"  => $videoResult['snippet']['channelTitle'],
-                            "description"   => $this->descriptionVideo($videoResult['snippet']['description']),
-                            "publishedAt"   => $this->timeAgo($videoResult['snippet']['publishedAt']),
-                            "viewCount"     => number_format($videoResult['statistics']['viewCount']),
-                            "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
-                            "thumbnailsSD"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/mqdefault.jpg',
-                            "rate"          => $rate
-                        ];
-
-                        array_push($troll,$snippet);
-
-                    }
-
-
-                } catch (Google_Service_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                } catch (Google_Exception $e) {
-                    return response()->json(['page' => $e], 200);
-                    //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
-                }
-
-            }
-
-
-            $result = [
-                "recommend"    => $recommend,
-                "hit"          => $hit,
-                "movie"          => $movie,
-                "funny"          => $funny,
-                "food"          => $food,
-                "troll"          => $troll
-            ];
-
-
-
+        } catch (Google_Service_Exception $e) {
+            return response()->json(['page' => $e], 200);
+            //$htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
+        } catch (Google_Exception $e) {
+            return response()->json(['page' => $e], 200);
+            //$htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>',htmlspecialchars($e->getMessage()));
         }
 
 
@@ -614,5 +432,30 @@ class HomeController extends Controller
         }
         return number_format(($disLike - $like) / $like  * $percentage, $decimal, '.', '');
     }
-    
+
+    /**
+     * @param $videos
+     * @return string
+     */
+    public function distinctVideo($videos)
+    {
+        $vi = true;
+        $vid = '';
+        $vr = [];
+        foreach ($videos as $video) {
+
+            $c = true;
+            foreach ($vr as $vri) {
+                $vri['id'] == $video->video ? $c = false : null;
+            }
+
+            if ($c) {
+                $vid .= $vi ? $video->video : ', ' . $video->video;
+                array_push($vr, ["id" => $video->video]);
+                $vi = false;
+            }
+        }
+        return $vid;
+    }
+
 }

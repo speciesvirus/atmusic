@@ -3,17 +3,19 @@
 @section('title', $result['title'])
 
 @section('meta')
-
-
+    <link rel="shortlink" href="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
     <meta name="description" content="{{ strlen($result['description']) > 157 ? preg_replace('/\s+/', ' ',trim(mb_substr($result['description'],0,157, 'UTF-8')))."..." : trim($result['description']) }}">
     <meta name="keywords" content="{{ $result['keywords'] }}">
 
-    <link rel="shortlink" href="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
+    <meta property="og:type" content="video" />
+    <meta property="og:title" content="{{ $result['title'] }}" />
+    <meta property="og:url" content="http://iheregame.com/mobile/110-%E3%80%90game-news%E3%80%91battlefield-of-double-tail.html" />
+    <meta property="og:site_name" content="unbok" />
+    <meta property="og:description" content="{{ strlen($result['description']) > 157 ? preg_replace('/\s+/', ' ',trim(mb_substr($result['description'],0,157, 'UTF-8')))."..." : trim($result['description']) }}" />
+    <meta property="article:author" content="{{ $result['channelTitle'] }}" />
+    <meta property="article:section" content="player" />
+    <meta property="og:image" content="{{ $result['thumbnails'] == '' ? $result['thumbnailsSD'] : $result['thumbnails'] }}" />
 
-    <meta property="og:type" content="video">
-    <meta property="og:title" content="{{ $result['title'] }}">
-    <meta property="og:description" content="{{ strlen($result['description']) > 157 ? preg_replace('/\s+/', ' ',trim(mb_substr($result['description'],0,157, 'UTF-8')))."..." : trim($result['description']) }}">
-    <meta property="og:image" content="{{ $result['thumbnails'] == '' ? $result['thumbnailsSD'] : $result['thumbnails'] }}">
 
     <meta property="og:video:type" content="text/html">
     <meta property="og:video:width" content="1280">
@@ -24,7 +26,6 @@
     <meta property="og:video:width" content="1280">
     <meta property="og:video:height" content="720">
 
-    <meta property="og:site_name" content="unbok">
     @if($result['tags'])
     @foreach($result['tags'] as $tag)
 <meta property="og:video:tag" content="{{ $tag }}">

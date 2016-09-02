@@ -1,9 +1,12 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+<html lang="en">
 <head>
+
     <title>@yield('title')</title>
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta property="fb:app_id" content="950643235062155">
     <meta property="og:url"    content="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>" />
     @yield('meta')

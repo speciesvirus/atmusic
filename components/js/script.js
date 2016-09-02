@@ -18,7 +18,7 @@ $(function () {
             $val = $this.find('input').val();
 
         $server = window.location.hostname;
-        window.location = '/search/'+$val;
+        window.location = 'atmusic/search/'+$val;
     });
 
     $('#search-btn').click(function(){
