@@ -21,11 +21,11 @@
                  </div>
             </span>
         </li>
-        <li><a href="#">Top Hit</a>
+        <li><a href="#">Music</a>
              <span class="menu-dropdown">
                  <div class="frame crazy sub-menu-list-item" id="basic">
                      <ul>
-                         @foreach($menu['hit'] as $item)
+                         @foreach($menu['music'] as $item)
 
                              <li>
                                  <a class="dropdown-item"

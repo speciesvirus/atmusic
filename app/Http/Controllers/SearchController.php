@@ -81,7 +81,6 @@ class SearchController extends Controller
 
         $videosResponse = null;
         $result = null;
-        $thumbnails = null;
         try {
             // Call the search.list method to retrieve results matching the specified
             // query term.
@@ -91,6 +90,8 @@ class SearchController extends Controller
 
             foreach ($videosResponse['items'] as $videoResult) {
 
+                list($thumbnails, $thumWidth, $thumHight, $thumBg) = $this->thumbnails($videoResult);
+
                 $result = [
                     "id"            => $videoResult['id'],
                     "title"         => $videoResult['snippet']['title'],
@@ -98,9 +99,13 @@ class SearchController extends Controller
                     "description"   => $videoResult['snippet']['description'],
                     "publishedAt"   => $this->timeAgo($videoResult['snippet']['publishedAt']),
                     "viewCount"     => number_format($videoResult['statistics']['viewCount']),
-                    "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
-                    "thumbnailsSD"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/sddefault.jpg',
-                    "thumbnailsHQ"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/hqdefault.jpg',
+                    "thumbnails"    => $thumbnails,
+                    "thumbnailsWidth"    => $thumWidth,
+                    "thumbnailsHeight"    => $thumHight,
+                    "thumbnailsBg"    => $thumBg,
+//                    "thumbnails"    => $videoResult['snippet']['thumbnails']['maxres']['url'],
+//                    "thumbnailsSD"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/sddefault.jpg',
+//                    "thumbnailsHQ"  => 'https://i.ytimg.com/vi/'.$videoResult['id'].'/hqdefault.jpg',
                     "tags"          => $videoResult['snippet']['tags'],
                     "keywords"      => $videoResult['snippet']['tags'] ? $this->keywords($videoResult['snippet']['tags']) : null,
                 ];
@@ -503,6 +508,38 @@ class SearchController extends Controller
     public function keywords($videoResult)
     {
         return implode(', ', $videoResult);
+    }
+
+    /**
+     * @param $videoResult
+     * @return array
+     */
+    public function thumbnails($videoResult)
+    {
+        $thumbnails = null;
+        $thumWidth = null;
+        $thumHight = null;
+        $thumBg = null;
+
+        if ($videoResult['snippet']['thumbnails']['maxres']) {
+            $thumbnails = $videoResult['snippet']['thumbnails']['maxres']['url'];
+            $thumWidth = $videoResult['snippet']['thumbnails']['maxres']['width'];
+            $thumHight = $videoResult['snippet']['thumbnails']['maxres']['height'];
+            $thumBg = $videoResult['snippet']['thumbnails']['maxres']['url'];
+            return array($thumbnails, $thumWidth, $thumHight, $thumBg);
+        } elseif($videoResult['snippet']['thumbnails']['high']){
+            $thumbnails = $videoResult['snippet']['thumbnails']['high']['url'];
+            $thumWidth = $videoResult['snippet']['thumbnails']['high']['width'];
+            $thumHight = $videoResult['snippet']['thumbnails']['high']['height'];
+            $thumBg = $videoResult['snippet']['thumbnails']['medium']['url'];
+            return array($thumbnails, $thumWidth, $thumHight, $thumBg);
+        } else {
+            $thumbnails = $videoResult['snippet']['thumbnails']['medium']['url'];
+            $thumWidth = $videoResult['snippet']['thumbnails']['medium']['width'];
+            $thumHight = $videoResult['snippet']['thumbnails']['medium']['height'];
+            $thumBg = $videoResult['snippet']['thumbnails']['medium']['url'];
+            return array($thumbnails, $thumWidth, $thumHight, $thumBg);
+        }
     }
 
 

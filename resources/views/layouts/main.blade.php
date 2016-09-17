@@ -4,11 +4,13 @@
 <head>
 
     <title>@yield('title')</title>
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7, IE=EmulateIE9, IE=EmulateIE11, IE=EDGE" />
     <meta property="fb:app_id" content="950643235062155">
     <meta property="og:url"    content="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>" />
+
     @yield('meta')
 
     <link rel="stylesheet" type="text/css" href="{{ asset("components/jquery-ui/themes/base/jquery-ui.css") }}">
@@ -17,9 +19,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset("components/font-awesome/css/font-awesome.min.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("components/css/default.css") }}">
 
-    <!--[if IE]>
-    <link rel="stylesheet" type="text/css" href="{{ asset("components/css/ie.css") }}" />
-    <![endif]-->
+
+
+
 
     <script src="{{ asset("components/jquery/dist/jquery.min.js") }}"></script>
     <script src="{{ asset("components/jquery-ui/jquery-ui.min.js") }}"></script>
@@ -30,6 +32,12 @@
 
     @yield('source')
 
+    <script>
+        if (navigator.appName == 'Microsoft Internet Explorer' ||  !!(navigator.userAgent.match(/Trident/) || navigator.userAgent.match(/rv 11/)) || $.browser.msie == 1)
+        {
+            $('head').append('<link rel="stylesheet" type="text/css" href="{{ asset("components/css/ie.css") }}" />');
+        }
+    </script>
 </head>
 <body>
 
@@ -174,13 +182,14 @@
 
 @yield('script')
 
+
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-79878986-2', 'auto');
+    ga('create', 'UA-83699902-1', 'auto');
     ga('send', 'pageview');
 
 </script>

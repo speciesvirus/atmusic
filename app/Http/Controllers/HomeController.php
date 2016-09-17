@@ -93,11 +93,12 @@ class HomeController extends Controller
         $thumbnails = null;
 
         $recommend = [];
-        $hit = [];
+        $music = [];
         $movie = [];
         $funny = [];
         $food = [];
         $troll = [];
+        $home = [];
 //        $videos = DB::table('features')->join('videos', 'videos.id', '=', 'features.video')
 //            ->where('recommend', 1)->orWhere('hit', 1)->select('video','recommend','hit')->get();
 
@@ -105,6 +106,7 @@ class HomeController extends Controller
 
         //!* video list
         $vid = $this->distinctVideo($videos);
+
 
         try {
 
@@ -137,7 +139,9 @@ class HomeController extends Controller
                             if($video->feature == 1){
                                 array_push($recommend,$snippet);
                             }elseif ($video->feature == 2){
-                                array_push($hit,$snippet);
+                                array_push($music,$snippet);
+                            }elseif ($video->feature == 3){
+                                array_push($home,$snippet);
                             }elseif ($video->feature == 4){
                                 array_push($movie,$snippet);
                             }elseif ($video->feature == 5){
@@ -154,18 +158,20 @@ class HomeController extends Controller
                 }
 
 
-                $result = [
-                    "recommend"    => $recommend,
-                    "hit"          => $hit,
-                    "movie"          => $movie,
-                    "funny"          => $funny,
-                    "food"          => $food,
-                    "troll"          => $troll
-                ];
 
             }
 
 
+
+            $result = [
+                "recommend"    => $recommend,
+                "music"          => $music,
+                "movie"          => $movie,
+                "funny"          => $funny,
+                "food"          => $food,
+                "troll"          => $troll,
+                "home"          => $home
+            ];
 
 
         } catch (Google_Service_Exception $e) {

@@ -23,7 +23,7 @@ class NavigationComposer
 
 
         $recommend = [];
-        $hit = [];
+        $music = [];
         $movie = [];
         $food = [];
 //        $videos = DB::table('features')->join('videos', 'videos.id', '=', 'features.video')
@@ -55,7 +55,7 @@ class NavigationComposer
                             if($video->feature == 1){
                                 array_push($recommend,$snippet);
                             }elseif ($video->feature == 2){
-                                array_push($hit,$snippet);
+                                array_push($music,$snippet);
                             }elseif ($video->feature == 4){
                                 array_push($movie,$snippet);
                             }elseif ($video->feature == 7){
@@ -70,7 +70,7 @@ class NavigationComposer
 
             $result = [
                 "recommend"    => $recommend,
-                "hit"          => $hit,
+                "music"          => $music,
                 "movie"        => $movie,
                 "food"         => $food
             ];

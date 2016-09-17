@@ -2,11 +2,17 @@
 
 @section('title', 'unbok')
 
-@section('facebook-meta')
-    <meta property="og:type"          content="article" />
-    <meta property="og:title"         content="สัญญาเพิ่มเติมกลุ่มโรคร้ายแรง" />
-    <meta property="og:description"   content="เมื่อตรวจพบว่าเป็นโรคร้ายแรงเป็นครั้งแรกในขณะที่ยังมีชีวิตอยู่ การได้รับชดเชยเงินก้อนจะช่วยในการวางแผนการรักษาได้เป็นอย่างมาก อย่าปล่อยให้โรคร้ายแรงทำร้ายคนทั้งบ้าน ให้เอไอเอ เป็นผู้ดูแลคุณและคนที่คุณรัก" />
-    {{--<meta property="og:image"         content="{{ asset("components/image/ECIR/ecir_logo.jpg") }}" />--}}
+@section('meta')
+    <link rel="canonical" href="<?php echo "http://$_SERVER[HTTP_HOST]"; ?>">
+    <link rel="alternate" media="handheld" href="<?php echo "http://$_SERVER[HTTP_HOST]"; ?>">
+    <meta name="description" content="There are many video sharing websites and social communities, Review the best video sharing sites on Unbok">
+    <meta name="keywords" content="video, sharing, camera phone, video phone, free, social">
+    <link rel="icon" href="{{ asset('components/images/unbok_32.png') }}" sizes="32x32">
+    <link rel="icon" href="{{ asset('components/images/unbok_48.png') }}" sizes="48x48">
+    <link rel="icon" href="{{ asset('components/images/unbok_96.png') }}" sizes="96x96">
+    <link rel="icon" href="{{ asset('components/images/unbok_144.png') }}" sizes="144x144">
+    <meta property="og:image" content="{{ asset('components/images/unbok_1200-shraing.png') }}">
+
 @stop
 
 @section('source')
@@ -120,12 +126,12 @@
 
             <section>
                 <div class="feed-container">
-                    <h4 class="feed-topic">Top Hit</h4>
+                    <h4 class="feed-topic">Music</h4>
                     <div class="owl-carousel">
 
-                        @if(isset($result['hit']))
+                        @if(isset($result['music']))
 
-                            @foreach($result['hit'] as $key => $value)
+                            @foreach($result['music'] as $key => $value)
 
                                 <div class="card">
                                     <div class="card-thumbnail">
@@ -289,6 +295,53 @@
                 </div>
             </section>
 
+
+
+            <section>
+                <div class="feed-container">
+                    <h4 class="feed-topic">Home & Garden</h4>
+                    <div class="owl-carousel">
+
+                        @if(isset($result['home']))
+
+                            @foreach($result['home'] as $key => $value)
+
+                                <div class="card">
+                                    <div class="card-thumbnail">
+                                        <a href="{{ asset('/'.$value['id']) }}">
+                                            <img src="https://i.ytimg.com/vi/{{ $value['id'] }}/mqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68" class="left"/>
+                                        </a>
+                                    </div>
+                                    <div class="right">
+                                        <h1><a href="{{ asset('/'.$value['id']) }}">{{ $value['title'] }}</a></h1>
+                                        <h2>{{ $value['channelTitle'] }}</h2>
+                                        <h2>{{ $value['viewCount'] }} views {{ $value['publishedAt'] }}</h2>
+
+                                        <p>{{ $value['description'] }}</p>
+
+
+                                        <ul>
+                                            <li>
+                                                <div class="c_info">
+                                                    <span id="c_stars" data-star="{{ $value['rate'] }}"></span>
+                                                    <div class="c_num">{{ $value['rate'] }}</div >
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+
+                            @endforeach
+
+                        @endif
+
+
+
+                    </div>
+                </div>
+            </section>
 
         </div>
 

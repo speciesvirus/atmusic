@@ -14,17 +14,17 @@
     <meta property="og:description" content="{{ strlen($result['description']) > 157 ? preg_replace('/\s+/', ' ',trim(mb_substr($result['description'],0,157, 'UTF-8')))."..." : trim($result['description']) }}" />
     <meta property="article:author" content="{{ $result['channelTitle'] }}" />
     <meta property="article:section" content="player" />
-    <meta property="og:image" content="{{ $result['thumbnails'] == '' ? $result['thumbnailsSD'] == '' ? $result['thumbnailsHQ'] : $result['thumbnailsSD'] : $result['thumbnails'] }}" />
+    <meta property="og:image" content="{{ $result['thumbnails'] }}" />
 
 
     <meta property="og:video:type" content="text/html">
-    <meta property="og:video:width" content="1280">
-    <meta property="og:video:height" content="720">
+    <meta property="og:video:width" content="{{ $result['thumbnailsWidth'] }}">
+    <meta property="og:video:height" content="{{ $result['thumbnailsHeight'] }}">
     <meta property="og:video:url" content="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
     <meta property="og:video:secure_url" content="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
     <meta property="og:video:type" content="application/x-shockwave-flash">
-    <meta property="og:video:width" content="1280">
-    <meta property="og:video:height" content="720">
+    <meta property="og:video:width" content="{{ $result['thumbnailsWidth'] }}">
+    <meta property="og:video:height" content="{{ $result['thumbnailsHeight'] }}">
 
     @if($result['tags'])
     @foreach($result['tags'] as $tag)
@@ -38,10 +38,10 @@
     <meta name="twitter:url" content="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
     <meta name="twitter:title" content="{{ $result['title'] }}">
     <meta name="twitter:description" content="{{ strlen($result['description']) > 157 ? preg_replace('/\s+/', ' ',trim(mb_substr($result['description'],0,157, 'UTF-8')))."..." : trim($result['description']) }}">
-    <meta name="twitter:image" content="{{ $result['thumbnails'] == '' ? $result['thumbnailsSD'] : $result['thumbnails'] }}">
+    <meta name="twitter:image" content="{{ $result['thumbnails'] }}">
     <meta name="twitter:player" content="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>">
-    <meta name="twitter:player:width" content="1280">
-    <meta name="twitter:player:height" content="720">
+    <meta name="twitter:player:width" content="{{ $result['thumbnailsWidth'] }}">
+    <meta name="twitter:player:height" content="{{ $result['thumbnailsHeight'] }}">
 @stop
 
 @section('source')
@@ -274,7 +274,7 @@
     <div class="content">
 
 
-        <div class="watch-bg" style="background-image: url('{{ $result['thumbnails'] == '' ? $result['thumbnailsSD'] : $result['thumbnails'] }}')"></div>
+        <div class="watch-bg" style="background-image: url('{{ $result['thumbnailsBg'] }}')"></div>
         <div class="watch-pattern"></div>
         <div class="page-watch">
             <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
@@ -720,6 +720,9 @@
                     //text time
                     $(".time-current").text(player.getCurrentTime().toString().toHHMMSS());
                     $(".time-duration").text(player.getDuration().toString().toHHMMSS());
+
+//                    $("#slider_value").text(player.getCurrentTime().toString().toHHMMSS());
+                    onCurrentTime();
                 }
             }, 250);
 
@@ -739,7 +742,7 @@
                 slide: function(event, ui) {
                     //text time
                     $("#slider_value").text(ui.value.toString().toHHMMSS());
-
+                    $('.slider-container .slider-tooltip').addClass('active');
                     onCurrentTime();
                 },
                 start: function(event, ui) {
@@ -750,6 +753,7 @@
                 stop: function(event, ui) {
                     player.seekTo(ui.value, true);
                     player.playVideo();
+                    $('.slider-container .slider-tooltip').removeClass('active');
                     rangerGo = setInterval(function() {
                         $("#video-progress").slider("value", player.getCurrentTime());
                         $("#video-progress").slider("option", "max", player.getDuration());
